@@ -18,4 +18,5 @@ public class Inversor {
     private Cliente cliente;
     private double montoinvertido;
     private String contrato;
+    private boolean status;
 }

@@ -23,4 +23,5 @@ public class Cliente {
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
+    private boolean estado;
 }

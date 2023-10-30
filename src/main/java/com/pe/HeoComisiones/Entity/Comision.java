@@ -24,4 +24,5 @@ public class Comision {
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuario;
+    private boolean status;
 }

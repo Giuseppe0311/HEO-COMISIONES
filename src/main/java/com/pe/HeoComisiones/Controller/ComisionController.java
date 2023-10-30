@@ -1,0 +1,60 @@
+package com.pe.HeoComisiones.Controller;
+
+import com.pe.HeoComisiones.Entity.Comision;
+import com.pe.HeoComisiones.Services.ComisionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/comision")
+public class ComisionController {
+    @Autowired
+    private ComisionService comisionService;
+
+    public ResponseEntity<List<Comision>> getComision(){
+        try {
+            return ResponseEntity.ok(comisionService.getComisiones());
+        }catch (Exception e){
+            return ResponseEntity.noContent().build();
+        }
+
+    }
+
+    public  ResponseEntity<?> getComisionById(@PathVariable Integer id){
+        try {
+            return ResponseEntity.ok(comisionService.getComisionesByid(id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    public ResponseEntity<?> saveComision(@RequestBody Comision comision){
+        try {
+            comisionService.SaveComisiones(comision);
+            return ResponseEntity.ok("Comision guardada");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    public ResponseEntity<?> updateComision(@PathVariable Integer id,@RequestBody Comision comision){
+        try {
+            comisionService.UpdateComisiones(id,comision);
+            return ResponseEntity.ok("Comision actualizada");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    public ResponseEntity<?> deleteComision(@PathVariable Integer id){
+        try {
+            comisionService.DeleteComisiones(id);
+            return ResponseEntity.ok("Comision eliminada");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+}
