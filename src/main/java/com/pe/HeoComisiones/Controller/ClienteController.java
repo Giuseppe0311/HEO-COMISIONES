@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Controller;
 
 import com.pe.HeoComisiones.Entity.Cliente;
+import com.pe.HeoComisiones.Request.ClienteRequest;
 import com.pe.HeoComisiones.Services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +34,9 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<?> Savecliente(@RequestBody Cliente cliente){
+    public ResponseEntity<?> Savecliente(@RequestBody ClienteRequest clienteRequest){
         try {
-            clienteService.Savecliente(cliente);
+            clienteService.Savecliente(clienteRequest);
             return ResponseEntity.ok().build();
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -44,9 +45,9 @@ public class ClienteController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> Updatecliente(@PathVariable Integer id, @RequestBody Cliente cliente){
+    public ResponseEntity<?> Updatecliente(@PathVariable Integer id, @RequestBody ClienteRequest clienteRequest){
         try {
-            clienteService.Updatecliente(id, cliente);
+            clienteService.Updatecliente(id, clienteRequest);
             return ResponseEntity.ok().build();
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

@@ -23,6 +23,6 @@ public class Comision {
     private Sucursal sucursal;
     @ManyToOne
     @JoinColumn(name="id_usuario")
-    private Usuario usuario;
+    private Usuarios usuarios;
     private boolean status;
 }

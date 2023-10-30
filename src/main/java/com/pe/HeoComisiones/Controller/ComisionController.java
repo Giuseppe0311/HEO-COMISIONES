@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Controller;
 
 import com.pe.HeoComisiones.Entity.Comision;
+import com.pe.HeoComisiones.Request.ComisionRequest;
 import com.pe.HeoComisiones.Services.ComisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,17 +34,17 @@ public class ComisionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    public ResponseEntity<?> saveComision(@RequestBody Comision comision){
+    public ResponseEntity<?> saveComision(@RequestBody ComisionRequest comisionRequest){
         try {
-            comisionService.SaveComisiones(comision);
+            comisionService.SaveComisiones(comisionRequest);
             return ResponseEntity.ok("Comision guardada");
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    public ResponseEntity<?> updateComision(@PathVariable Integer id,@RequestBody Comision comision){
+    public ResponseEntity<?> updateComision(@PathVariable Integer id,@RequestBody ComisionRequest comisionRequest){
         try {
-            comisionService.UpdateComisiones(id,comision);
+            comisionService.UpdateComisiones(id,comisionRequest);
             return ResponseEntity.ok("Comision actualizada");
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
