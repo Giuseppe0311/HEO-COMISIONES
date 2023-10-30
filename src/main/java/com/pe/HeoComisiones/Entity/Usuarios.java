@@ -18,7 +18,6 @@ public class Usuario {
     private String name;
     private String email;
     private String Password;
-    private String role;
     @ManyToMany
     @JoinTable(
             name="usuario_perfiles",
