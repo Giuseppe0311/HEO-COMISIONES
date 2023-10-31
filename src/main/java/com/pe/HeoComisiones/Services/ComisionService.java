@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Services;
 
-import com.pe.HeoComisiones.Entity.Comision;
+import com.pe.HeoComisiones.Entity.Comisiones;
 import com.pe.HeoComisiones.Repository.ComisionRepository;
 import com.pe.HeoComisiones.Repository.PerfilesRepository;
 import com.pe.HeoComisiones.Repository.SucursalRepository;
@@ -24,12 +24,12 @@ public class ComisionService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<Comision> getComisiones(){
+    public List<Comisiones> getComisiones(){
         return comisionRepository.findByStatusTrue();
     }
-    public List<Comision> getComisionesByid(Integer id){
-        List<Comision> comisiones = new ArrayList<>();
-        Optional<Comision> comision = comisionRepository.findById(id);
+    public List<Comisiones> getComisionesByid(Integer id){
+        List<Comisiones> comisiones = new ArrayList<>();
+        Optional<Comisiones> comision = comisionRepository.findById(id);
         if (comision.isPresent()){
             comisiones.add(comision.get());
             return comisiones;
@@ -37,32 +37,32 @@ public class ComisionService {
         return comisiones;
     }
     public  void SaveComisiones(ComisionRequest comisionRequest)throws Exception{
-        Comision comision = new Comision();
-        comision.setPorcentaje(comisionRequest.getPorcentaje());
-        comision.setGanancia(comisionRequest.getGanancia());
-        comision.setPerfiles(perfilesRepository.findById(comisionRequest.getPerfiles()).orElse(null));
-        comision.setSucursal(sucursalRepository.findById(comisionRequest.getSucursal()).orElse(null));
-        comision.setUsuarios(usuarioRepository.findById(comisionRequest.getUsuarios()).orElse(null));
-        comision.setStatus(true);
-        comisionRepository.save(comision);
+        Comisiones comisiones = new Comisiones();
+        comisiones.setPorcentaje(comisionRequest.getPorcentaje());
+        comisiones.setGanancia(comisionRequest.getGanancia());
+        comisiones.setPerfiles(perfilesRepository.findById(comisionRequest.getPerfiles()).orElse(null));
+        comisiones.setSucursales(sucursalRepository.findById(comisionRequest.getSucursal()).orElse(null));
+        comisiones.setUsuarios(usuarioRepository.findById(comisionRequest.getUsuarios()).orElse(null));
+        comisiones.setStatus(true);
+        comisionRepository.save(comisiones);
     }
     public void UpdateComisiones(Integer id,ComisionRequest comisionRequest)throws Exception{
-        Comision comision1 = comisionRepository.findById(id).orElse(null);
-        if (comision1 != null){
-            comision1.setPorcentaje(comisionRequest.getPorcentaje());
-            comision1.setGanancia(comisionRequest.getGanancia());
-            comision1.setPerfiles(perfilesRepository.findById(comisionRequest.getPerfiles()).orElse(null));
-            comision1.setSucursal(sucursalRepository.findById(comisionRequest.getSucursal()).orElse(null));
-            comision1.setUsuarios(usuarioRepository.findById(comisionRequest.getUsuarios()).orElse(null));
-            comisionRepository.save(comision1);
+        Comisiones comisiones1 = comisionRepository.findById(id).orElse(null);
+        if (comisiones1 != null){
+            comisiones1.setPorcentaje(comisionRequest.getPorcentaje());
+            comisiones1.setGanancia(comisionRequest.getGanancia());
+            comisiones1.setPerfiles(perfilesRepository.findById(comisionRequest.getPerfiles()).orElse(null));
+            comisiones1.setSucursales(sucursalRepository.findById(comisionRequest.getSucursal()).orElse(null));
+            comisiones1.setUsuarios(usuarioRepository.findById(comisionRequest.getUsuarios()).orElse(null));
+            comisionRepository.save(comisiones1);
         }
         throw new Exception();
     }
     public void DeleteComisiones(Integer id)throws Exception{
-        Comision comision = comisionRepository.findById(id).orElse(null);
-        if (comision != null){
-            comision.setStatus(false);
-            comisionRepository.save(comision);
+        Comisiones comisiones = comisionRepository.findById(id).orElse(null);
+        if (comisiones != null){
+            comisiones.setStatus(false);
+            comisionRepository.save(comisiones);
         }
         throw new Exception();
     }

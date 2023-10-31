@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comision {
+public class Comisiones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,7 +20,7 @@ public class Comision {
     private Perfiles perfiles;
     @ManyToOne
     @JoinColumn(name="id_sucursal")
-    private Sucursal sucursal;
+    private Sucursales sucursales;
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuarios usuarios;

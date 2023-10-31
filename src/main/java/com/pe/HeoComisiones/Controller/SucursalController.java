@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Controller;
 
-import com.pe.HeoComisiones.Entity.Sucursal;
+import com.pe.HeoComisiones.Entity.Sucursales;
 import com.pe.HeoComisiones.Services.SucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ public class SucursalController {
     @Autowired
     private SucursalService sucursalService;
     @GetMapping
-    public ResponseEntity<List<Sucursal>> getSucursales(){
+    public ResponseEntity<List<Sucursales>> getSucursales(){
         try {
             return ResponseEntity.ok(sucursalService.getSucursa());
         }catch (Exception e){
@@ -30,18 +30,18 @@ public class SucursalController {
         }
     }
     @PostMapping
-    public ResponseEntity<?> saveSucursal(Sucursal sucursal){
+    public ResponseEntity<?> saveSucursal(Sucursales sucursales){
         try {
-            sucursalService.saveSucursal(sucursal);
+            sucursalService.saveSucursal(sucursales);
             return ResponseEntity.ok().build();
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateSucursal(@PathVariable Integer id, Sucursal sucursal){
+    public ResponseEntity<?> updateSucursal(@PathVariable Integer id, Sucursales sucursales){
         try {
-            sucursalService.updateSucursal(id, sucursal);
+            sucursalService.updateSucursal(id, sucursales);
             return ResponseEntity.ok().build();
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

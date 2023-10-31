@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Services;
 
-import com.pe.HeoComisiones.Entity.Cliente;
+import com.pe.HeoComisiones.Entity.Clientes;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.ClienteRequest;
@@ -20,52 +20,52 @@ public class ClienteService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<Cliente> getcliente(){
+    public List<Clientes> getcliente(){
         Sort sort  = Sort.by(Sort.Direction.ASC,"id");
         return clienteRepository.findByStatusTrue(sort);
     }
-    public List<Cliente> getclientebyId(Integer id) throws Exception {
-        Optional<Cliente> cliente = clienteRepository.findById(id);
-        List<Cliente> cliente1 = new ArrayList<>();
+    public List<Clientes> getclientebyId(Integer id) throws Exception {
+        Optional<Clientes> cliente = clienteRepository.findById(id);
+        List<Clientes> clientes1 = new ArrayList<>();
         if(cliente.isPresent()){
-            cliente1.add(cliente.get());
-            return cliente1;
+            clientes1.add(cliente.get());
+            return clientes1;
         }
-       return cliente1;
+       return clientes1;
     }
 
     public void Savecliente(ClienteRequest clienteRequest) throws Exception {
-        Cliente cliente = new Cliente();
-        cliente.setApellido(clienteRequest.getApellido());
-        cliente.setDistrito(clienteRequest.getDistrito());
-        cliente.setNombre(clienteRequest.getNombre());
-        cliente.setTelefono(clienteRequest.getTelefono());
-        cliente.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
-        cliente.setDistrito(clienteRequest.getDistrito());
-        cliente.setProvincia(clienteRequest.getProvincia());
-        cliente.setDepartamento(clienteRequest.getDepartamento());
-        clienteRepository.save(cliente);
+        Clientes clientes = new Clientes();
+        clientes.setApellido(clienteRequest.getApellido());
+        clientes.setDistrito(clienteRequest.getDistrito());
+        clientes.setNombre(clienteRequest.getNombre());
+        clientes.setTelefono(clienteRequest.getTelefono());
+        clientes.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
+        clientes.setDistrito(clienteRequest.getDistrito());
+        clientes.setProvincia(clienteRequest.getProvincia());
+        clientes.setDepartamento(clienteRequest.getDepartamento());
+        clienteRepository.save(clientes);
     }
     public  void Updatecliente(Integer id,ClienteRequest clienteRequest) throws Exception {
-        Cliente cliente1 = clienteRepository.findById(id).orElse(null);
-        if(cliente1 != null){
-            cliente1.setApellido(clienteRequest.getApellido());
-            cliente1.setDistrito(clienteRequest.getDistrito());
-            cliente1.setNombre(clienteRequest.getNombre());
-            cliente1.setTelefono(clienteRequest.getTelefono());
-            cliente1.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
-            cliente1.setDistrito(clienteRequest.getDistrito());
-            cliente1.setProvincia(clienteRequest.getProvincia());
-            cliente1.setDepartamento(clienteRequest.getDepartamento());
-            clienteRepository.save(cliente1);
+        Clientes clientes1 = clienteRepository.findById(id).orElse(null);
+        if(clientes1 != null){
+            clientes1.setApellido(clienteRequest.getApellido());
+            clientes1.setDistrito(clienteRequest.getDistrito());
+            clientes1.setNombre(clienteRequest.getNombre());
+            clientes1.setTelefono(clienteRequest.getTelefono());
+            clientes1.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
+            clientes1.setDistrito(clienteRequest.getDistrito());
+            clientes1.setProvincia(clienteRequest.getProvincia());
+            clientes1.setDepartamento(clienteRequest.getDepartamento());
+            clienteRepository.save(clientes1);
         }
         throw new Exception();
     }
     public void Deletecliente(Integer id) throws Exception {
-        Cliente cliente = clienteRepository.findById(id).orElse(null);
-        if(cliente != null){
-            cliente.setStatus(false);
-            clienteRepository.save(cliente);
+        Clientes clientes = clienteRepository.findById(id).orElse(null);
+        if(clientes != null){
+            clientes.setStatus(false);
+            clienteRepository.save(clientes);
         }
         throw new Exception();
     }

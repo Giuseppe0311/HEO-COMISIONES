@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Services;
 
-import com.pe.HeoComisiones.Entity.Sucursal;
+import com.pe.HeoComisiones.Entity.Sucursales;
 import com.pe.HeoComisiones.Repository.SucursalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,37 +12,37 @@ import java.util.List;
 public class SucursalService {
     @Autowired
    private SucursalRepository sucursalRepository;
-    public List<Sucursal> getSucursa() throws Exception{
+    public List<Sucursales> getSucursa() throws Exception{
        return sucursalRepository.findByStatusTrue();
     }
-    public List<Sucursal> getSucursalByid(Integer id) throws Exception{
-        List<Sucursal> sucursals = new ArrayList<>();
-        Sucursal sucursal = sucursalRepository.findById(id).orElse(null);
-        if (sucursal != null){
-            sucursals.add(sucursal);
-            return sucursals;
+    public List<Sucursales> getSucursalByid(Integer id) throws Exception{
+        List<Sucursales> sucursales = new ArrayList<>();
+        Sucursales sucursales1 = sucursalRepository.findById(id).orElse(null);
+        if (sucursales1 != null){
+            sucursales.add(sucursales1);
+            return sucursales;
         }
-        return sucursals;
+        return sucursales;
     }
-    public void saveSucursal(Sucursal sucursal) throws Exception{
-        sucursal.setStatus(true);
-        sucursalRepository.save(sucursal);
+    public void saveSucursal(Sucursales sucursales) throws Exception{
+        sucursales.setStatus(true);
+        sucursalRepository.save(sucursales);
     }
-    public void updateSucursal (Integer id, Sucursal sucursal) throws Exception{
-        Sucursal sucursal1 = sucursalRepository.findById(id).orElse(null);
-        if (sucursal1 != null){
-            sucursal1.setName(sucursal.getName());
-            sucursal1.setAddress(sucursal.getAddress());
-            sucursal1.setPhone(sucursal.getPhone());
-            sucursalRepository.save(sucursal1);
+    public void updateSucursal (Integer id, Sucursales sucursales) throws Exception{
+        Sucursales sucursales1 = sucursalRepository.findById(id).orElse(null);
+        if (sucursales1 != null){
+            sucursales1.setName(sucursales.getName());
+            sucursales1.setAddress(sucursales.getAddress());
+            sucursales1.setPhone(sucursales.getPhone());
+            sucursalRepository.save(sucursales1);
         }
         throw new Exception("No existe el id");
     }
     public void deleteSucursal(Integer id) throws Exception{
-        Sucursal sucursal = sucursalRepository.findById(id).orElse(null);
-        if (sucursal != null){
-            sucursal.setStatus(false);
-            sucursalRepository.save(sucursal);
+        Sucursales sucursales = sucursalRepository.findById(id).orElse(null);
+        if (sucursales != null){
+            sucursales.setStatus(false);
+            sucursalRepository.save(sucursales);
         }
         throw new Exception("No existe el id");
     }

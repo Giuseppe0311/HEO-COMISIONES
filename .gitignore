@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/applicationpropertiesforlocal.txt
+/src/main/resources/applicationpropertiesfortest.txt
+/src/main/resources/propertiesforproduction.txt

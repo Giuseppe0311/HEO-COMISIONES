@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Controller;
 
-import com.pe.HeoComisiones.Entity.Comision;
+import com.pe.HeoComisiones.Entity.Comisiones;
 import com.pe.HeoComisiones.Request.ComisionRequest;
 import com.pe.HeoComisiones.Services.ComisionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ComisionController {
     @Autowired
     private ComisionService comisionService;
 
-    public ResponseEntity<List<Comision>> getComision(){
+    public ResponseEntity<List<Comisiones>> getComision(){
         try {
             return ResponseEntity.ok(comisionService.getComisiones());
         }catch (Exception e){

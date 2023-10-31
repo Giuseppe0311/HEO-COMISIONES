@@ -1,13 +1,10 @@
 package com.pe.HeoComisiones.Controller;
 
-import com.pe.HeoComisiones.Entity.Cliente;
 import com.pe.HeoComisiones.Request.ClienteRequest;
 import com.pe.HeoComisiones.Services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/cliente")

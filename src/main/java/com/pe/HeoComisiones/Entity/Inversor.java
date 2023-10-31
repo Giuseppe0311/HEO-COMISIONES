@@ -15,7 +15,7 @@ public class Inversor {
     private Integer id;
     @ManyToOne
     @JoinColumn(name="id_cliente")
-    private Cliente cliente;
+    private Clientes clientes;
     private double montoinvertido;
     private String contrato;
     private boolean status;

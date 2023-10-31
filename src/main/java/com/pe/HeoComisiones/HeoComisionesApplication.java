@@ -1,9 +1,10 @@
 package com.pe.HeoComisiones;
 
 import com.pe.HeoComisiones.Entity.Perfiles;
-import com.pe.HeoComisiones.Entity.Sucursal;
+import com.pe.HeoComisiones.Entity.Sucursales;
 import com.pe.HeoComisiones.Entity.Usuarios;
 import com.pe.HeoComisiones.Repository.PerfilesRepository;
+import com.pe.HeoComisiones.Repository.SucursalRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +20,8 @@ public class HeoComisionesApplication implements CommandLineRunner {
 	PerfilesRepository perfilesRepository;
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	@Autowired
+	SucursalRepository sucursalRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HeoComisionesApplication.class, args);
@@ -26,7 +29,8 @@ public class HeoComisionesApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Sucursal sucursal = new Sucursal(0,"Sucursal 1","Av. Los Alamos","123456",true);
+		Sucursales sucursales = new Sucursales(0,"Sucursal 1","Av. Los Alamos","123456",true);
+		sucursalRepository.save(sucursales);
 		Perfiles perfiles = new Perfiles(0,"Administrador",true);
 		perfilesRepository.save(perfiles);
 		Set<Perfiles>  perfiless = new HashSet<>();

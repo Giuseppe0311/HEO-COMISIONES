@@ -1,7 +1,6 @@
 package com.pe.HeoComisiones.Services;
 
 
-import com.pe.HeoComisiones.Entity.Cliente;
 import com.pe.HeoComisiones.Entity.Inversor;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
@@ -34,7 +33,7 @@ public class InversorService {
     public void saveInversor(InversorRequest inversorRequest)throws Exception{
         Inversor inversor = new Inversor();
         inversor.setStatus(true);
-        inversor.setCliente(clienteRepository.findById(inversorRequest.getIdcliente()).get());
+        inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).get());
         inversor.setContrato(inversorRequest.getContrato());
         inversor.setMontoinvertido(inversorRequest.getMontoinvertido());
         inversorRepository.save(inversor);
@@ -42,7 +41,7 @@ public class InversorService {
     public void updateInversor(Integer id,InversorRequest inversorRequest)throws Exception{
         Inversor inversor = inversorRepository.findById(id).orElse(null);
         if (inversor != null){
-            inversor.setCliente(clienteRepository.findById(inversorRequest.getIdcliente()).get());
+            inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).get());
             inversor.setContrato(inversorRequest.getContrato());
             inversor.setMontoinvertido(inversorRequest.getMontoinvertido());
             inversorRepository.save(inversor);
