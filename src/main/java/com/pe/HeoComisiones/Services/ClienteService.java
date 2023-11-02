@@ -36,6 +36,7 @@ public class ClienteService {
 
     public void Savecliente(ClienteRequest clienteRequest) throws Exception {
         Clientes clientes = new Clientes();
+        clientes.setStatus(true);
         clientes.setApellido(clienteRequest.getApellido());
         clientes.setDistrito(clienteRequest.getDistrito());
         clientes.setNombre(clienteRequest.getNombre());
