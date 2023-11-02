@@ -33,6 +33,10 @@ public class ClienteService {
         }
        return clientes1;
     }
+    public List<Clientes> getclientebyUsuario(Integer id) throws Exception {
+        Sort sort  = Sort.by(Sort.Direction.DESC,"id");
+        return clienteRepository.findByStatusTrueAndIdUsuario(id,sort);
+    }
 
     public void Savecliente(ClienteRequest clienteRequest) throws Exception {
         Clientes clientes = new Clientes();

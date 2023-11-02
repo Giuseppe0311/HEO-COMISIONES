@@ -21,6 +21,14 @@ public class ClienteController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<?> GetclientebyUsuario(@PathVariable Integer id){
+        try {
+            return ResponseEntity.ok(clienteService.getclientebyUsuario(id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> GetclientebyId(@PathVariable Integer id){
         try {

@@ -11,5 +11,6 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Clientes, Integer> {
 List<Clientes> findByStatusTrue(Sort sort);
+List<Clientes> findByStatusTrueAndIdUsuario(Integer idUsuario, Sort sort);
 
 }
