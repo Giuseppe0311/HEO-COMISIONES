@@ -22,7 +22,7 @@ public class SucursalController {
         }
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?> getSucursalById(Integer id){
+    public ResponseEntity<?> getSucursalById(@PathVariable Integer id){
         try {
             return ResponseEntity.ok(sucursalService.getSucursalByid(id));
         }catch (Exception e){
@@ -30,7 +30,7 @@ public class SucursalController {
         }
     }
     @PostMapping
-    public ResponseEntity<?> saveSucursal(Sucursales sucursales){
+    public ResponseEntity<?> saveSucursal(@RequestBody Sucursales sucursales){
         try {
             sucursalService.saveSucursal(sucursales);
             return ResponseEntity.ok().build();
@@ -39,7 +39,7 @@ public class SucursalController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateSucursal(@PathVariable Integer id, Sucursales sucursales){
+    public ResponseEntity<?> updateSucursal(@PathVariable Integer id,@RequestBody Sucursales sucursales){
         try {
             sucursalService.updateSucursal(id, sucursales);
             return ResponseEntity.ok().build();

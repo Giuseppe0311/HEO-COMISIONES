@@ -40,7 +40,7 @@ public class InversionController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateInversor(@PathVariable Integer id, InversorRequest inversorRequest){
+    public ResponseEntity<?> updateInversor(@PathVariable Integer id,@RequestBody InversorRequest inversorRequest){
         try {
             inversionService.updateInversor(id,inversorRequest);
             return ResponseEntity.ok("Inversor actualizado");
