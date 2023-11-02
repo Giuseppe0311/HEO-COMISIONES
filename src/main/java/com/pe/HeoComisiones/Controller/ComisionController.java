@@ -5,10 +5,7 @@ import com.pe.HeoComisiones.Request.ComisionRequest;
 import com.pe.HeoComisiones.Services.ComisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +15,7 @@ public class ComisionController {
     @Autowired
     private ComisionService comisionService;
 
+    @GetMapping
     public ResponseEntity<List<Comisiones>> getComision(){
         try {
             return ResponseEntity.ok(comisionService.getComisiones());
@@ -27,6 +25,7 @@ public class ComisionController {
 
     }
 
+    @GetMapping("/{id}")
     public  ResponseEntity<?> getComisionById(@PathVariable Integer id){
         try {
             return ResponseEntity.ok(comisionService.getComisionesByid(id));
@@ -34,6 +33,7 @@ public class ComisionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PostMapping
     public ResponseEntity<?> saveComision(@RequestBody ComisionRequest comisionRequest){
         try {
             comisionService.SaveComisiones(comisionRequest);
@@ -42,6 +42,7 @@ public class ComisionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateComision(@PathVariable Integer id,@RequestBody ComisionRequest comisionRequest){
         try {
             comisionService.UpdateComisiones(id,comisionRequest);
@@ -50,6 +51,7 @@ public class ComisionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteComision(@PathVariable Integer id){
         try {
             comisionService.DeleteComisiones(id);

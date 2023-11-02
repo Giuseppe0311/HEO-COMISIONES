@@ -30,6 +30,14 @@ public class InversionController {
             return ResponseEntity.badRequest().build();
         }
     }
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<Inversor>> getInversorbyUsuario(@PathVariable Integer id){
+        try {
+            return ResponseEntity.ok(inversionService.getInversorbyUsuario(id));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+    }
     @PostMapping
     public ResponseEntity<?> saveInversor(@RequestBody InversorRequest inversorRequest){
         try {
@@ -39,6 +47,7 @@ public class InversionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateInversor(@PathVariable Integer id,@RequestBody InversorRequest inversorRequest){
         try {

@@ -33,6 +33,9 @@ public class InversorService {
         }
         return inversores;
     }
+    public List<Inversor> getInversorbyUsuario(Integer id)throws Exception{
+        return inversorRepository.getInversionesByusuario(id);
+    }
     public void saveInversor(InversorRequest inversorRequest)throws Exception{
         Inversor inversor = new Inversor();
         inversor.setStatus(true);
