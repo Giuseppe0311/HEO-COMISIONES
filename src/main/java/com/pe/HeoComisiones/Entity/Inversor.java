@@ -19,4 +19,7 @@ public class Inversor {
     private double montoinvertido;
     private String contrato;
     private boolean status;
+    @ManyToOne
+    @JoinColumn(name="id_usuario")
+    private Usuarios usuarios;
 }

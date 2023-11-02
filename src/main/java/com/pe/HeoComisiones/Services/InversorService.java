@@ -4,6 +4,7 @@ package com.pe.HeoComisiones.Services;
 import com.pe.HeoComisiones.Entity.Inversor;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
+import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.InversorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class InversorService {
     private InversorRepository inversorRepository;
     @Autowired
     private ClienteRepository clienteRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public List<Inversor> getInversor(){
         return inversorRepository.findByStatusTrue();
@@ -35,7 +38,9 @@ public class InversorService {
         inversor.setStatus(true);
         inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).get());
         inversor.setContrato(inversorRequest.getContrato());
+        inversor.setUsuarios(usuarioRepository.findById(inversorRequest.getIdusuario()).get());
         inversor.setMontoinvertido(inversorRequest.getMontoinvertido());
+
         inversorRepository.save(inversor);
     }
     public void updateInversor(Integer id,InversorRequest inversorRequest)throws Exception{
@@ -43,9 +48,9 @@ public class InversorService {
         if (inversor != null){
             inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).get());
             inversor.setContrato(inversorRequest.getContrato());
+            inversor.setUsuarios(usuarioRepository.findById(inversorRequest.getIdusuario()).get());
             inversor.setMontoinvertido(inversorRequest.getMontoinvertido());
             inversorRepository.save(inversor);
-
         }
         throw new Exception();
     }
