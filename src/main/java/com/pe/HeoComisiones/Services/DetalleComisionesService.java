@@ -36,6 +36,9 @@ public class DetalleComisionesService {
         }
         return detalleComisiones;
     }
+    public List<DetalleComisiones> getdetallebyusuario(Integer idusuario){
+        return detalleComisionesRepository.getdetallebyusuario(idusuario);
+    }
 
     public void saveDetalle(DetallecoRequest detallecoRequest)throws  Exception{
         DetalleComisiones detalleComisiones = new DetalleComisiones();
