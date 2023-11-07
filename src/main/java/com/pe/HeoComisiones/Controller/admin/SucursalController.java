@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/sucursal")
+@CrossOrigin(origins = "*")
 public class SucursalController {
     @Autowired
     private SucursalService sucursalService;

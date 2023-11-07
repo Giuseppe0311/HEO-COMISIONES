@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/comision")
+@CrossOrigin(origins = "*")
 public class ComisionController {
     @Autowired
     private ComisionService comisionService;

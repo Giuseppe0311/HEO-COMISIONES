@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/inversion")
+@CrossOrigin(origins = "*")
 public class InversionController {
     @Autowired
     private InversorService inversionService;
