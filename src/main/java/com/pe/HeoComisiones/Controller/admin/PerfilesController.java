@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/perfiles")
+@RequestMapping("/admin/perfiles")
 public class PerfilesController {
     @Autowired
     private PerfilService perfilService;

@@ -1,0 +1,96 @@
+package com.pe.HeoComisiones.Services;
+
+import com.pe.HeoComisiones.DTO.JwtResponse;
+import com.pe.HeoComisiones.Entity.Perfiles;
+import com.pe.HeoComisiones.Entity.RefreshToken;
+import com.pe.HeoComisiones.Entity.Sucursales;
+import com.pe.HeoComisiones.Entity.Usuarios;
+import com.pe.HeoComisiones.Repository.PerfilesRepository;
+import com.pe.HeoComisiones.Repository.SucursalRepository;
+import com.pe.HeoComisiones.Repository.UsuarioRepository;
+import com.pe.HeoComisiones.Tokens.RefreshTokenService;
+import com.pe.HeoComisiones.Tokens.TokenService;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+@Service
+@Transactional
+public class AuthenticationService {
+        @Autowired
+    private RefreshTokenService refreshTokenService;
+    @Autowired
+    private UsuarioRepository userRepository;
+    @Autowired
+    private PerfilesRepository perfilesRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private SucursalRepository sucursalRepository;
+    @Autowired
+    private TokenService tokenService;
+
+    public Usuarios registerUser(String username, String password, String email, String name, Integer idSucursal, Set<Integer> perfiles) {
+        String encodedPassword = passwordEncoder.encode(password);
+        Optional<Perfiles> UsuarioPerfiles = perfilesRepository.findByName("ADMIN");
+        Perfiles usuarioperfil = UsuarioPerfiles.orElse(null);
+        Set<Perfiles> authorities = new HashSet<>();
+
+        for (Integer perfilid : perfiles){
+            Perfiles perfil = perfilesRepository.findById(perfilid).orElseThrow(()->
+                    new RuntimeException("Error: Perfil is not found."));
+            authorities.add(perfil);
+        }
+
+
+
+
+        Sucursales sucursales = sucursalRepository.findById(idSucursal).orElse(null);
+        if (sucursales != null) {
+            Usuarios usuario = new Usuarios();
+            usuario.setUsername(username);
+            usuario.setPassword(encodedPassword);
+            usuario.setEmail(email);
+            usuario.setName(name);
+            usuario.setSucursales(sucursales);
+            usuario.setProfiles(authorities);
+            return userRepository.save(usuario);
+        } else {
+            throw new RuntimeException("Error: Sucursal is not found.");
+        }
+    }
+
+    public JwtResponse loginUser(String username, String password) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password));
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            Usuarios user = userRepository.findByUsername(userDetails.getUsername()).orElse(null);
+            RefreshToken createRefreshToken = refreshTokenService.createRefreshToken(username);
+            if (user != null) {
+                String token  =tokenService.generateJwt(user);
+                return JwtResponse.builder()
+                        .accessToken(token)
+                        .refreshToken(createRefreshToken.getToken())
+                        .build();
+            } else {
+                throw new Exception("Error: User not found.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
+
+}

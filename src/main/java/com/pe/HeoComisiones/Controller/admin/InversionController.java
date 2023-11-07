@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/inversion")
+@RequestMapping("/admin/inversion")
 public class InversionController {
     @Autowired
     private InversorService inversionService;

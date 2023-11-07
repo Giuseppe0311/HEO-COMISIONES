@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("admin/detallecomisiones")
+@RequestMapping("/admin/detallecomisiones")
 public class DetalleComisionesController {
     @Autowired
     private DetalleComisionesService detalleComisionesService;

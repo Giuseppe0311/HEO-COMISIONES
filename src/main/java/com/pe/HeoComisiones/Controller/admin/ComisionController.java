@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/comision")
+@RequestMapping("/admin/comision")
 public class ComisionController {
     @Autowired
     private ComisionService comisionService;

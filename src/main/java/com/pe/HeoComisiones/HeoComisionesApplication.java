@@ -18,13 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class HeoComisionesApplication implements CommandLineRunner {
-	@Autowired
-	PerfilesRepository perfilesRepository;
-	@Autowired
-	UsuarioRepository usuarioRepository;
-	@Autowired
-	SucursalRepository sucursalRepository;
+public class HeoComisionesApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HeoComisionesApplication.class, args);
@@ -41,15 +35,4 @@ public class HeoComisionesApplication implements CommandLineRunner {
 		};
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		Sucursales sucursales = new Sucursales(0,"Sucursal 1","Av. Los Alamos","123456",true);
-		sucursalRepository.save(sucursales);
-		Perfiles perfiles = new Perfiles(0,"Administrador",true);
-		perfilesRepository.save(perfiles);
-		Set<Perfiles>  perfiless = new HashSet<>();
-		perfiless.add(perfiles);
-		Usuarios usuario = new Usuarios(0,"juan","barre@","123",perfiless);
-		usuarioRepository.save(usuario);
-	}
 }
