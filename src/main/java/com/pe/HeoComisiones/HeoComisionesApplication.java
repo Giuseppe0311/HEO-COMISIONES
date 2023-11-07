@@ -19,20 +19,9 @@ import java.util.Set;
 
 @SpringBootApplication
 public class HeoComisionesApplication  {
-
 	public static void main(String[] args) {
 		SpringApplication.run(HeoComisionesApplication.class, args);
 	}
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**")
-						.allowedOrigins("*")
-						.allowedMethods("GET","POST","DELETE","PUT","PATCH");
-			}
-		};
-	}
+
 
 }
