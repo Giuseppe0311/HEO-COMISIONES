@@ -14,7 +14,7 @@ public class Comisiones {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private double porcentaje;
-    private double ganancia;
+    private double montomax;
     @ManyToOne
     @JoinColumn(name="id_perfil")
     private Perfiles perfiles;

@@ -39,7 +39,7 @@ public class ComisionService {
     public  void SaveComisiones(ComisionRequest comisionRequest)throws Exception{
         Comisiones comisiones = new Comisiones();
         comisiones.setPorcentaje(comisionRequest.getPorcentaje());
-        comisiones.setGanancia(comisionRequest.getGanancia());
+        comisiones.setMontomax(comisionRequest.getMontomax());
         comisiones.setPerfiles(perfilesRepository.findById(comisionRequest.getPerfiles()).orElse(null));
         comisiones.setSucursales(sucursalRepository.findById(comisionRequest.getSucursal()).orElse(null));
         comisiones.setUsuarios(usuarioRepository.findById(comisionRequest.getUsuarios()).orElse(null));
@@ -50,7 +50,7 @@ public class ComisionService {
         Comisiones comisiones1 = comisionRepository.findById(id).orElse(null);
         if (comisiones1 != null){
             comisiones1.setPorcentaje(comisionRequest.getPorcentaje());
-            comisiones1.setGanancia(comisionRequest.getGanancia());
+            comisiones1.setMontomax(comisionRequest.getMontomax());
             comisiones1.setPerfiles(perfilesRepository.findById(comisionRequest.getPerfiles()).orElse(null));
             comisiones1.setSucursales(sucursalRepository.findById(comisionRequest.getSucursal()).orElse(null));
             comisiones1.setUsuarios(usuarioRepository.findById(comisionRequest.getUsuarios()).orElse(null));

@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/user/comision")
-@CrossOrigin(origins = "*")
+@RequestMapping("/usuario/comisiones")
 public class UserComisionController {
     @Autowired
     private ComisionService comisionService;

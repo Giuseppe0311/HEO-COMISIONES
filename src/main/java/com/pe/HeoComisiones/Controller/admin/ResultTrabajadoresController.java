@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping ("/admin/resulttrabajadores")
-@CrossOrigin(origins = "*")
+
 public class ResultTrabajadoresController {
     @Autowired
     ResultTrabajadoresService resultTrabajadoresService;

@@ -7,8 +7,7 @@ import com.pe.HeoComisiones.Entity.Usuarios;
 import com.pe.HeoComisiones.Request.RefreshTokenRequest;
 import com.pe.HeoComisiones.Services.AuthenticationService;
 import com.pe.HeoComisiones.Tokens.RefreshTokenService;
-import com.pe.HeoComisiones.Tokens.TokenService;
-import org.apache.coyote.Response;
+import com.pe.HeoComisiones.Tokens.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ public class AuthenticationController {
     @Autowired
     private RefreshTokenService refreshTokenService;
     @Autowired
-    private TokenService tokenService;
+    private JwtService jwtService;
     @Autowired
     private AuthenticationService authenticationService;
     @PostMapping("/login")
@@ -52,7 +51,7 @@ public class AuthenticationController {
             refreshTokenService.verifyExpiration(refreshToken);
 
             Usuarios user = refreshToken.getUsuario();
-            String token = tokenService.generateJwt(user);
+            String token = jwtService.generateToken(user.getUsername(),user.getAuthorities(),user.getId(),user.getSucursales().getId());
 
             JwtResponse jwtResponse = JwtResponse.builder()
                     .accessToken(token)

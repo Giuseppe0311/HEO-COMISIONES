@@ -9,10 +9,9 @@ import com.pe.HeoComisiones.Repository.PerfilesRepository;
 import com.pe.HeoComisiones.Repository.SucursalRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Tokens.RefreshTokenService;
-import com.pe.HeoComisiones.Tokens.TokenService;
+import com.pe.HeoComisiones.Tokens.JwtService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -40,7 +39,7 @@ public class AuthenticationService {
     @Autowired
     private SucursalRepository sucursalRepository;
     @Autowired
-    private TokenService tokenService;
+    private JwtService jwtService;
 
     public Usuarios registerUser(String username, String password, String email, String name, Integer idSucursal, Set<Integer> perfiles) {
         String encodedPassword = passwordEncoder.encode(password);
@@ -53,10 +52,6 @@ public class AuthenticationService {
                     new RuntimeException("Error: Perfil is not found."));
             authorities.add(perfil);
         }
-
-
-
-
         Sucursales sucursales = sucursalRepository.findById(idSucursal).orElse(null);
         if (sucursales != null) {
             Usuarios usuario = new Usuarios();
@@ -80,11 +75,8 @@ public class AuthenticationService {
             Usuarios user = userRepository.findByUsername(userDetails.getUsername()).orElse(null);
             RefreshToken createRefreshToken = refreshTokenService.createRefreshToken(username);
             if (user != null) {
-                String token  =tokenService.generateJwt(user);
-                return JwtResponse.builder()
-                        .accessToken(token)
-                        .refreshToken(createRefreshToken.getToken())
-                        .build();
+                String jwt = jwtService.generateToken(userDetails.getUsername(), userDetails.getAuthorities(),user.getId(),user.getSucursales().getId());
+                return new JwtResponse(jwt, createRefreshToken.getToken());
             } else {
                 throw new Exception("Error: User not found.");
             }

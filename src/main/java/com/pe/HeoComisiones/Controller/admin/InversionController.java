@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/inversion")
-@CrossOrigin(origins = "*")
+@RequestMapping("/admin/inversores")
 public class InversionController {
     @Autowired
     private InversorService inversionService;
@@ -27,14 +26,6 @@ public class InversionController {
     public ResponseEntity<List<Inversor>> getInversorbyId(@PathVariable Integer id){
         try {
             return ResponseEntity.ok(inversionService.getInversorbyId(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().build();
-        }
-    }
-    @GetMapping("/usuario/{id}")
-    public ResponseEntity<List<Inversor>> getInversorbyUsuario(@PathVariable Integer id){
-        try {
-            return ResponseEntity.ok(inversionService.getInversorbyUsuario(id));
         }catch (Exception e){
             return ResponseEntity.badRequest().build();
         }

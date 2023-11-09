@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/perfiles")
-@CrossOrigin(origins = "*")
 public class PerfilesController {
     @Autowired
     private PerfilService perfilService;

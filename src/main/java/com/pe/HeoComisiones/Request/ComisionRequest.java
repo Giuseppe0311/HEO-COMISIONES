@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class ComisionRequest {
 
     private double porcentaje;
-    private double ganancia;
+    private double montomax;
 
     private Integer perfiles;
 
