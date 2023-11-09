@@ -65,5 +65,8 @@ public class InversorService {
         }
         throw new Exception();
     }
+    public void deleteInversorbyUsuario(Integer id)throws Exception{
+        inversorRepository.deleteInversorbyUsuario(id);
+    }
 
 }

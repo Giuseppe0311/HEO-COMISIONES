@@ -34,4 +34,13 @@ public class UserInversionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteInversorbyUsuario(@PathVariable Integer id){
+        try {
+            inversionService.deleteInversorbyUsuario(id);
+            return ResponseEntity.ok("Inversor eliminado");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
