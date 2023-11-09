@@ -45,7 +45,6 @@ public class DetalleComisionesService {
         detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
         detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
         detalleComisiones.setMescomercial(detallecoRequest.getMescomercial());
-        detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuario()).get());
         detalleComisionesRepository.save(detalleComisiones);
     }
     public void updateDetalle(Integer id,DetallecoRequest detallecoRequest)throws  Exception{
@@ -55,7 +54,6 @@ public class DetalleComisionesService {
             detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
             detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
             detalleComisiones.setMescomercial(detallecoRequest.getMescomercial());
-            detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuario()).get());
             detalleComisionesRepository.save(detalleComisiones);
         }
     }

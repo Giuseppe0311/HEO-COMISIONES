@@ -19,6 +19,4 @@ public class DetalleComisiones {
     @ManyToOne
     private ResultTrabajadores resultTrabajadores;
     private String mescomercial;
-    @ManyToOne
-    private Usuarios usuarios;
 }

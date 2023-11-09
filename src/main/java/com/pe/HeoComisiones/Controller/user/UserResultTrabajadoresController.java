@@ -2,6 +2,7 @@ package com.pe.HeoComisiones.Controller.user;
 
 
 import com.pe.HeoComisiones.Entity.ResultTrabajadores;
+import com.pe.HeoComisiones.Request.ResultTrabajadoresRequest;
 import com.pe.HeoComisiones.Services.ResultTrabajadoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,9 @@ public class UserResultTrabajadoresController {
     private ResultTrabajadoresService resultTrabajadoresService;
 
     @PostMapping
-    public ResponseEntity<?> userPostTrabajadores(@RequestBody ResultTrabajadores resultTrabajadores){
+    public ResponseEntity<?> userPostTrabajadores(@RequestBody ResultTrabajadoresRequest resultTrabajadoresRequest){
         try {
-            resultTrabajadoresService.saveResult(resultTrabajadores);
-            return ResponseEntity.ok("Trabajadores guardados");
+            return ResponseEntity.ok(resultTrabajadoresService.saveResult(resultTrabajadoresRequest));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

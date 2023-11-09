@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Controller.admin;
 
 import com.pe.HeoComisiones.Entity.ResultTrabajadores;
+import com.pe.HeoComisiones.Request.ResultTrabajadoresRequest;
 import com.pe.HeoComisiones.Services.ResultTrabajadoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,17 +33,17 @@ public class ResultTrabajadoresController {
         }
     }
     @PostMapping
-    public ResponseEntity<?> saveresult(@RequestBody  ResultTrabajadores resultTrabajadores){
+    public ResponseEntity<?> saveresult(@RequestBody ResultTrabajadoresRequest resultTrabajadoresRequest){
         try {
-            return ResponseEntity.ok(resultTrabajadoresService.saveResult(resultTrabajadores));
+            return ResponseEntity.ok(resultTrabajadoresService.saveResult(resultTrabajadoresRequest));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
     @PutMapping
-    public ResponseEntity<?> updateresult(@PathVariable Integer id,@RequestBody ResultTrabajadores resultTrabajadores){
+    public ResponseEntity<?> updateresult(@PathVariable Integer id,@RequestBody ResultTrabajadoresRequest resultTrabajadoresRequest){
         try {
-            return ResponseEntity.ok(resultTrabajadoresService.updateResult(id,resultTrabajadores));
+            return ResponseEntity.ok(resultTrabajadoresService.updateResult(id,resultTrabajadoresRequest));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

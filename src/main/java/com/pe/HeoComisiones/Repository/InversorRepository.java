@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface InversorRepository extends JpaRepository<Inversor, Integer> {
     List<Inversor> findByStatusTrue();
-    @Query(value = "SELECT * FROM getinversorbyidusuario(:idusuario) order by id DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM getinversorbyidusuario(:idusuario)  where status=true order by id DESC", nativeQuery = true)
     List<Inversor> getInversionesByusuario(@Param("idusuario") Integer id);
 }

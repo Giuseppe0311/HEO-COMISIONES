@@ -11,5 +11,4 @@ public class DetallecoRequest {
     private  Integer inversor;
     private  Integer resultTrabajadores;
     private  String mescomercial;
-    private  Integer usuario;
 }
