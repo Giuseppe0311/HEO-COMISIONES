@@ -15,9 +15,9 @@ public class UserComisionController {
     private ComisionService comisionService;
     
     @GetMapping("/{id}")
-    public  ResponseEntity<?> UsergetComisionById(@PathVariable Integer id){
+    public  ResponseEntity<?> UsergetComisionesByUsuario(@PathVariable Integer id){
         try {
-            return ResponseEntity.ok(comisionService.getComisionesByid(id));
+            return ResponseEntity.ok(comisionService.getComisionesByUsuario(id));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

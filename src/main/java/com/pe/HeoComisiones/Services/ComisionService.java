@@ -36,6 +36,10 @@ public class ComisionService {
         }
         return comisiones;
     }
+    //LADO DEL USUARIO/////////
+    public List<Comisiones> getComisionesByUsuario(Integer id){
+        return comisionRepository.getComisionbyusuario(id);
+    }
     public  void SaveComisiones(ComisionRequest comisionRequest)throws Exception{
         Comisiones comisiones = new Comisiones();
         comisiones.setPorcentaje(comisionRequest.getPorcentaje());
