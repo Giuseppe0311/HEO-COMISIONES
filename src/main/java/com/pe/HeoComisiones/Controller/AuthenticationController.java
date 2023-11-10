@@ -35,7 +35,8 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UsuarioRequest usuarioRequest){
         try {
-            return ResponseEntity.ok(authenticationService.registerUser(usuarioRequest.getUsername(), usuarioRequest.getPassword(),usuarioRequest.getDni(), usuarioRequest.getEmail(), usuarioRequest.getName(), usuarioRequest.getIdsucursal(), usuarioRequest.getPerfiles()));
+            authenticationService.registerUser(usuarioRequest.getUsername(), usuarioRequest.getPassword(),usuarioRequest.getDni(), usuarioRequest.getEmail(), usuarioRequest.getName(), usuarioRequest.getIdsucursal(), usuarioRequest.getPerfiles());
+             return ResponseEntity.ok().build();
         }catch (Exception e){
             //status 401
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.toString());

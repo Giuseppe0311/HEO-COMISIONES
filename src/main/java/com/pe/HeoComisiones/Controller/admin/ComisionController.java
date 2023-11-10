@@ -1,5 +1,6 @@
 package com.pe.HeoComisiones.Controller.admin;
 
+import com.pe.HeoComisiones.DTO.ComisionesDTO;
 import com.pe.HeoComisiones.Entity.Comisiones;
 import com.pe.HeoComisiones.Request.ComisionRequest;
 import com.pe.HeoComisiones.Services.ComisionService;
@@ -16,7 +17,7 @@ public class ComisionController {
     private ComisionService comisionService;
 
     @GetMapping
-    public ResponseEntity<List<Comisiones>> getComision(){
+    public ResponseEntity<List<ComisionesDTO>> getComision(){
         try {
             return ResponseEntity.ok(comisionService.getComisiones());
         }catch (Exception e){

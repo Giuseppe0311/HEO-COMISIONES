@@ -1,5 +1,6 @@
 package com.pe.HeoComisiones.Controller.admin;
 
+import com.pe.HeoComisiones.DTO.InversorDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
 import com.pe.HeoComisiones.Request.InversorRequest;
 import com.pe.HeoComisiones.Services.InversorService;
@@ -15,7 +16,7 @@ public class InversionController {
     @Autowired
     private InversorService inversionService;
     @GetMapping
-    public ResponseEntity<List<Inversor>> getInversor(){
+    public ResponseEntity<List<InversorDTO>> getInversor(){
         try {
             return ResponseEntity.ok(inversionService.getInversor());
         }catch (Exception e){
@@ -23,7 +24,7 @@ public class InversionController {
         }
     }
     @GetMapping("/{id}")
-    public ResponseEntity<List<Inversor>> getInversorbyId(@PathVariable Integer id){
+    public ResponseEntity<List<InversorDTO>> getInversorbyId(@PathVariable Integer id){
         try {
             return ResponseEntity.ok(inversionService.getInversorbyId(id));
         }catch (Exception e){

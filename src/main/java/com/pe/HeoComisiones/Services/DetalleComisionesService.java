@@ -1,6 +1,8 @@
 package com.pe.HeoComisiones.Services;
 
+import com.pe.HeoComisiones.DTO.DetalleComisionDTO;
 import com.pe.HeoComisiones.Entity.DetalleComisiones;
+import com.pe.HeoComisiones.Mappers.DetalleComisionDTOMapper;
 import com.pe.HeoComisiones.Repository.DetalleComisionesRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
 import com.pe.HeoComisiones.Repository.ResultTrabajadoresRepository;
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DetalleComisionesService {
+    private  final DetalleComisionDTOMapper detalleComisionDTOMapper;
     @Autowired
     private DetalleComisionesRepository detalleComisionesRepository;
     @Autowired
@@ -24,20 +28,30 @@ public class DetalleComisionesService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<DetalleComisiones> getallDetalles(){
-        return detalleComisionesRepository.findAll();
+    public DetalleComisionesService(DetalleComisionDTOMapper detalleComisionDTOMapper) {
+        this.detalleComisionDTOMapper = detalleComisionDTOMapper;
     }
-    public  List<DetalleComisiones> getdetallesByid(Integer id) throws Exception{
-        List<DetalleComisiones> detalleComisiones = new ArrayList<>();
+
+    public List<DetalleComisionDTO> getallDetalles(){
+        return detalleComisionesRepository.findAll()
+                .stream()
+                .map(detalleComisionDTOMapper)
+                .collect(Collectors.toList());
+    }
+    public  List<DetalleComisionDTO> getdetallesByid(Integer id) throws Exception{
+        List<DetalleComisionDTO> detalleComisiones = new ArrayList<>();
         Optional<DetalleComisiones> detalleComisionesOptional = detalleComisionesRepository.findById(id);
         if (detalleComisionesOptional.isPresent()){
-            detalleComisiones.add(detalleComisionesOptional.get());
+            detalleComisiones.add(detalleComisionDTOMapper.apply(detalleComisionesOptional.get()));
             return detalleComisiones;
         }
         return detalleComisiones;
     }
-    public List<DetalleComisiones> getdetallebyusuario(Integer idusuario){
-        return detalleComisionesRepository.getdetallebyusuario(idusuario);
+    public List<DetalleComisionDTO> getdetallebyusuario(Integer idusuario){
+        return detalleComisionesRepository.getdetallebyusuario(idusuario)
+                .stream()
+                .map(detalleComisionDTOMapper)
+                .collect(Collectors.toList());
     }
 
     public void saveDetalle(DetallecoRequest detallecoRequest)throws  Exception{

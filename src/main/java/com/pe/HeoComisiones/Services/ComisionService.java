@@ -1,6 +1,8 @@
 package com.pe.HeoComisiones.Services;
 
+import com.pe.HeoComisiones.DTO.ComisionesDTO;
 import com.pe.HeoComisiones.Entity.Comisiones;
+import com.pe.HeoComisiones.Mappers.ComisionesDTOMapper;
 import com.pe.HeoComisiones.Repository.ComisionRepository;
 import com.pe.HeoComisiones.Repository.PerfilesRepository;
 import com.pe.HeoComisiones.Repository.SucursalRepository;
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ComisionService {
+    private final ComisionesDTOMapper comisionesDTOMapper;
     @Autowired
     private ComisionRepository comisionRepository;
     @Autowired
@@ -24,21 +28,31 @@ public class ComisionService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<Comisiones> getComisiones(){
-        return comisionRepository.findByStatusTrue();
+    public ComisionService(ComisionesDTOMapper comisionesDTOMapper) {
+        this.comisionesDTOMapper = comisionesDTOMapper;
     }
-    public List<Comisiones> getComisionesByid(Integer id){
-        List<Comisiones> comisiones = new ArrayList<>();
+
+    public List<ComisionesDTO> getComisiones(){
+        return comisionRepository.findByStatusTrue()
+                .stream()
+                .map(comisionesDTOMapper)
+                .collect(Collectors.toList());
+    }
+    public List<ComisionesDTO> getComisionesByid(Integer id){
+        List<ComisionesDTO> comisiones = new ArrayList<>();
         Optional<Comisiones> comision = comisionRepository.findById(id);
         if (comision.isPresent()){
-            comisiones.add(comision.get());
+            comisiones.add(comisionesDTOMapper.apply(comision.get()));
             return comisiones;
         }
         return comisiones;
     }
     //LADO DEL USUARIO/////////
-    public List<Comisiones> getComisionesByUsuario(Integer id){
-        return comisionRepository.getComisionbyusuario(id);
+    public List<ComisionesDTO> getComisionesByUsuario(Integer id){
+        return comisionRepository.getComisionbyusuario(id)
+                .stream()
+                .map(comisionesDTOMapper)
+                .collect(Collectors.toList());
     }
     public  void SaveComisiones(ComisionRequest comisionRequest)throws Exception{
         Comisiones comisiones = new Comisiones();

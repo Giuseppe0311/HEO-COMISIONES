@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Controller.user;
 
 
+import com.pe.HeoComisiones.DTO.InversorDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
 import com.pe.HeoComisiones.Request.InversorRequest;
 import com.pe.HeoComisiones.Services.InversorService;
@@ -18,7 +19,7 @@ public class UserInversionController {
     private InversorService inversionService;
     //AQUI PASAMOS COMO PARAMETRO EL ID DE USUARIO OBTENIDO EN EL TOKEN PARA OPTENER LOS DATOS DEL INVERSOR DE DICHO USUARIO
     @GetMapping("/{id}")
-    public ResponseEntity<List<Inversor>> getInversorbyUsuario(@PathVariable Integer id){
+    public ResponseEntity<List<InversorDTO>> getInversorbyUsuario(@PathVariable Integer id){
         try {
             return ResponseEntity.ok(inversionService.getInversorbyUsuario(id));
         }catch (Exception e){

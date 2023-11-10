@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/usuario/clientes")
 public class UserClienteController {
-
     @Autowired
     private ClienteService clienteService;
     //AQUI SE OBTIENE EL CLIENTE DE ACUERDO AL USUARIO QUE HA INICIADO SESION (SE PASA COMO PARAMETRO EL ID DEL USUARIO

@@ -1,7 +1,9 @@
 package com.pe.HeoComisiones.Services;
 
 
+import com.pe.HeoComisiones.DTO.InversorDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
+import com.pe.HeoComisiones.Mappers.InversoresDTOMapper;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
@@ -11,9 +13,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class InversorService {
+    private final InversoresDTOMapper inversoresDTOMapper;
     @Autowired
     private InversorRepository inversorRepository;
     @Autowired
@@ -21,20 +25,30 @@ public class InversorService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<Inversor> getInversor(){
-        return inversorRepository.findByStatusTrue();
+    public InversorService(InversoresDTOMapper inversoresDTOMapper) {
+        this.inversoresDTOMapper = inversoresDTOMapper;
     }
-    public List<Inversor> getInversorbyId(Integer id)throws Exception{
+
+    public List<InversorDTO> getInversor(){
+        return inversorRepository.findByStatusTrue()
+                .stream()
+                .map(inversoresDTOMapper)
+                .collect(Collectors.toList());
+    }
+    public List<InversorDTO> getInversorbyId(Integer id)throws Exception{
         Inversor inversor = inversorRepository.findById(id).orElse(null);
-        List<Inversor> inversores = new ArrayList<>();
+        List<InversorDTO> inversores = new ArrayList<>();
         if (inversor != null){
-            inversores.add(inversor);
+            inversores.add(inversoresDTOMapper.apply(inversor));
             return inversores;
         }
         return inversores;
     }
-    public List<Inversor> getInversorbyUsuario(Integer id)throws Exception{
-        return inversorRepository.getInversionesByusuario(id);
+    public List<InversorDTO> getInversorbyUsuario(Integer id)throws Exception{
+        return inversorRepository.getInversionesByusuario(id)
+                .stream()
+                .map(inversoresDTOMapper)
+                .collect(Collectors.toList());
     }
     public void saveInversor(InversorRequest inversorRequest)throws Exception{
         Inversor inversor = new Inversor();

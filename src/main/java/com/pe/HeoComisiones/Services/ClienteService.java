@@ -1,6 +1,8 @@
 package com.pe.HeoComisiones.Services;
 
+import com.pe.HeoComisiones.DTO.ClienteDTO;
 import com.pe.HeoComisiones.Entity.Clientes;
+import com.pe.HeoComisiones.Mappers.ClienteDTOMapper;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.ClienteRequest;
@@ -11,30 +13,42 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 
 public class ClienteService {
+    private final ClienteDTOMapper clienteDTOMapper;
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<Clientes> getcliente(){
-        Sort sort  = Sort.by(Sort.Direction.ASC,"id");
-        return clienteRepository.findByStatusTrue(sort);
+    public ClienteService(ClienteDTOMapper clienteDTOMapper) {
+        this.clienteDTOMapper = clienteDTOMapper;
     }
-    public List<Clientes> getclientebyId(Integer id) throws Exception {
+
+    public List<ClienteDTO> getcliente(){
+        Sort sort  = Sort.by(Sort.Direction.ASC,"id");
+        return clienteRepository.findByStatusTrue(sort)
+                .stream()
+                .map(clienteDTOMapper)
+                .collect(Collectors.toList());
+    }
+    public List<ClienteDTO> getclientebyId(Integer id) throws Exception {
         Optional<Clientes> cliente = clienteRepository.findById(id);
-        List<Clientes> clientes1 = new ArrayList<>();
+        List<ClienteDTO> clientes1 = new ArrayList<>();
         if(cliente.isPresent()){
-            clientes1.add(cliente.get());
+            clientes1.add(clienteDTOMapper.apply(cliente.get()));
             return clientes1;
         }
        return clientes1;
     }
-    public List<Clientes> getclientebyUsuario(Integer id) throws Exception {
-        return clienteRepository.getClientesbyUsuario(id);
+    public List<ClienteDTO> getclientebyUsuario(Integer id) throws Exception {
+        return clienteRepository.getClientesbyUsuario(id)
+                .stream()
+                .map(clienteDTOMapper)
+                .collect(Collectors.toList());
     }
 
     public void Savecliente(ClienteRequest clienteRequest) throws Exception {

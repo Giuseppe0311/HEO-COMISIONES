@@ -41,7 +41,7 @@ public class AuthenticationService {
     @Autowired
     private JwtService jwtService;
 
-    public Usuarios registerUser(String username, String password, String dni,String email, String name, Integer idSucursal, Set<Integer> perfiles) {
+    public void registerUser(String username, String password, String dni,String email, String name, Integer idSucursal, Set<Integer> perfiles) {
         String encodedPassword = passwordEncoder.encode(password);
         Optional<Perfiles> UsuarioPerfiles = perfilesRepository.findByName("ADMIN");
         Perfiles usuarioperfil = UsuarioPerfiles.orElse(null);
@@ -62,7 +62,7 @@ public class AuthenticationService {
             usuario.setName(name);
             usuario.setSucursales(sucursales);
             usuario.setProfiles(authorities);
-            return userRepository.save(usuario);
+             userRepository.save(usuario);
         } else {
             throw new RuntimeException("Error: Sucursal is not found.");
         }

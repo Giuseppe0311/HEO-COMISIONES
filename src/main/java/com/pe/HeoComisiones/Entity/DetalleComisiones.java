@@ -18,5 +18,7 @@ public class DetalleComisiones {
     private Inversor inversor;
     @ManyToOne
     private ResultTrabajadores resultTrabajadores;
+    @ManyToOne
+    private Usuarios usuarios;
     private String mescomercial;
 }

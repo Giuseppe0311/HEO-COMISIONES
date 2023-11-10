@@ -1,6 +1,8 @@
 package com.pe.HeoComisiones.Controller.admin;
 
+import com.pe.HeoComisiones.DTO.ResulTrabajadoresDTO;
 import com.pe.HeoComisiones.Entity.ResultTrabajadores;
+import com.pe.HeoComisiones.Mappers.ResulTrabajadoresDTOMapper;
 import com.pe.HeoComisiones.Request.ResultTrabajadoresRequest;
 import com.pe.HeoComisiones.Services.ResultTrabajadoresService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,12 @@ import java.util.List;
 @RequestMapping ("/admin/resulttrabajadores")
 
 public class ResultTrabajadoresController {
+
     @Autowired
     ResultTrabajadoresService resultTrabajadoresService;
 
     @GetMapping
-    public ResponseEntity<List<ResultTrabajadores>> getresult(){
+    public ResponseEntity<List<ResulTrabajadoresDTO>> getresult(){
         try {
             return ResponseEntity.ok(resultTrabajadoresService.getresul());
         }catch (Exception e){

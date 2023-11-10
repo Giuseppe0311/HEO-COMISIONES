@@ -1,7 +1,9 @@
 package com.pe.HeoComisiones.Services;
 
 
+import com.pe.HeoComisiones.DTO.ResulTrabajadoresDTO;
 import com.pe.HeoComisiones.Entity.ResultTrabajadores;
+import com.pe.HeoComisiones.Mappers.ResulTrabajadoresDTOMapper;
 import com.pe.HeoComisiones.Repository.ResultTrabajadoresRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.ResultTrabajadoresRequest;
@@ -10,22 +12,31 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ResultTrabajadoresService {
+    private final ResulTrabajadoresDTOMapper resulTrabajadoresDTOMapper;
     @Autowired
     ResultTrabajadoresRepository resultTrabajadoresRepository;
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<ResultTrabajadores> getresul(){
-        return resultTrabajadoresRepository.findAll();
+    public ResultTrabajadoresService(ResulTrabajadoresDTOMapper resulTrabajadoresDTOMapper) {
+        this.resulTrabajadoresDTOMapper = resulTrabajadoresDTOMapper;
     }
-    public  List<ResultTrabajadores> getResultsByid(Integer id)throws Exception{
-        List<ResultTrabajadores> result = new ArrayList<>();
+
+    public List<ResulTrabajadoresDTO> getresul(){
+        return resultTrabajadoresRepository.findAll()
+                .stream()
+                .map(resulTrabajadoresDTOMapper)
+                .collect(Collectors.toList());
+    }
+    public  List<ResulTrabajadoresDTO> getResultsByid(Integer id)throws Exception{
+        List<ResulTrabajadoresDTO> result = new ArrayList<>();
         ResultTrabajadores resulttrabajadores = resultTrabajadoresRepository.findById(id).orElse(null);
         if (resulttrabajadores != null){
-            result.add(resulttrabajadores);
+            result.add(resulTrabajadoresDTOMapper.apply(resulttrabajadores));
             return result;
         }
         return result;
