@@ -41,7 +41,8 @@ public class DetalleComisionDTOMapper implements Function<DetalleComisiones, Det
         return new DetalleComisionDTO(
                 detalleComisiones.getId(),
                 inversor,
-                resulTrabajadores
+                resulTrabajadores,
+                detalleComisiones.getMescomercial()
         );
     }
 }

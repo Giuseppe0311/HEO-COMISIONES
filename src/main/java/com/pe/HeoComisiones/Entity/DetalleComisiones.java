@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -20,5 +22,9 @@ public class DetalleComisiones {
     private ResultTrabajadores resultTrabajadores;
     @ManyToOne
     private Usuarios usuarios;
-    private String mescomercial;
+    private Date mescomercial;
+    @PrePersist
+    public void prePersist(){
+        mescomercial = new Date();
+    }
 }

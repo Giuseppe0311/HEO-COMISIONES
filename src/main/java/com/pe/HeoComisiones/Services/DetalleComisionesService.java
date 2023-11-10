@@ -58,7 +58,6 @@ public class DetalleComisionesService {
         DetalleComisiones detalleComisiones = new DetalleComisiones();
         detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
         detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
-        detalleComisiones.setMescomercial(detallecoRequest.getMescomercial());
         detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuarios()).get());
         detalleComisionesRepository.save(detalleComisiones);
     }
@@ -67,7 +66,6 @@ public class DetalleComisionesService {
         if (detalleComisiones != null){
             detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
             detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
-            detalleComisiones.setMescomercial(detallecoRequest.getMescomercial());
             detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuarios()).get());
             detalleComisionesRepository.save(detalleComisiones);
         }
