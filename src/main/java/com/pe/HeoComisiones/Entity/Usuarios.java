@@ -20,6 +20,7 @@ public class Usuarios implements UserDetails {
     private Integer id;
     private String name;
     private String username;
+    private String dni;
     private String email;
     private String Password;
     @ManyToMany(fetch = FetchType.EAGER)

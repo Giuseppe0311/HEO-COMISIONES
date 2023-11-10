@@ -16,12 +16,6 @@ public class Comisiones {
     private double porcentaje;
     private double montomax;
     @ManyToOne
-    @JoinColumn(name="id_perfil")
-    private Perfiles perfiles;
-    @ManyToOne
-    @JoinColumn(name="id_sucursal")
-    private Sucursales sucursales;
-    @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuarios usuarios;
     private boolean status;

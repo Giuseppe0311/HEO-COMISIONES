@@ -11,11 +11,6 @@ public class ComisionRequest {
 
     private double porcentaje;
     private double montomax;
-
-    private Integer perfiles;
-
-    private Integer sucursal;
-
     private Integer usuarios;
 
 }

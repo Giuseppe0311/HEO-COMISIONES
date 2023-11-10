@@ -1,7 +1,7 @@
 package com.pe.HeoComisiones.Controller;
 
 import com.pe.HeoComisiones.DTO.JwtResponse;
-import com.pe.HeoComisiones.DTO.UsuarioDTO;
+import com.pe.HeoComisiones.Request.UsuarioRequest;
 import com.pe.HeoComisiones.Entity.RefreshToken;
 import com.pe.HeoComisiones.Entity.Usuarios;
 import com.pe.HeoComisiones.Request.RefreshTokenRequest;
@@ -23,9 +23,9 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<?> loginUser(@RequestBody UsuarioRequest usuarioRequest){
         try {
-            return ResponseEntity.ok(authenticationService.loginUser(usuarioDTO.getUsername(),usuarioDTO.getPassword()));
+            return ResponseEntity.ok(authenticationService.loginUser(usuarioRequest.getUsername(), usuarioRequest.getPassword()));
         }catch (Exception e){
             //status 401
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado");
@@ -33,9 +33,9 @@ public class AuthenticationController {
         }
     }
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<?> registerUser(@RequestBody UsuarioRequest usuarioRequest){
         try {
-            return ResponseEntity.ok(authenticationService.registerUser(usuarioDTO.getUsername(),usuarioDTO.getPassword(),usuarioDTO.getEmail(),usuarioDTO.getName(),usuarioDTO.getIdsucursal(), usuarioDTO.getPerfiles()));
+            return ResponseEntity.ok(authenticationService.registerUser(usuarioRequest.getUsername(), usuarioRequest.getPassword(),usuarioRequest.getDni(), usuarioRequest.getEmail(), usuarioRequest.getName(), usuarioRequest.getIdsucursal(), usuarioRequest.getPerfiles()));
         }catch (Exception e){
             //status 401
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.toString());

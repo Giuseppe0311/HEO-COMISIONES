@@ -41,7 +41,7 @@ public class AuthenticationService {
     @Autowired
     private JwtService jwtService;
 
-    public Usuarios registerUser(String username, String password, String email, String name, Integer idSucursal, Set<Integer> perfiles) {
+    public Usuarios registerUser(String username, String password, String dni,String email, String name, Integer idSucursal, Set<Integer> perfiles) {
         String encodedPassword = passwordEncoder.encode(password);
         Optional<Perfiles> UsuarioPerfiles = perfilesRepository.findByName("ADMIN");
         Perfiles usuarioperfil = UsuarioPerfiles.orElse(null);
@@ -57,6 +57,7 @@ public class AuthenticationService {
             Usuarios usuario = new Usuarios();
             usuario.setUsername(username);
             usuario.setPassword(encodedPassword);
+            usuario.setDni(dni);
             usuario.setEmail(email);
             usuario.setName(name);
             usuario.setSucursales(sucursales);
