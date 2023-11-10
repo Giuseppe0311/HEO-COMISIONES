@@ -59,16 +59,18 @@ public class DetalleComisionesService {
         detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
         detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
         detalleComisiones.setMescomercial(detallecoRequest.getMescomercial());
+        detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuarios()).get());
         detalleComisionesRepository.save(detalleComisiones);
     }
     public void updateDetalle(Integer id,DetallecoRequest detallecoRequest)throws  Exception{
-        Optional<DetalleComisiones> detalleComisionesOptional = detalleComisionesRepository.findById(id);
-        if (detalleComisionesOptional.isPresent()) {
-            DetalleComisiones detalleComisiones = new DetalleComisiones();
+        DetalleComisiones detalleComisiones = detalleComisionesRepository.findById(id).orElse(null);
+        if (detalleComisiones != null){
             detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
             detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
             detalleComisiones.setMescomercial(detallecoRequest.getMescomercial());
+            detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuarios()).get());
             detalleComisionesRepository.save(detalleComisiones);
         }
+        throw new Exception("No existe el detalle");
     }
 }
