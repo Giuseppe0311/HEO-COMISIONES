@@ -6,6 +6,7 @@ import com.pe.HeoComisiones.Mappers.ClienteDTOMapper;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.ClienteRequest;
+import com.pe.HeoComisiones.Validations.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -52,13 +53,18 @@ public class ClienteService {
     }
 
     public void Savecliente(ClienteRequest clienteRequest) throws Exception {
-        Clientes clientes = new Clientes();
+        List<Clientes> clientesdeusuario = clienteRepository.getClientesbyUsuario(clienteRequest.getUsuarios());
+        if(ValidationUtils.DniAlreadyExist(clientesdeusuario,clienteRequest.getDni())){
+            throw new Exception("El dni ya existe");
+        }
+         Clientes clientes = new Clientes();
+        clientes.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
         clientes.setStatus(true);
         clientes.setApellido(clienteRequest.getApellido());
         clientes.setDistrito(clienteRequest.getDistrito());
         clientes.setNombre(clienteRequest.getNombre());
         clientes.setTelefono(clienteRequest.getTelefono());
-        clientes.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
+        clientes.setDni(clienteRequest.getDni());
         clientes.setDistrito(clienteRequest.getDistrito());
         clientes.setProvincia(clienteRequest.getProvincia());
         clientes.setDepartamento(clienteRequest.getDepartamento());

@@ -13,8 +13,8 @@ public class ClienteDTOMapper implements Function<Clientes, ClienteDTO> {
         return new ClienteDTO(
                 clientes.getId(),
                 clientes.getNombre(),
-                clientes.getDni(),
                 clientes.getApellido(),
+                clientes.getDni(),
                 clientes.getTelefono(),
                 clientes.getDistrito(),
                 clientes.getProvincia(),

@@ -1,0 +1,25 @@
+spring.datasource.url=jdbc:postgresql://monorail.proxy.rlwy.net:32296/railway
+spring.datasource.username=postgres
+spring.datasource.password=ad25B2eBEEGAb6cCF-A21eGcBEb46dgf
+spring.datasource.driver-class-name=org.postgresql.Driver
+server.port=8081
+debug=true
+#toker secret
+jwt.secret=61391b1d3fa763ee953a89f64e59e44a15f17d8d0815b5ecc8943b379c8e2591
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=true
+# Enable response compression
+server.compression.enabled=true
+server.http2.enabled=true
+#configuring appidocs
+springdoc.api-docs.enabled=true
+springdoc.swagger-ui.enabled=true
+springdoc.swagger-ui.path=/doc/swagger-ui.html
+springdoc.pathsToMatch=/usuario/**,/admin/**
+
+# The comma-separated list of mime types that should be compressed
+server.compression.mime-types=text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+
+# Compress the response only if the response size is at least 1KB
+server.compression.min-response-size=1024
