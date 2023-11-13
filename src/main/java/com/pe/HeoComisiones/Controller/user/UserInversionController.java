@@ -1,8 +1,7 @@
 package com.pe.HeoComisiones.Controller.user;
 
 
-import com.pe.HeoComisiones.DTO.InversorDTO;
-import com.pe.HeoComisiones.Entity.Inversor;
+import com.pe.HeoComisiones.DTOs.InversorDTO;
 import com.pe.HeoComisiones.Request.InversorRequest;
 import com.pe.HeoComisiones.Services.InversorService;
 import org.springframework.beans.factory.annotation.Autowired;

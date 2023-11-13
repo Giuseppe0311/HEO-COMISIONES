@@ -1,7 +1,6 @@
 package com.pe.HeoComisiones.Mappers;
 
-import com.pe.HeoComisiones.DTO.ClienteDTO;
-import com.pe.HeoComisiones.DTO.ComisionesDTO;
+import com.pe.HeoComisiones.DTOs.ComisionesDTO;
 import com.pe.HeoComisiones.Entity.Comisiones;
 import org.springframework.stereotype.Service;
 

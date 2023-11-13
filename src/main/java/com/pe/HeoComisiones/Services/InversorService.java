@@ -1,7 +1,7 @@
 package com.pe.HeoComisiones.Services;
 
 
-import com.pe.HeoComisiones.DTO.InversorDTO;
+import com.pe.HeoComisiones.DTOs.InversorDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
 import com.pe.HeoComisiones.Mappers.InversoresDTOMapper;
 import com.pe.HeoComisiones.Repository.ClienteRepository;

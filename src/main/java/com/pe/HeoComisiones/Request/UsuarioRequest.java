@@ -10,7 +10,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioRequest {
-    private Integer id;
     private String name;
     private String dni;
     private String username;

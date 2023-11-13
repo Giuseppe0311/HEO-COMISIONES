@@ -34,3 +34,5 @@ build/
 /src/main/resources/applicationpropertiesforlocal.txt
 /src/main/resources/applicationpropertiesfortest.txt
 /src/main/resources/propertiesforproduction.txt
+/src/main/resources/forproducction.txt
+/src/main/resources/prueba.txt

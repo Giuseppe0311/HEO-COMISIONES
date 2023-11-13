@@ -1,8 +1,6 @@
 package com.pe.HeoComisiones.Controller.admin;
 
-import com.pe.HeoComisiones.DTO.ResulTrabajadoresDTO;
-import com.pe.HeoComisiones.Entity.ResultTrabajadores;
-import com.pe.HeoComisiones.Mappers.ResulTrabajadoresDTOMapper;
+import com.pe.HeoComisiones.DTOs.ResulTrabajadoresDTO;
 import com.pe.HeoComisiones.Request.ResultTrabajadoresRequest;
 import com.pe.HeoComisiones.Services.ResultTrabajadoresService;
 import org.springframework.beans.factory.annotation.Autowired;

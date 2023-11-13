@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Mappers;
 
-import com.pe.HeoComisiones.DTO.ResulTrabajadoresDTO;
+import com.pe.HeoComisiones.DTOs.ResulTrabajadoresDTO;
 import com.pe.HeoComisiones.Entity.ResultTrabajadores;
 import org.springframework.stereotype.Service;
 

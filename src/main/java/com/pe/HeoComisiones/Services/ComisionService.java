@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Services;
 
-import com.pe.HeoComisiones.DTO.ComisionesDTO;
+import com.pe.HeoComisiones.DTOs.ComisionesDTO;
 import com.pe.HeoComisiones.Entity.Comisiones;
 import com.pe.HeoComisiones.Mappers.ComisionesDTOMapper;
 import com.pe.HeoComisiones.Repository.ComisionRepository;

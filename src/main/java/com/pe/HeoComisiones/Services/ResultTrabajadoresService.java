@@ -1,7 +1,7 @@
 package com.pe.HeoComisiones.Services;
 
 
-import com.pe.HeoComisiones.DTO.ResulTrabajadoresDTO;
+import com.pe.HeoComisiones.DTOs.ResulTrabajadoresDTO;
 import com.pe.HeoComisiones.Entity.ResultTrabajadores;
 import com.pe.HeoComisiones.Mappers.ResulTrabajadoresDTOMapper;
 import com.pe.HeoComisiones.Repository.ResultTrabajadoresRepository;

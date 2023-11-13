@@ -1,7 +1,6 @@
 package com.pe.HeoComisiones.Controller.admin;
 
-import com.pe.HeoComisiones.DTO.ComisionesDTO;
-import com.pe.HeoComisiones.Entity.Comisiones;
+import com.pe.HeoComisiones.DTOs.ComisionesDTO;
 import com.pe.HeoComisiones.Request.ComisionRequest;
 import com.pe.HeoComisiones.Services.ComisionService;
 import org.springframework.beans.factory.annotation.Autowired;

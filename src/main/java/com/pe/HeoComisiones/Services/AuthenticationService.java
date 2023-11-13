@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Services;
 
-import com.pe.HeoComisiones.DTO.JwtResponse;
+import com.pe.HeoComisiones.DTOs.JwtResponse;
 import com.pe.HeoComisiones.Entity.Perfiles;
 import com.pe.HeoComisiones.Entity.RefreshToken;
 import com.pe.HeoComisiones.Entity.Sucursales;
@@ -26,7 +26,7 @@ import java.util.Set;
 @Service
 @Transactional
 public class AuthenticationService {
-        @Autowired
+    @Autowired
     private RefreshTokenService refreshTokenService;
     @Autowired
     private UsuarioRepository userRepository;
@@ -41,14 +41,12 @@ public class AuthenticationService {
     @Autowired
     private JwtService jwtService;
 
-    public void registerUser(String username, String password, String dni,String email, String name, Integer idSucursal, Set<Integer> perfiles) {
+    public void registerUser(String username, String password, String dni, String email, String name, Integer idSucursal, Set<Integer> perfiles) {
         String encodedPassword = passwordEncoder.encode(password);
-        Optional<Perfiles> UsuarioPerfiles = perfilesRepository.findByName("ADMIN");
-        Perfiles usuarioperfil = UsuarioPerfiles.orElse(null);
         Set<Perfiles> authorities = new HashSet<>();
 
-        for (Integer perfilid : perfiles){
-            Perfiles perfil = perfilesRepository.findById(perfilid).orElseThrow(()->
+        for (Integer perfilid : perfiles) {
+            Perfiles perfil = perfilesRepository.findById(perfilid).orElseThrow(() ->
                     new RuntimeException("Error: Perfil is not found."));
             authorities.add(perfil);
         }
@@ -61,8 +59,9 @@ public class AuthenticationService {
             usuario.setEmail(email);
             usuario.setName(name);
             usuario.setSucursales(sucursales);
+            usuario.setStatus(true);
             usuario.setProfiles(authorities);
-             userRepository.save(usuario);
+            userRepository.save(usuario);
         } else {
             throw new RuntimeException("Error: Sucursal is not found.");
         }
@@ -76,7 +75,7 @@ public class AuthenticationService {
             Usuarios user = userRepository.findByUsername(userDetails.getUsername()).orElse(null);
             RefreshToken createRefreshToken = refreshTokenService.createRefreshToken(username);
             if (user != null) {
-                String jwt = jwtService.generateToken(userDetails.getUsername(), userDetails.getAuthorities(),user.getId(),user.getSucursales().getId());
+                String jwt = jwtService.generateToken(userDetails.getUsername(), userDetails.getAuthorities(), user.getId(), user.getSucursales().getId());
                 return new JwtResponse(jwt, createRefreshToken.getToken());
             } else {
                 throw new Exception("Error: User not found.");

@@ -32,6 +32,7 @@ public class Usuarios implements UserDetails {
     private Set<Perfiles> profiles;
     @ManyToOne
     private Sucursales sucursales;
+    private boolean status;
     public Usuarios() {
         profiles = new HashSet<>();
     }

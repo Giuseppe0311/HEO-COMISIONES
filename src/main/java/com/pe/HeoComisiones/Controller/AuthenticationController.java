@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Controller;
 
-import com.pe.HeoComisiones.DTO.JwtResponse;
+import com.pe.HeoComisiones.DTOs.JwtResponse;
 import com.pe.HeoComisiones.Request.UsuarioRequest;
 import com.pe.HeoComisiones.Entity.RefreshToken;
 import com.pe.HeoComisiones.Entity.Usuarios;
