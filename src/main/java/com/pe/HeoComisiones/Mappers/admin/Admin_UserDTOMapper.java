@@ -14,6 +14,7 @@ public class Admin_UserDTOMapper implements Function<Usuarios, Admin_UserDTO> {
     @Override
     public Admin_UserDTO apply(Usuarios usuarios) {
         return  new Admin_UserDTO(
+                usuarios.getId(),
                 usuarios.getName(),
                 usuarios.getUsername(),
                 usuarios.getDni(),

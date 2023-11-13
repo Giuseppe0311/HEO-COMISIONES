@@ -6,6 +6,7 @@ import com.pe.HeoComisiones.Entity.Sucursales;
 import java.util.Set;
 
 public record Admin_UserDTO(
+        Integer id,
         String name,
         String username,
         String dni,
