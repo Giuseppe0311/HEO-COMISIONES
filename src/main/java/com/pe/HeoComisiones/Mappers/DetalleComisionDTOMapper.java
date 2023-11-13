@@ -1,9 +1,6 @@
 package com.pe.HeoComisiones.Mappers;
 
-import com.pe.HeoComisiones.DTOs.ClienteDTO;
-import com.pe.HeoComisiones.DTOs.DetalleComisionDTO;
-import com.pe.HeoComisiones.DTOs.InversorDTO;
-import com.pe.HeoComisiones.DTOs.ResulTrabajadoresDTO;
+import com.pe.HeoComisiones.DTOs.*;
 import com.pe.HeoComisiones.Entity.DetalleComisiones;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +34,18 @@ public class DetalleComisionDTOMapper implements Function<DetalleComisiones, Det
                 detalleComisiones.getResultTrabajadores().getMontototal(),
                 detalleComisiones.getResultTrabajadores().getGanancia()
         );
-
+        UsuarioDTO usuarioDTO = new UsuarioDTO(
+                detalleComisiones.getUsuarios().getId(),
+                detalleComisiones.getUsuarios().getName(),
+                detalleComisiones.getUsuarios().getEmail(),
+                detalleComisiones.getUsuarios().getDni()
+        );
         return new DetalleComisionDTO(
                 detalleComisiones.getId(),
                 inversor,
                 resulTrabajadores,
-                detalleComisiones.getMescomercial()
+                detalleComisiones.getMescomercial(),
+                usuarioDTO
         );
     }
 }
