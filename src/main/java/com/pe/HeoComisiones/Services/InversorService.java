@@ -10,6 +10,7 @@ import com.pe.HeoComisiones.Repository.DetalleComisionesRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.InversorRequest;
+import com.pe.HeoComisiones.Request.InversorUsuarioDetalleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,13 +83,13 @@ public class InversorService {
     }
 
     // ACTUALIZAR EL DETALLE POR PARTE DEL USUARIO
-        public void updateInversorbyUsuario(Integer id, Integer iddetallecomisiones) throws Exception {
+        public void updateInversorbyUsuario(Integer id, InversorUsuarioDetalleRequest inversorUsuarioDetalleRequest) throws Exception {
             List<Inversor> inversores = inversorRepository.getInversionesByusuario(id);
             if (inversores.isEmpty()) {
                 throw new Exception("No se encontraron inversores para el usuario.");
             }
 
-            Optional<DetalleComisiones> detalleComisionesOpt = detalleComisionesRepository.findById(iddetallecomisiones);
+            Optional<DetalleComisiones> detalleComisionesOpt = detalleComisionesRepository.findById(inversorUsuarioDetalleRequest.getIddetallecomisiones());
             if (detalleComisionesOpt.isEmpty()) {
                 throw new Exception("Detalle de comisiones no encontrado.");
             }

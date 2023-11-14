@@ -3,6 +3,7 @@ package com.pe.HeoComisiones.Controller.user;
 
 import com.pe.HeoComisiones.DTOs.InversorDTO;
 import com.pe.HeoComisiones.Request.InversorRequest;
+import com.pe.HeoComisiones.Request.InversorUsuarioDetalleRequest;
 import com.pe.HeoComisiones.Services.InversorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +36,9 @@ public class UserInversionController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateInversorbyUsuario(@PathVariable Integer id,@RequestBody Integer iddetallecomisiones){
+    public ResponseEntity<?> updateInversorbyUsuario(@PathVariable Integer id,@RequestBody InversorUsuarioDetalleRequest inversorUsuarioDetalleRequest){
         try {
-            inversionService.updateInversorbyUsuario(id,iddetallecomisiones);
+            inversionService.updateInversorbyUsuario(id,inversorUsuarioDetalleRequest);
             return ResponseEntity.ok("Inversor actualizado");
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
