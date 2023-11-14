@@ -17,5 +17,5 @@ public class ResultTrabajadores {
     private double montototal;
     private  double ganancia;
     @ManyToOne
-    private Usuarios usuarios;
+    Usuarios usuarios;
 }

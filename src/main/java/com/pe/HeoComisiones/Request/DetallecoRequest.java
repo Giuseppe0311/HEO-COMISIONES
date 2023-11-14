@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DetallecoRequest {
-    private  Integer inversor;
     private  Integer resultTrabajadores;
     private  Integer usuarios;
 }

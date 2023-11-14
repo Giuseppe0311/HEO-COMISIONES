@@ -2,6 +2,7 @@ package com.pe.HeoComisiones.Services;
 
 import com.pe.HeoComisiones.DTOs.DetalleComisionDTO;
 import com.pe.HeoComisiones.Entity.DetalleComisiones;
+//import com.pe.HeoComisiones.Mappers.DetalleComisionDTOMapper;
 import com.pe.HeoComisiones.Mappers.DetalleComisionDTOMapper;
 import com.pe.HeoComisiones.Repository.DetalleComisionesRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
@@ -33,8 +34,8 @@ public class DetalleComisionesService {
     }
 
     public List<DetalleComisionDTO> getallDetalles(){
-        return detalleComisionesRepository.findAll()
-                .stream()
+        return detalleComisionesRepository.findAll().
+                 stream()
                 .map(detalleComisionDTOMapper)
                 .collect(Collectors.toList());
     }
@@ -54,17 +55,16 @@ public class DetalleComisionesService {
                 .collect(Collectors.toList());
     }
 
-    public void saveDetalle(DetallecoRequest detallecoRequest)throws  Exception{
+    public Integer saveDetalle(DetallecoRequest detallecoRequest)throws  Exception{
         DetalleComisiones detalleComisiones = new DetalleComisiones();
-        detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
         detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
         detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuarios()).get());
         detalleComisionesRepository.save(detalleComisiones);
+        return detalleComisiones.getId();
     }
     public void updateDetalle(Integer id,DetallecoRequest detallecoRequest)throws  Exception{
         DetalleComisiones detalleComisiones = detalleComisionesRepository.findById(id).orElse(null);
         if (detalleComisiones != null){
-            detalleComisiones.setInversor(inversorRepository.findById(detallecoRequest.getInversor()).get());
             detalleComisiones.setResultTrabajadores(resultTrabajadoresRepository.findById(detallecoRequest.getResultTrabajadores()).get());
             detalleComisiones.setUsuarios(usuarioRepository.findById(detallecoRequest.getUsuarios()).get());
             detalleComisionesRepository.save(detalleComisiones);

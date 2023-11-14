@@ -5,6 +5,7 @@ import com.pe.HeoComisiones.DTOs.InversorDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
 import com.pe.HeoComisiones.Mappers.InversoresDTOMapper;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
+import com.pe.HeoComisiones.Repository.DetalleComisionesRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.InversorRequest;
@@ -24,6 +25,8 @@ public class InversorService {
     private ClienteRepository clienteRepository;
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private DetalleComisionesRepository detalleComisionesRepository;
 
     public InversorService(InversoresDTOMapper inversoresDTOMapper) {
         this.inversoresDTOMapper = inversoresDTOMapper;
@@ -56,8 +59,8 @@ public class InversorService {
         inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).get());
         inversor.setContrato(inversorRequest.getContrato());
         inversor.setUsuarios(usuarioRepository.findById(inversorRequest.getIdusuario()).get());
+        inversor.setDetalleComisiones(detalleComisionesRepository.findById(inversorRequest.getIddetallecomisiones()).get());
         inversor.setMontoinvertido(inversorRequest.getMontoinvertido());
-
         inversorRepository.save(inversor);
     }
     public void updateInversor(Integer id,InversorRequest inversorRequest)throws Exception{

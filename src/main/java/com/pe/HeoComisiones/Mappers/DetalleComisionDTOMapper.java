@@ -4,30 +4,32 @@ import com.pe.HeoComisiones.DTOs.*;
 import com.pe.HeoComisiones.Entity.DetalleComisiones;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class DetalleComisionDTOMapper implements Function<DetalleComisiones, DetalleComisionDTO> {
 
     @Override
     public DetalleComisionDTO apply(DetalleComisiones detalleComisiones) {
-        ClienteDTO cliente = new ClienteDTO(
-                detalleComisiones.getInversor().getClientes().getId(),
-                detalleComisiones.getInversor().getClientes().getNombre(),
-                detalleComisiones.getInversor().getClientes().getApellido(),
-                detalleComisiones.getInversor().getClientes().getDni(),
-                detalleComisiones.getInversor().getClientes().getTelefono(),
-                detalleComisiones.getInversor().getClientes().getDistrito(),
-                detalleComisiones.getInversor().getClientes().getProvincia(),
-                detalleComisiones.getInversor().getClientes().getDepartamento()
-        );
-        InversorDTO inversor = new InversorDTO(
-                detalleComisiones.getInversor().getId(),
-                cliente,
-                detalleComisiones.getInversor().getMontoinvertido(),
-                detalleComisiones.getInversor().getContrato(),
-                detalleComisiones.getInversor().isStatus()
-        );
+      List<InversorDTO> inversoresDTO = detalleComisiones.getInversores().stream()
+              .map(inversor -> new InversorDTO(
+                      inversor.getId(),
+                      new ClienteDTO(
+                              inversor.getClientes().getId(),
+                              inversor.getClientes().getNombre(),
+                              inversor.getClientes().getApellido(),
+                              inversor.getClientes().getDni(),
+                              inversor.getClientes().getTelefono(),
+                              inversor.getClientes().getDistrito(),
+                              inversor.getClientes().getProvincia(),
+                              inversor.getClientes().getDepartamento()
+                      ),
+                      inversor.getMontoinvertido(),
+                      inversor.getContrato(),
+                      inversor.isStatus()
+              )).toList();
         ResulTrabajadoresDTO resulTrabajadores = new ResulTrabajadoresDTO(
                 detalleComisiones.getResultTrabajadores().getId(),
                 detalleComisiones.getResultTrabajadores().getComisionTotal(),
@@ -42,10 +44,10 @@ public class DetalleComisionDTOMapper implements Function<DetalleComisiones, Det
         );
         return new DetalleComisionDTO(
                 detalleComisiones.getId(),
-                inversor,
+                inversoresDTO,
                 resulTrabajadores,
-                detalleComisiones.getMescomercial(),
-                usuarioDTO
+                usuarioDTO,
+               detalleComisiones.getMescomercial()
         );
     }
 }

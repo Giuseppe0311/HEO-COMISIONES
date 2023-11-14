@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -16,16 +18,22 @@ public class DetalleComisiones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name="id_inversor")
-    private Inversor inversor;
-    @ManyToOne
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "detalleComisiones")
+    @ToString.Exclude
+    private List<Inversor> inversores;
+
+    @OneToOne
     private ResultTrabajadores resultTrabajadores;
-    @ManyToOne
+
+    @OneToOne
     private Usuarios usuarios;
+
     private Date mescomercial;
+
     @PrePersist
     public void prePersist(){
         mescomercial = new Date(System.currentTimeMillis());
     }
+
 }

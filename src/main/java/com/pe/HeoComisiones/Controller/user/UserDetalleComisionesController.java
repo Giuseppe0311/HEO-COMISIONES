@@ -25,7 +25,7 @@ public class UserDetalleComisionesController {
     public ResponseEntity<?> savecomisiones(@RequestBody DetallecoRequest detallecoRequest){
         try {
             detalleComisionesService.saveDetalle(detallecoRequest);
-            return ResponseEntity.ok("Detalle de comisiones guardado");
+            return ResponseEntity.ok(detalleComisionesService.saveDetalle(detallecoRequest));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

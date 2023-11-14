@@ -12,5 +12,6 @@ public class InversorRequest {
     private Integer idcliente;
     private double montoinvertido;
     private String contrato;
+    Integer iddetallecomisiones;
     private Integer idusuario;
 }
