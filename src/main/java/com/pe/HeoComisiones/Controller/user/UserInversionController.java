@@ -35,9 +35,9 @@ public class UserInversionController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateInversorbyUsuario(@PathVariable Integer id,@RequestBody InversorRequest inversorRequest){
+    public ResponseEntity<?> updateInversorbyUsuario(@PathVariable Integer id,@RequestBody Integer iddetallecomisiones){
         try {
-            inversionService.updateInversorbyUsuario(id,inversorRequest);
+            inversionService.updateInversorbyUsuario(id,iddetallecomisiones);
             return ResponseEntity.ok("Inversor actualizado");
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

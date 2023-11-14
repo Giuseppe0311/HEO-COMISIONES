@@ -82,13 +82,13 @@ public class InversorService {
     }
 
     // ACTUALIZAR EL DETALLE POR PARTE DEL USUARIO
-        public void updateInversorbyUsuario(Integer id, InversorRequest inversorRequest) throws Exception {
+        public void updateInversorbyUsuario(Integer id, Integer iddetallecomisiones) throws Exception {
             List<Inversor> inversores = inversorRepository.getInversionesByusuario(id);
             if (inversores.isEmpty()) {
                 throw new Exception("No se encontraron inversores para el usuario.");
             }
 
-            Optional<DetalleComisiones> detalleComisionesOpt = detalleComisionesRepository.findById(inversorRequest.getIddetallecomisiones());
+            Optional<DetalleComisiones> detalleComisionesOpt = detalleComisionesRepository.findById(iddetallecomisiones);
             if (detalleComisionesOpt.isEmpty()) {
                 throw new Exception("Detalle de comisiones no encontrado.");
             }
