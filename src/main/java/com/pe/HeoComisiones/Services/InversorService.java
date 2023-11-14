@@ -62,10 +62,10 @@ public class InversorService {
     public void saveInversor(InversorRequest inversorRequest) throws Exception {
         Inversor inversor = new Inversor();
         inversor.setStatus(true);
-        inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).get());
+        inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).orElse(null));
         inversor.setContrato(inversorRequest.getContrato());
-        inversor.setUsuarios(usuarioRepository.findById(inversorRequest.getIdusuario()).get());
-        inversor.setDetalleComisiones(detalleComisionesRepository.findById(inversorRequest.getIddetallecomisiones()).get());
+        inversor.setUsuarios(usuarioRepository.findById(inversorRequest.getIdusuario()).orElse(null));
+        inversor.setDetalleComisiones(detalleComisionesRepository.findById(inversorRequest.getIddetallecomisiones()).orElse(null));
         inversor.setMontoinvertido(inversorRequest.getMontoinvertido());
         inversorRepository.save(inversor);
     }
@@ -73,9 +73,9 @@ public class InversorService {
     public void updateInversor(Integer id, InversorRequest inversorRequest) throws Exception {
         Inversor inversor = inversorRepository.findById(id).orElse(null);
         if (inversor != null) {
-            inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).get());
+            inversor.setClientes(clienteRepository.findById(inversorRequest.getIdcliente()).orElse(null));
             inversor.setContrato(inversorRequest.getContrato());
-            inversor.setUsuarios(usuarioRepository.findById(inversorRequest.getIdusuario()).get());
+            inversor.setUsuarios(usuarioRepository.findById(inversorRequest.getIdusuario()).orElse(null));
             inversor.setMontoinvertido(inversorRequest.getMontoinvertido());
             inversorRepository.save(inversor);
         }
