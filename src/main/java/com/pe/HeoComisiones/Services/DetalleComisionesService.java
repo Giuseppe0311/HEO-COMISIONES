@@ -10,6 +10,7 @@ import com.pe.HeoComisiones.Repository.ResultTrabajadoresRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.DetallecoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,7 +35,9 @@ public class DetalleComisionesService {
     }
 
     public List<DetalleComisionDTO> getallDetalles(){
-        return detalleComisionesRepository.findAll().
+        //sort order by DESC
+        Sort sort  = Sort.by(Sort.Direction.DESC,"id");
+        return detalleComisionesRepository.findAll(sort).
                  stream()
                 .map(detalleComisionDTOMapper)
                 .collect(Collectors.toList());
