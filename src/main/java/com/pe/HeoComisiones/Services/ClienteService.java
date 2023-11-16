@@ -73,8 +73,12 @@ public class ClienteService {
     public  void Updatecliente(Integer id,ClienteRequest clienteRequest) throws Exception {
         Clientes clientes1 = clienteRepository.findById(id).orElse(null);
         if(clientes1 != null){
+            if (ValidationUtils.DniAlreadyExist(clienteRepository.getClientesbyUsuario(clienteRequest.getUsuarios()),clienteRequest.getDni())){
+                throw new Exception("El dni ya existe");
+            }
             clientes1.setApellido(clienteRequest.getApellido());
             clientes1.setDistrito(clienteRequest.getDistrito());
+            clientes1.setDni(clienteRequest.getDni());
             clientes1.setNombre(clienteRequest.getNombre());
             clientes1.setTelefono(clienteRequest.getTelefono());
             clientes1.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
@@ -82,8 +86,9 @@ public class ClienteService {
             clientes1.setProvincia(clienteRequest.getProvincia());
             clientes1.setDepartamento(clienteRequest.getDepartamento());
             clienteRepository.save(clientes1);
+        }else{
+            throw new Exception("No existe el cliente");
         }
-        throw new Exception();
     }
     public void Deletecliente(Integer id) throws Exception {
         Clientes clientes = clienteRepository.findById(id).orElse(null);
