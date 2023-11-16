@@ -52,28 +52,28 @@ public class ClienteService {
                 .collect(Collectors.toList());
     }
 
-    public void Savecliente(ClienteRequest clienteRequest) throws Exception {
-        List<Clientes> clientesdeusuario = clienteRepository.getClientesbyUsuario(clienteRequest.getUsuarios());
-        if(ValidationUtils.DniAlreadyExist(clientesdeusuario,clienteRequest.getDni())){
-            throw new Exception("El dni ya existe");
+        public void Savecliente(ClienteRequest clienteRequest) throws Exception {
+            List<Clientes> clientesdeusuario = clienteRepository.getClientesbyUsuario(clienteRequest.getUsuarios());
+            if(ValidationUtils.DniAlreadyExist(clientesdeusuario,clienteRequest.getDni(),null)){
+                throw new Exception("El dni ya existe");
+            }
+             Clientes clientes = new Clientes();
+            clientes.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
+            clientes.setStatus(true);
+            clientes.setApellido(clienteRequest.getApellido());
+            clientes.setDistrito(clienteRequest.getDistrito());
+            clientes.setNombre(clienteRequest.getNombre());
+            clientes.setTelefono(clienteRequest.getTelefono());
+            clientes.setDni(clienteRequest.getDni());
+            clientes.setDistrito(clienteRequest.getDistrito());
+            clientes.setProvincia(clienteRequest.getProvincia());
+            clientes.setDepartamento(clienteRequest.getDepartamento());
+            clienteRepository.save(clientes);
         }
-         Clientes clientes = new Clientes();
-        clientes.setUsuarios(usuarioRepository.findById(clienteRequest.getUsuarios()).orElse(null));
-        clientes.setStatus(true);
-        clientes.setApellido(clienteRequest.getApellido());
-        clientes.setDistrito(clienteRequest.getDistrito());
-        clientes.setNombre(clienteRequest.getNombre());
-        clientes.setTelefono(clienteRequest.getTelefono());
-        clientes.setDni(clienteRequest.getDni());
-        clientes.setDistrito(clienteRequest.getDistrito());
-        clientes.setProvincia(clienteRequest.getProvincia());
-        clientes.setDepartamento(clienteRequest.getDepartamento());
-        clienteRepository.save(clientes);
-    }
     public  void Updatecliente(Integer id,ClienteRequest clienteRequest) throws Exception {
         Clientes clientes1 = clienteRepository.findById(id).orElse(null);
         if(clientes1 != null){
-            if (ValidationUtils.DniAlreadyExist(clienteRepository.getClientesbyUsuario(clienteRequest.getUsuarios()),clienteRequest.getDni())){
+            if (ValidationUtils.DniAlreadyExist(clienteRepository.getClientesbyUsuario(clienteRequest.getUsuarios()),clienteRequest.getDni(),clientes1.getId())){
                 throw new Exception("El dni ya existe");
             }
             clientes1.setApellido(clienteRequest.getApellido());
