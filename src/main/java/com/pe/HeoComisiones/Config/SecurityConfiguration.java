@@ -48,9 +48,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/doc/swagger-ui.html","/doc/**").permitAll(); // Permitir Swagger
-                    auth.requestMatchers("/admin/**").hasRole("ADMIN");
-                    auth.requestMatchers("/user/**").hasRole("USER");
-                    auth.anyRequest().authenticated();
+                    auth.requestMatchers("/admin/**").permitAll();
+                    auth.requestMatchers("/user/**").permitAll();
+                    auth.anyRequest().permitAll();
                 });
 
 

@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Controller.admin;
 
 import com.pe.HeoComisiones.DTOs.ComisionesDTO;
+import com.pe.HeoComisiones.DTOs.admin.ComisionConUsuarioDTO;
 import com.pe.HeoComisiones.Request.ComisionRequest;
 import com.pe.HeoComisiones.Services.ComisionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ public class ComisionController {
     private ComisionService comisionService;
 
     @GetMapping
-    public ResponseEntity<List<ComisionesDTO>> getComision(){
+    public ResponseEntity<List<ComisionConUsuarioDTO>> getComision(){
         try {
-            return ResponseEntity.ok(comisionService.getComisiones());
+            return ResponseEntity.ok(comisionService.obtenerComisionesConUsuarios());
         }catch (Exception e){
             return ResponseEntity.noContent().build();
         }
