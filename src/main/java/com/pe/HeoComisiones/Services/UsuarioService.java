@@ -36,7 +36,7 @@ public class UsuarioService {
     }
 
     public List<Admin_UserDTO> getUsuariosforAdmin() {
-        return usuarioRepository.findByStatusTrue()
+        return usuarioRepository.findByStatusTrueAndDniNotIn()
                 .stream()
                 .map(admin_userDTOMapper)
                 .collect(Collectors.toList());
