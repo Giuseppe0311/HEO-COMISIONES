@@ -14,6 +14,7 @@ import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.InversorRequest;
 import com.pe.HeoComisiones.Request.InversorUsuarioDetalleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,7 +41,8 @@ public class InversorService {
     }
 
     public List<Admin_InversoresDTO> getInversor() {
-        return inversorRepository.findByStatusTrue()
+        Sort sort  = Sort.by(Sort.Direction.DESC,"id");
+        return inversorRepository.findByStatusTrue(sort)
                 .stream()
                 .map(adminInversoresDTOMapper)
                 .collect(Collectors.toList());
