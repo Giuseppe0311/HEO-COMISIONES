@@ -10,6 +10,7 @@ import com.pe.HeoComisiones.Repository.SucursalRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Tokens.RefreshTokenService;
 import com.pe.HeoComisiones.Tokens.JwtService;
+import com.pe.HeoComisiones.Validations.ValidationUtils;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,6 +43,9 @@ public class AuthenticationService {
     private JwtService jwtService;
 
     public void registerUser(String username, String password, String dni, String email, String name, Integer idSucursal, Set<Integer> perfiles) {
+        if (ValidationUtils.DniAlreadyExistforUser(userRepository.findAll(), dni)) {
+            throw new RuntimeException("Error: DNI is already in use!");
+        }
         String encodedPassword = passwordEncoder.encode(password);
         Set<Perfiles> authorities = new HashSet<>();
 

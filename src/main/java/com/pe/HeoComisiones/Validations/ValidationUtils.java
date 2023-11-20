@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Validations;
 
 import com.pe.HeoComisiones.Entity.Clientes;
+import com.pe.HeoComisiones.Entity.Usuarios;
 
 import java.util.List;
 
@@ -12,5 +13,14 @@ public class ValidationUtils {
            }
        }
          return false;
+    }
+
+    public static boolean DniAlreadyExistforUser(List<Usuarios> usuarios, String dni) {
+        for (Usuarios usuario : usuarios){
+            if(usuario.getDni().equals(dni)){
+                return true;
+            }
+        }
+        return false;
     }
 }
