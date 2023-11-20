@@ -12,6 +12,7 @@ import com.pe.HeoComisiones.Repository.SucursalRepository;
 import com.pe.HeoComisiones.Repository.UsuarioRepository;
 import com.pe.HeoComisiones.Request.ComisionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -36,7 +37,8 @@ public class ComisionService {
     }
 
     public List<ComisionConUsuarioDTO> obtenerComisionesConUsuarios() {
-        List<Comisiones> comisiones = comisionRepository.findAll();
+        Sort sort  = Sort.by(Sort.Direction.ASC,"id");
+        List<Comisiones> comisiones = comisionRepository.findAll(sort);
 
         Map<Integer, UsuarioDTO> usuarioDTOMap = new HashMap<>();
         Map<Integer, List<ComisionesDTO>> comisionesPorUsuario = new HashMap<>();
