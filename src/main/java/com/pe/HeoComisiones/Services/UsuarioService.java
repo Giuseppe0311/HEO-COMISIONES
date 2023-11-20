@@ -41,6 +41,12 @@ public class UsuarioService {
                 .map(admin_userDTOMapper)
                 .collect(Collectors.toList());
     }
+    public List<Admin_UserDTO> getUsuariosforAdminwithoutcomisiones() {
+        return usuarioRepository.findUsuariosSinComisiones()
+                .stream()
+                .map(admin_userDTOMapper)
+                .collect(Collectors.toList());
+    }
 
     public List<Admin_UserDTO> getUsuariosbyId(Integer id) throws Exception {
         Usuarios usuarios = usuarioRepository.findById(id).orElse(null);

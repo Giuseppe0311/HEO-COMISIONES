@@ -21,6 +21,15 @@ public class UserController {
         }
 
     }
+    @GetMapping("/sincomisiones")
+    public ResponseEntity<?> getUsuariossincomisiones() {
+        try {
+            return ResponseEntity.ok(usuarioService.getUsuariosforAdminwithoutcomisiones());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+    }
     @GetMapping("/{id}")
     public ResponseEntity<?> getUsuariosbyId(@PathVariable Integer id){
         try {
