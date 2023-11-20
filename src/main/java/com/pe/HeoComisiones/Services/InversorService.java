@@ -2,9 +2,11 @@ package com.pe.HeoComisiones.Services;
 
 
 import com.pe.HeoComisiones.DTOs.InversorDTO;
+import com.pe.HeoComisiones.DTOs.admin.Admin_InversoresDTO;
 import com.pe.HeoComisiones.Entity.DetalleComisiones;
 import com.pe.HeoComisiones.Entity.Inversor;
 import com.pe.HeoComisiones.Mappers.InversoresDTOMapper;
+import com.pe.HeoComisiones.Mappers.admin.Admin_InversoresDTOMapper;
 import com.pe.HeoComisiones.Repository.ClienteRepository;
 import com.pe.HeoComisiones.Repository.DetalleComisionesRepository;
 import com.pe.HeoComisiones.Repository.InversorRepository;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 @Service
 public class InversorService {
     private final InversoresDTOMapper inversoresDTOMapper;
+    private final Admin_InversoresDTOMapper adminInversoresDTOMapper;
     @Autowired
     private InversorRepository inversorRepository;
     @Autowired
@@ -31,22 +34,23 @@ public class InversorService {
     @Autowired
     private DetalleComisionesRepository detalleComisionesRepository;
 
-    public InversorService(InversoresDTOMapper inversoresDTOMapper) {
+    public InversorService(InversoresDTOMapper inversoresDTOMapper, Admin_InversoresDTOMapper adminInversoresDTOMapper) {
         this.inversoresDTOMapper = inversoresDTOMapper;
+        this.adminInversoresDTOMapper = adminInversoresDTOMapper;
     }
 
-    public List<InversorDTO> getInversor() {
+    public List<Admin_InversoresDTO> getInversor() {
         return inversorRepository.findByStatusTrue()
                 .stream()
-                .map(inversoresDTOMapper)
+                .map(adminInversoresDTOMapper)
                 .collect(Collectors.toList());
     }
 
-    public List<InversorDTO> getInversorbyId(Integer id) throws Exception {
+    public List<Admin_InversoresDTO> getInversorbyId(Integer id) throws Exception {
         Inversor inversor = inversorRepository.findById(id).orElse(null);
-        List<InversorDTO> inversores = new ArrayList<>();
+        List<Admin_InversoresDTO> inversores = new ArrayList<>();
         if (inversor != null) {
-            inversores.add(inversoresDTOMapper.apply(inversor));
+            inversores.add(adminInversoresDTOMapper.apply(inversor));
             return inversores;
         }
         return inversores;

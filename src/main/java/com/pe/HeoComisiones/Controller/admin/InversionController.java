@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Controller.admin;
 
 import com.pe.HeoComisiones.DTOs.InversorDTO;
+import com.pe.HeoComisiones.DTOs.admin.Admin_InversoresDTO;
 import com.pe.HeoComisiones.Request.InversorRequest;
 import com.pe.HeoComisiones.Services.InversorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class InversionController {
     @Autowired
     private InversorService inversionService;
     @GetMapping
-    public ResponseEntity<List<InversorDTO>> getInversor(){
+    public ResponseEntity<List<Admin_InversoresDTO>> getInversor(){
         try {
             return ResponseEntity.ok(inversionService.getInversor());
         }catch (Exception e){
@@ -23,7 +24,7 @@ public class InversionController {
         }
     }
     @GetMapping("/{id}")
-    public ResponseEntity<List<InversorDTO>> getInversorbyId(@PathVariable Integer id){
+    public ResponseEntity<List<Admin_InversoresDTO>> getInversorbyId(@PathVariable Integer id){
         try {
             return ResponseEntity.ok(inversionService.getInversorbyId(id));
         }catch (Exception e){

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ComisionRequest {
-
+    Integer id;
     private double porcentaje;
     private double montomax;
     private Integer usuarios;

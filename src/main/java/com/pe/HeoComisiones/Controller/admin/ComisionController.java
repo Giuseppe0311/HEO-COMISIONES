@@ -44,7 +44,7 @@ public class ComisionController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateComision(@PathVariable Integer id,@RequestBody ComisionRequest comisionRequest){
+    public ResponseEntity<?> updateComision(@PathVariable Integer id,@RequestBody List<ComisionRequest> comisionRequest){
         try {
             comisionService.UpdateComisiones(id,comisionRequest);
             return ResponseEntity.ok("Comision actualizada");

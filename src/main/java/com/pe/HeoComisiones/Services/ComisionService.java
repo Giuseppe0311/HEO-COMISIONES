@@ -126,15 +126,24 @@ public class ComisionService {
         comisionRepository.save(comisiones);
     }
 
-    public void UpdateComisiones(Integer id, ComisionRequest comisionRequest) throws Exception {
-        Comisiones comisiones1 = comisionRepository.findById(id).orElse(null);
-        if (comisiones1 != null) {
-            comisiones1.setPorcentaje(comisionRequest.getPorcentaje());
-            comisiones1.setMontomax(comisionRequest.getMontomax());
-            comisiones1.setUsuarios(usuarioRepository.findById(comisionRequest.getUsuarios()).orElse(null));
-            comisionRepository.save(comisiones1);
+    public void UpdateComisiones(Integer id, List<ComisionRequest> comisionRequests) throws Exception {
+        List<Comisiones> comisiones = comisionRepository.getComisionbyusuario(id);
+        if(comisiones != null){
+            for (ComisionRequest comisionRequest : comisionRequests) {
+                Comisiones comision = comisiones.stream()
+                        .filter(comisiones1 -> comisiones1.getId().equals(comisionRequest.getId()))
+                        .findFirst()
+                        .orElse(null);
+                if (comision != null) {
+                    comision.setPorcentaje(comisionRequest.getPorcentaje());
+                    comision.setMontomax(comisionRequest.getMontomax());
+                    comisionRepository.save(comision);
+                }
+            }
+        }else {
+            throw new Exception("No se encontro comisiones");
         }
-        throw new Exception();
+
     }
 
     public void DeleteComisiones(Integer id) throws Exception {

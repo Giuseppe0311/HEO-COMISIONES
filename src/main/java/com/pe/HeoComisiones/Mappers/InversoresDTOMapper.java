@@ -2,6 +2,7 @@ package com.pe.HeoComisiones.Mappers;
 
 import com.pe.HeoComisiones.DTOs.ClienteDTO;
 import com.pe.HeoComisiones.DTOs.InversorDTO;
+import com.pe.HeoComisiones.DTOs.UsuarioDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class InversoresDTOMapper implements Function<Inversor, InversorDTO> {
                 inversor.getClientes().getProvincia(),
                 inversor.getClientes().getDepartamento()
         );
+
         return new InversorDTO(
                 inversor.getId(),
                 clientes,
