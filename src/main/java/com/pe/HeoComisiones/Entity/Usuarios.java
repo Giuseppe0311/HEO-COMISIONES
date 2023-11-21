@@ -1,5 +1,6 @@
 package com.pe.HeoComisiones.Entity;
 
+import com.pe.HeoComisiones.Auditable.Auditable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.util.Set;
 @Entity
 @Data
 @AllArgsConstructor
-public class Usuarios implements UserDetails {
+public class Usuarios extends Auditable implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

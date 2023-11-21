@@ -1,5 +1,6 @@
 package com.pe.HeoComisiones.Entity;
 
+import com.pe.HeoComisiones.Auditable.Auditable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comisiones {
+public class Comisiones extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

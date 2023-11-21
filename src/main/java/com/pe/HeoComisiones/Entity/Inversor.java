@@ -1,6 +1,7 @@
 package com.pe.HeoComisiones.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pe.HeoComisiones.Auditable.Auditable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
-public class Inversor {
+public class Inversor extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
