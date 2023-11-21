@@ -9,6 +9,10 @@ public record Admin_InversoresDTO(
         UsuarioDTO usuario,
         double montoinvertido,
         String contrato,
-        boolean status
+        boolean status,
+        String creadopor,
+        String fechacreacion,
+        String ultimaactualizacionpor,
+        String fechaultimaactualizacion
 ) {
 }

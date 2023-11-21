@@ -35,7 +35,11 @@ public class Admin_InversoresDTOMapper implements Function<Inversor, Admin_Inver
                 usuarios,
                 inversor.getMontoinvertido(),
                 inversor.getContrato(),
-                inversor.isStatus()
+                inversor.isStatus(),
+                inversor.getCreadopor(),
+                inversor.getFechacreacion(),
+                inversor.getUltimaactualizacionpor(),
+                inversor.getFechaultimaactualizacion()
         );
     }
 }

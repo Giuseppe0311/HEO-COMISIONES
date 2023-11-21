@@ -29,12 +29,4 @@ public class DetalleComisiones extends Auditable {
 
     @OneToOne
     private Usuarios usuarios;
-
-    private Date mescomercial;
-
-    @PrePersist
-    public void prePersist(){
-        mescomercial = new Date(System.currentTimeMillis());
-    }
-
 }

@@ -8,6 +8,9 @@ public record DetalleComisionDTO(
         List<InversorDTO> inversores,
         ResulTrabajadoresDTO resulttrabajadores,
         UsuarioDTO usuario,
-         Date mescomercial
+        String creadopor,
+        String fechacreacion,
+        String ultimaactualizacionpor,
+        String fechaultimaactualizacion
 ) {
 }

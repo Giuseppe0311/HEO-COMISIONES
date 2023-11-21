@@ -20,7 +20,11 @@ public class Admin_UserDTOMapper implements Function<Usuarios, Admin_UserDTO> {
                 usuarios.getDni(),
                 usuarios.getEmail(),
                 usuarios.getProfiles(),
-                usuarios.getSucursales()
+                usuarios.getSucursales(),
+                usuarios.getCreadopor(),
+                usuarios.getFechacreacion(),
+                usuarios.getUltimaactualizacionpor(),
+                usuarios.getFechaultimaactualizacion()
         );
     }
 }

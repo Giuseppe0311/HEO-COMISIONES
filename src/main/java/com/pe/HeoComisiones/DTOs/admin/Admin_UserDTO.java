@@ -12,6 +12,10 @@ public record Admin_UserDTO(
         String dni,
         String email,
         Set<Perfiles> perfiles,
-        Sucursales sucursales
+        Sucursales sucursales,
+        String creadopor,
+        String fechacreacion,
+        String ultimaactualizacionpor,
+        String fechaultimaactualizacion
 ) {
 }

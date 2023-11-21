@@ -47,7 +47,10 @@ public class DetalleComisionDTOMapper implements Function<DetalleComisiones, Det
                 inversoresDTO,
                 resulTrabajadores,
                 usuarioDTO,
-               detalleComisiones.getMescomercial()
+                detalleComisiones.getCreadopor(),
+                detalleComisiones.getFechacreacion(),
+                detalleComisiones.getUltimaactualizacionpor(),
+                detalleComisiones.getFechaultimaactualizacion()
         );
     }
 }
