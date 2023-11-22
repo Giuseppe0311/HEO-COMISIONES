@@ -74,8 +74,10 @@ public class UsuarioService {
             usuarios.setProfiles(perfiles);
             usuarios.setSucursales(sucursalRepository.findById(usuarioRequest.getIdsucursal()).orElse(null));
             usuarioRepository.save(usuarios);
+        }else{
+            throw new Exception("Usuario no encontrado");
         }
-        throw new Exception("Usuario no encontrado");
+
     }
     public void deleteUser(Integer id) throws Exception {
         Usuarios usuarios = usuarioRepository.findById(id).orElse(null);
