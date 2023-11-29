@@ -1,7 +1,7 @@
 package com.pe.HeoComisiones.Services.user;
 
-import com.pe.HeoComisiones.Request.DetallecoRequest;
+import com.pe.HeoComisiones.Request.ResultTrabajadoresRequest;
 
 public interface UserDetalleComisionesService {
-    Integer saveDetalleComisiones(DetallecoRequest detallecoRequest);
+    void saveDetalleComisiones(Integer id, ResultTrabajadoresRequest resultTrabajadoresRequest);
 }

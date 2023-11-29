@@ -32,16 +32,5 @@ public class UserInversionController {
         return ResponseEntity.ok("Inversor guardado");
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateInversorbyUsuario(@PathVariable Integer id, @RequestBody InversorUsuarioDetalleRequest inversorUsuarioDetalleRequest) {
-        usuarioInversorService.updateInversorbyUsuario(id, inversorUsuarioDetalleRequest);
-        return ResponseEntity.ok("Inversor actualizado");
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteInversorbyUsuario(@PathVariable Integer id) {
-        usuarioInversorService.deleteInversorbyUsuario(id);
-        return ResponseEntity.ok("Inversor eliminado");
-    }
 
 }

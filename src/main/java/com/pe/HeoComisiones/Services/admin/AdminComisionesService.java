@@ -10,7 +10,7 @@ public interface AdminComisionesService {
     List<ComisionConUsuarioDTO> obtenerComisionesConUsuarios();
     List<ComisionConUsuarioDTO> getComisionesByid(Integer id);
     Comisiones verifyComisionExistsById(Integer id);
-    void saveComisiones(ComisionRequest comisionRequest);
+    void saveComisiones(Integer id, List<ComisionRequest> comisionRequests);
     void updateComisiones(Integer id, List<ComisionRequest> comisionRequests);
     void deleteComisiones(Integer id);
 }

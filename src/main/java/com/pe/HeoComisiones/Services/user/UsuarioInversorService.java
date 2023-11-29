@@ -8,7 +8,5 @@ import java.util.List;
 
 public interface UsuarioInversorService {
     void saveInversor(InversorRequest inversorRequest);
-    void updateInversorbyUsuario(Integer id, InversorUsuarioDetalleRequest inversorUsuarioDetalleRequest);
     List<InversorDTO> getInversoresbyUsuario(Integer id);
-    void deleteInversorbyUsuario(Integer id);
 }

@@ -42,20 +42,6 @@ public class UsuarioInversorServiceImpl implements UsuarioInversorService {
     }
 
     @Override
-    public void updateInversorbyUsuario(Integer id, InversorUsuarioDetalleRequest inversorUsuarioDetalleRequest) {
-        List<Inversor> inversores = inversorRepository.getInversionesByusuario(id);
-        if (inversores.isEmpty()) {
-            throw new InversorNotFoundException("No se encontraron inversores para el usuario.");
-        }
-
-       DetalleComisiones detalleComisionesOpt = commonDetalleComisionService.verifyDetalleComisionExistsById(inversorUsuarioDetalleRequest.getIddetallecomisiones());
-        for (Inversor inversor : inversores) {
-            inversor.setDetalleComisiones(detalleComisionesOpt);
-        }
-        inversorRepository.saveAll(inversores);
-    }
-
-    @Override
     public List<InversorDTO> getInversoresbyUsuario(Integer id) {
         return inversorRepository.getInversionesByusuario(id)
                 .stream()
@@ -63,8 +49,4 @@ public class UsuarioInversorServiceImpl implements UsuarioInversorService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public void deleteInversorbyUsuario(Integer id) {
-        inversorRepository.deleteInversorbyUsuario(id);
-    }
 }

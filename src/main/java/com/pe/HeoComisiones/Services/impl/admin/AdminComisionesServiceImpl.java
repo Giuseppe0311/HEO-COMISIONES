@@ -105,14 +105,15 @@ public class AdminComisionesServiceImpl implements AdminComisionesService {
 
     @Override
     @Transactional
-    public void saveComisiones(ComisionRequest comisionRequest) {
-        Comisiones comisiones = new Comisiones();
-        comisiones.setPorcentaje(comisionRequest.getPorcentaje());
-        comisiones.setMontomax(comisionRequest.getMontomax());
-        comisiones.setUsuarios(commonUsuarioService.verifyUsuarioExistsById(comisionRequest.getUsuarios()));
-        comisiones.setStatus(true);
-        comisionRepository.save(comisiones);
-
+    public void saveComisiones(Integer id, List<ComisionRequest> comisionRequests) {
+        Usuarios usuario = commonUsuarioService.verifyUsuarioExistsById(id);
+        for (ComisionRequest comisionRequest : comisionRequests) {
+            Comisiones comision = new Comisiones();
+            comision.setPorcentaje(comisionRequest.getPorcentaje());
+            comision.setMontomax(comisionRequest.getMontomax());
+            comision.setUsuarios(usuario);
+            comisionRepository.save(comision);
+        }
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.Controller.user;
 
-import com.pe.HeoComisiones.Request.DetallecoRequest;
+import com.pe.HeoComisiones.Request.ResultTrabajadoresRequest;
 import com.pe.HeoComisiones.Services.common.CommonDetalleComisionService;
 import com.pe.HeoComisiones.Services.user.UserDetalleComisionesService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,9 @@ public class UserDetalleComisionesController {
         return ResponseEntity.ok(commonDetalleComisionService.getdetallebyusuario(id));
     }
 
-    @PostMapping
-    public ResponseEntity<?> saveDetalleComisiones(@RequestBody DetallecoRequest detallecoRequest) {
-        return ResponseEntity.ok(detalleComisionesService.saveDetalleComisiones(detallecoRequest));
+    @PostMapping("/{id}")
+    public ResponseEntity<?> saveDetalleComisiones(@PathVariable Integer id,  @RequestBody ResultTrabajadoresRequest resultTrabajadoresRequest) {
+        detalleComisionesService.saveDetalleComisiones(id,resultTrabajadoresRequest);
+        return ResponseEntity.ok().body("Su mes comercial se envió correctamente");
     }
 }

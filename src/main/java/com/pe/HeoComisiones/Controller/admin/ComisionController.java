@@ -27,23 +27,22 @@ public class ComisionController {
 
     }
 
-    @PostMapping
-    public ResponseEntity<?> saveComision(@RequestBody ComisionRequest comisionRequest) {
-            comisionService.saveComisiones(comisionRequest);
-            return ResponseEntity.ok("Comision guardada");
-
+    @PostMapping("/{id}")
+    public ResponseEntity<?> saveComision(@PathVariable Integer id, @RequestBody List<ComisionRequest> comisionRequest) {
+        comisionService.saveComisiones(id, comisionRequest);
+        return ResponseEntity.ok("Comision guardada");
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateComision(@PathVariable Integer id, @RequestBody List<ComisionRequest> comisionRequest) {
-            comisionService.updateComisiones(id, comisionRequest);
-            return ResponseEntity.ok("Comision actualizada");
+        comisionService.updateComisiones(id, comisionRequest);
+        return ResponseEntity.ok("Comision actualizada");
 
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteComision(@PathVariable Integer id) {
-            comisionService.deleteComisiones(id);
-            return ResponseEntity.ok("Comision eliminada");
+        comisionService.deleteComisiones(id);
+        return ResponseEntity.ok("Comision eliminada");
     }
 }

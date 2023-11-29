@@ -27,7 +27,7 @@ public class UserClienteServiceImpl implements UserClienteService {
 
 
     @Override
-    public ClienteDTO getclientebyId(Integer id) {
+    public ClienteDTO   getclientebyId(Integer id) {
         Clientes cliente = commonClienteService.verifyClienteExistsById(id);
         return clienteDTOMapper.apply(cliente);
     }
