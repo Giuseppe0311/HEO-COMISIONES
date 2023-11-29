@@ -11,6 +11,9 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.Date;
+
+
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -19,10 +22,10 @@ public abstract class Auditable {
     private String creadopor;
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    private String fechacreacion;
+    private Date fechacreacion;
     @LastModifiedBy
     protected String ultimaactualizacionpor;
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
-    protected String fechaultimaactualizacion;
+    protected Date fechaultimaactualizacion;
 }

@@ -3,6 +3,7 @@ package com.pe.HeoComisiones.DTOs.admin;
 import com.pe.HeoComisiones.Entity.Perfiles;
 import com.pe.HeoComisiones.Entity.Sucursales;
 
+import java.util.Date;
 import java.util.Set;
 
 public record Admin_UserDTO(
@@ -14,8 +15,8 @@ public record Admin_UserDTO(
         Set<Perfiles> perfiles,
         Sucursales sucursales,
         String creadopor,
-        String fechacreacion,
+        Date fechacreacion,
         String ultimaactualizacionpor,
-        String fechaultimaactualizacion
+        Date fechaultimaactualizacion
 ) {
 }

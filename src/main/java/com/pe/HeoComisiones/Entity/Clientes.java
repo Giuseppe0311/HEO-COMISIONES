@@ -3,6 +3,7 @@ package com.pe.HeoComisiones.Entity;
 import com.pe.HeoComisiones.Auditable.Auditable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 public class Clientes extends Auditable {
     @Id

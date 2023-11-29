@@ -3,6 +3,9 @@ package com.pe.HeoComisiones.DTOs.admin;
 import com.pe.HeoComisiones.DTOs.ClienteDTO;
 import com.pe.HeoComisiones.DTOs.UsuarioDTO;
 
+import java.util.Date;
+
+
 public record Admin_InversoresDTO(
         Integer id,
         ClienteDTO clientes,
@@ -11,8 +14,8 @@ public record Admin_InversoresDTO(
         String contrato,
         boolean status,
         String creadopor,
-        String fechacreacion,
+        Date fechacreacion,
         String ultimaactualizacionpor,
-        String fechaultimaactualizacion
+        Date fechaultimaactualizacion
 ) {
 }

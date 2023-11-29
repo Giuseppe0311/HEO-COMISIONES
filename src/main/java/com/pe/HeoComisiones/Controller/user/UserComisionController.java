@@ -1,25 +1,19 @@
 package com.pe.HeoComisiones.Controller.user;
 
-import com.pe.HeoComisiones.Entity.Comisiones;
-import com.pe.HeoComisiones.Request.ComisionRequest;
-import com.pe.HeoComisiones.Services.ComisionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pe.HeoComisiones.Services.user.UserComisionesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/usuario/comisiones")
 public class UserComisionController {
-    @Autowired
-    private ComisionService comisionService;
-    
+    private final UserComisionesService comisionService;
+
     @GetMapping("/{id}")
-    public  ResponseEntity<?> UsergetComisionesByUsuario(@PathVariable Integer id){
-        try {
-            return ResponseEntity.ok(comisionService.getComisionesByUsuario(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> usergetComisionesByUsuario(@PathVariable Integer id) {
+        return ResponseEntity.ok(comisionService.getComisionesByUsuario(id));
     }
 }

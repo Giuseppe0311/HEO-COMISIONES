@@ -1,33 +1,26 @@
 package com.pe.HeoComisiones.Controller.user;
 
 import com.pe.HeoComisiones.Request.DetallecoRequest;
-import com.pe.HeoComisiones.Services.DetalleComisionesService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pe.HeoComisiones.Services.common.CommonDetalleComisionService;
+import com.pe.HeoComisiones.Services.user.UserDetalleComisionesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/usuario/detallecomisiones")
 public class UserDetalleComisionesController {
-    @Autowired
-    private DetalleComisionesService detalleComisionesService;
+    private final UserDetalleComisionesService detalleComisionesService;
+    private final CommonDetalleComisionService commonDetalleComisionService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> UsergetdetallebyUsuario(@PathVariable Integer id){
-        try {
-            return ResponseEntity.ok(detalleComisionesService.getdetallebyusuario(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-
+    public ResponseEntity<?> userGetDetallebyUsuario(@PathVariable Integer id) {
+        return ResponseEntity.ok(commonDetalleComisionService.getdetallebyusuario(id));
     }
-    @PostMapping
-    public ResponseEntity<?> savecomisiones(@RequestBody DetallecoRequest detallecoRequest){
-        try {
-            return ResponseEntity.ok(detalleComisionesService.saveDetalle(detallecoRequest));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
 
+    @PostMapping
+    public ResponseEntity<?> saveDetalleComisiones(@RequestBody DetallecoRequest detallecoRequest) {
+        return ResponseEntity.ok(detalleComisionesService.saveDetalleComisiones(detallecoRequest));
     }
 }

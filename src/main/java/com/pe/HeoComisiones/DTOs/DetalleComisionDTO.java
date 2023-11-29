@@ -1,6 +1,6 @@
 package com.pe.HeoComisiones.DTOs;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public record DetalleComisionDTO(
@@ -9,8 +9,8 @@ public record DetalleComisionDTO(
         ResulTrabajadoresDTO resulttrabajadores,
         UsuarioDTO usuario,
         String creadopor,
-        String fechacreacion,
+        Date fechacreacion,
         String ultimaactualizacionpor,
-        String fechaultimaactualizacion
+        Date fechaultimaactualizacion
 ) {
 }

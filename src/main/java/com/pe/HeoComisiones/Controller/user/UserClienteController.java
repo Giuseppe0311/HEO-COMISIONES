@@ -1,64 +1,45 @@
 package com.pe.HeoComisiones.Controller.user;
 
 import com.pe.HeoComisiones.Request.ClienteRequest;
-import com.pe.HeoComisiones.Services.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pe.HeoComisiones.Services.user.UserClienteService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/usuario/clientes")
 public class UserClienteController {
-    @Autowired
-    private ClienteService clienteService;
+    private final UserClienteService clienteService;
+
     //AQUI SE OBTIENE EL CLIENTE DE ACUERDO AL USUARIO QUE HA INICIADO SESION (SE PASA COMO PARAMETRO EL ID DEL USUARIO
     // QUE SE OPTIENE DEL TOKEN)
     @GetMapping("/{id}")
-    public ResponseEntity<?> UserGetclientebyUsuario(@PathVariable Integer id){
-        try {
-            return ResponseEntity.ok(clienteService.getclientebyUsuario(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> userGetclientebyUsuario(@PathVariable Integer id) {
+        return ResponseEntity.ok(clienteService.getclientebyUsuario(id));
     }
+
     //AQUI SE OBTIENE EL ID DEL CLIENTE SELECCIONADO
     @GetMapping("/get/{id}")
-    public ResponseEntity<?> UserGetclientebyId(@PathVariable Integer id){
-        try {
-            return ResponseEntity.ok(clienteService.getclientebyId(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> userGetclientebyId(@PathVariable Integer id) {
+        return ResponseEntity.ok(clienteService.getclientebyId(id));
     }
-    
     @PostMapping
-    public ResponseEntity<?> UserSavecliente(@RequestBody ClienteRequest clienteRequest){
-        try {
-            clienteService.Savecliente(clienteRequest);
-            return ResponseEntity.ok().build();
-        }catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> userSavecliente(@RequestBody ClienteRequest clienteRequest) {
+        clienteService.saveCliente(clienteRequest);
+        return ResponseEntity.ok().body("Cliente guardado");
     }
-
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> UserUpdatecliente(@PathVariable Integer id, @RequestBody ClienteRequest clienteRequest){
-        try {
-            clienteService.Updatecliente(id, clienteRequest);
-            return ResponseEntity.ok().build();
-        }catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> userUpdateCliente(@PathVariable Integer id, @RequestBody ClienteRequest clienteRequest) {
+            clienteService.updateCliente(id, clienteRequest);
+            return ResponseEntity.ok().body("Cliente actualizado");
     }
+
     //AQUI ESTAMOS ELIMINANDO UN CLIENTE EN ESPECIFICO
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> UserDeletecliente(@PathVariable Integer id){
-        try {
-            clienteService.Deletecliente(id);
-            return ResponseEntity.ok().build();
-        }catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> userDeleteCliente(@PathVariable Integer id) {
+        clienteService.deleteCliente(id);
+        return ResponseEntity.ok().build();
     }
 }

@@ -1,0 +1,14 @@
+package com.pe.HeoComisiones.Services.user;
+
+import com.pe.HeoComisiones.DTOs.InversorDTO;
+import com.pe.HeoComisiones.Request.InversorRequest;
+import com.pe.HeoComisiones.Request.InversorUsuarioDetalleRequest;
+
+import java.util.List;
+
+public interface UsuarioInversorService {
+    void saveInversor(InversorRequest inversorRequest);
+    void updateInversorbyUsuario(Integer id, InversorUsuarioDetalleRequest inversorUsuarioDetalleRequest);
+    List<InversorDTO> getInversoresbyUsuario(Integer id);
+    void deleteInversorbyUsuario(Integer id);
+}

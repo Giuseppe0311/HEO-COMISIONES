@@ -3,62 +3,47 @@ package com.pe.HeoComisiones.Controller.admin;
 import com.pe.HeoComisiones.DTOs.ComisionesDTO;
 import com.pe.HeoComisiones.DTOs.admin.ComisionConUsuarioDTO;
 import com.pe.HeoComisiones.Request.ComisionRequest;
-import com.pe.HeoComisiones.Services.ComisionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pe.HeoComisiones.Services.admin.AdminComisionesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/admin/comisiones")
 public class ComisionController {
-    @Autowired
-    private ComisionService comisionService;
+    private final AdminComisionesService comisionService;
 
     @GetMapping
-    public ResponseEntity<List<ComisionConUsuarioDTO>> getComision(){
-        try {
-            return ResponseEntity.ok(comisionService.obtenerComisionesConUsuarios());
-        }catch (Exception e){
-            return ResponseEntity.noContent().build();
-        }
-
+    public ResponseEntity<List<ComisionConUsuarioDTO>> getComision() {
+        return ResponseEntity.ok(comisionService.obtenerComisionesConUsuarios());
     }
 
     @GetMapping("/{id}")
-    public  ResponseEntity<?> getComisionById(@PathVariable Integer id){
-        try {
-            return ResponseEntity.ok(comisionService.getComisionesByid(id));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<?> getComisionById(@PathVariable Integer id) {
+        return ResponseEntity.ok(comisionService.getComisionesByid(id));
+
     }
+
     @PostMapping
-    public ResponseEntity<?> saveComision(@RequestBody ComisionRequest comisionRequest){
-        try {
-            comisionService.SaveComisiones(comisionRequest);
+    public ResponseEntity<?> saveComision(@RequestBody ComisionRequest comisionRequest) {
+            comisionService.saveComisiones(comisionRequest);
             return ResponseEntity.ok("Comision guardada");
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateComision(@PathVariable Integer id,@RequestBody List<ComisionRequest> comisionRequest){
-        try {
-            comisionService.UpdateComisiones(id,comisionRequest);
+    public ResponseEntity<?> updateComision(@PathVariable Integer id, @RequestBody List<ComisionRequest> comisionRequest) {
+            comisionService.updateComisiones(id, comisionRequest);
             return ResponseEntity.ok("Comision actualizada");
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteComision(@PathVariable Integer id){
-        try {
-            comisionService.DeleteComisiones(id);
+    public ResponseEntity<?> deleteComision(@PathVariable Integer id) {
+            comisionService.deleteComisiones(id);
             return ResponseEntity.ok("Comision eliminada");
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
     }
 }
