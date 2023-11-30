@@ -1,5 +1,6 @@
 package com.pe.HeoComisiones.Controller.admin;
 
+import com.pe.HeoComisiones.DTOs.admin.AdminConsultas_InversoresDTO;
 import com.pe.HeoComisiones.DTOs.admin.Admin_InversoresDTO;
 import com.pe.HeoComisiones.Request.InversorRequest;
 import com.pe.HeoComisiones.Services.admin.AdminInversorService;
@@ -18,6 +19,10 @@ public class InversionController {
     @GetMapping
     public ResponseEntity<List<Admin_InversoresDTO>> getInversor() {
         return ResponseEntity.ok(adminInversorService.getInversores());
+    }
+    @GetMapping("/avances")
+    public ResponseEntity<List<AdminConsultas_InversoresDTO>> getInversorAvances() {
+        return ResponseEntity.ok(adminInversorService.getInversoresAvances());
     }
 
     @GetMapping("/{id}")
