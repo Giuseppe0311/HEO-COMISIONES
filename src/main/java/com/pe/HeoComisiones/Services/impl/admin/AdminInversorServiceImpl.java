@@ -59,6 +59,9 @@ public class AdminInversorServiceImpl implements AdminInversorService, CommonInv
     public List<AdminConsultas_InversoresDTO> getInversoresAvances() {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
         List<Inversor> inversores = inversorRepository.findByStatusTrue(sort);
+        if (inversores.isEmpty()) {
+            throw new InversorNotFoundException("No se encontrarón inversores");
+        }
 
         // Agrupar por idusuario
         Map<Integer, List<Inversor>> inversoresPorUsuario = inversores.stream()
