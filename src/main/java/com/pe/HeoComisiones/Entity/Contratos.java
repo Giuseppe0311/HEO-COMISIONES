@@ -1,0 +1,25 @@
+package com.pe.HeoComisiones.Entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Contratos {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idcontrato;
+    @ManyToOne
+    private Usuarios usuarios;
+    private Integer numeroSecueciaContrato;
+    private String codigoContrato;
+    private String urlContrato;
+    private Date fechaCreacion;
+    private String estado;
+}

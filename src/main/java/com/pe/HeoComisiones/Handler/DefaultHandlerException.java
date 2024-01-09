@@ -54,4 +54,19 @@ public class DefaultHandlerException extends ResponseEntityExceptionHandler {
         ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
     }
+    @ExceptionHandler(ScriptError.class)
+    public ResponseEntity<Object> scriptError(ScriptError ex) {
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiError);
+    }
+    @ExceptionHandler(ScheduledException.class)
+    public ResponseEntity<Object> scheduledError(ScheduledException ex) {
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(apiError);
+    }
+    @ExceptionHandler(ContratoNotFoundException.class)
+    public ResponseEntity<Object> contratoNotFoundException(ContratoNotFoundException ex) {
+        ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
+    }
 }

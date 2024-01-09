@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usuario/clientes")
+
 public class UserClienteController {
+    //TODO: 07/01/2024  FALTA IMPLEMENTAR EL ENDPOINT PARA ELIMINAR UN CLIENTE
     private final UserClienteService clienteService;
 
     //AQUI SE OBTIENE EL CLIENTE DE ACUERDO AL USUARIO QUE HA INICIADO SESION (SE PASA COMO PARAMETRO EL ID DEL USUARIO
@@ -36,10 +38,5 @@ public class UserClienteController {
             return ResponseEntity.ok().body("Cliente actualizado");
     }
 
-    //AQUI ESTAMOS ELIMINANDO UN CLIENTE EN ESPECIFICO
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> userDeleteCliente(@PathVariable Integer id) {
-        clienteService.deleteCliente(id);
-        return ResponseEntity.ok().build();
-    }
+
 }

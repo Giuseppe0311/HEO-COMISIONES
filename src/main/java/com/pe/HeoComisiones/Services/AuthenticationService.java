@@ -12,6 +12,7 @@ import com.pe.HeoComisiones.Tokens.RefreshTokenService;
 import com.pe.HeoComisiones.Tokens.JwtService;
 import com.pe.HeoComisiones.Validations.ValidationUtils;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,22 +26,18 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class AuthenticationService {
-    @Autowired
-    private RefreshTokenService refreshTokenService;
-    @Autowired
-    private UsuarioRepository userRepository;
-    @Autowired
-    private PerfilesRepository perfilesRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private SucursalRepository sucursalRepository;
-    @Autowired
-    private JwtService jwtService;
+    private final RefreshTokenService refreshTokenService;
+    //EL CODIGO EN REALIAD DEBERIA ESTAR ASI :
+
+    private final UsuarioRepository userRepository;
+    private final PerfilesRepository perfilesRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final  SucursalRepository sucursalRepository;
+    private final JwtService jwtService;
 
     public void registerUser(String username, String password, String dni, String email, String name, Integer idSucursal, Set<Integer> perfiles) {
         if (ValidationUtils.DniAlreadyExistforUser(userRepository.findAll(), dni)) {

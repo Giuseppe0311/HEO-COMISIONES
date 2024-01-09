@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/usuario/detallecomisiones")
 public class UserDetalleComisionesController {
-    private final UserDetalleComisionesService detalleComisionesService;
     private final CommonDetalleComisionService commonDetalleComisionService;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> userGetDetallebyUsuario(@PathVariable Integer id) {
         return ResponseEntity.ok(commonDetalleComisionService.getdetallebyusuario(id));
     }
+    //TODO : TENER EN CUENTA EL USO DE SAVE DETALLE COMISIONES PORQUE SERA AUTOMATIZADA
 
-    @PostMapping("/{id}")
-    public ResponseEntity<?> saveDetalleComisiones(@PathVariable Integer id,  @RequestBody ResultTrabajadoresRequest resultTrabajadoresRequest) {
-        detalleComisionesService.saveDetalleComisiones(id,resultTrabajadoresRequest);
-        return ResponseEntity.ok().body("Su mes comercial se envió correctamente");
-    }
+//    @PostMapping("/{id}")
+//    public ResponseEntity<?> saveDetalleComisiones(@PathVariable Integer id,  @RequestBody ResultTrabajadoresRequest resultTrabajadoresRequest) {
+//        detalleComisionesService.saveDetalleComisiones(id,resultTrabajadoresRequest);
+//        return ResponseEntity.ok().body("Su mes comercial se envió correctamente");
+//    }
 }

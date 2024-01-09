@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserClienteServiceImpl implements UserClienteService {
+    //TODO: 07/01/2024  FALTA IMPLEMENTAR EL ENDPOINT PARA ELIMINAR UN CLIENTE
     private final CommonClienteService commonClienteService;
     private final ClienteDTOMapper clienteDTOMapper;
     private final ClienteRepository clienteRepository;
@@ -37,7 +38,7 @@ public class UserClienteServiceImpl implements UserClienteService {
         return clienteRepository.getClientesbyUsuario(id)
                 .stream()
                 .map(clienteDTOMapper)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -80,9 +81,5 @@ public class UserClienteServiceImpl implements UserClienteService {
         clientes.setProvincia(clienteRequest.getProvincia());
         clientes.setDepartamento(clienteRequest.getDepartamento());
         clienteRepository.save(clientes);
-    }
-    @Override
-    public void deleteCliente(Integer id) {
-
     }
 }

@@ -23,5 +23,4 @@ public class HeoComisionesApplication  {
 		SpringApplication.run(HeoComisionesApplication.class, args);
 	}
 
-
 }

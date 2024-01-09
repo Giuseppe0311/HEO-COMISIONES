@@ -20,6 +20,6 @@ public class UserComisionesServiceImpl implements UserComisionesService {
         return comisionRepository.getComisionbyusuario(id)
                 .stream()
                 .map(comisionesDTOMapper)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
