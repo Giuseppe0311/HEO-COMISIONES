@@ -70,7 +70,7 @@ public class UserGenContratoServiceImpl implements CommonContratoService {
 
     private List<String> buildCommand(ContratoValuesRequest contratoValuesRequest, String mes, String anio,Integer numeroSecuencia) {
             // SE AÑADEN LOS PARAMETROS PARA EL SCRIPT
-        return Arrays.asList("venv/Scripts/python.exe", "documentgenerator.py",
+        return Arrays.asList("python3", "documentgenerator.py",
                 contratoValuesRequest.getIdusuario(),
                 contratoValuesRequest.getNombrecompleto(),
                 contratoValuesRequest.getGenero(),
