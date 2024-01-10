@@ -1,28 +1,28 @@
-version: '3.8'
-
-services:
-  java_app:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-        - POSTGRES_URL=jdbc:postgresql://db:5432/heo
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=1234
-        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-        - SPRING_JPA_SHOW_SQL=true
-        - CLOUDINARY_URL=cloudinary://112744713163154:11ircwlQGOh6MPekbrR2Bh1R_cY@dpsqjcqfu
-        - JWT_SECRET=61391b1d3fa763ee953a89f64e59e44a15f17d8d0815b5ecc8943b379c8e2591
-    depends_on:
-      - db
-
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: heo
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-    ports:
-      - "5433:5432"
-    volumes:
-      - ./initdb:/docker-entrypoint-initdb.d
+#version: '3.8'
+#
+#services:
+#  java_app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    environment:
+#        - POSTGRES_URL=jdbc:postgresql://db:5432/heo
+#        - POSTGRES_USER=postgres
+#        - POSTGRES_PASSWORD=1234
+#        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#        - SPRING_JPA_SHOW_SQL=true
+#        - CLOUDINARY_URL=cloudinary://112744713163154:11ircwlQGOh6MPekbrR2Bh1R_cY@dpsqjcqfu
+#        - JWT_SECRET=61391b1d3fa763ee953a89f64e59e44a15f17d8d0815b5ecc8943b379c8e2591
+#    depends_on:
+#      - db
+#
+#  db:
+#    image: postgres:latest
+#    environment:
+#      POSTGRES_DB: heo
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: 1234
+#    ports:
+#      - "5433:5432"
+#    volumes:
+#      - ./initdb:/docker-entrypoint-initdb.d
