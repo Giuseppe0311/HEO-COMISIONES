@@ -23,6 +23,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -53,7 +54,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/doc/swagger-ui.html", "/doc/**").permitAll(); // Permitir Swagger
-                    auth.requestMatchers("/admin/**").hasRole("ADMIN");
+                    auth.requestMatchers("/admin/**").hasAnyRole("ADMIN");
                     auth.requestMatchers("/user/**").hasAnyRole("USER", "ADMIN");
                     auth.anyRequest().authenticated();
                 });
@@ -71,7 +72,8 @@ public class SecurityConfiguration {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
-        configuration.setAllowedHeaders(Arrays.asList("authorization", "Content-Type", "x-auth-token","Content-Disposition"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "Content-Type", "x-auth-token"));
+        configuration.setExposedHeaders(List.of("Content-Disposition"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
