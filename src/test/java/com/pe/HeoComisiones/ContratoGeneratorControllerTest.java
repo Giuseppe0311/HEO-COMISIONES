@@ -1,7 +1,7 @@
 package com.pe.HeoComisiones;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pe.HeoComisiones.Controller.ContratoGeneratorController;
+import com.pe.HeoComisiones.Controller.admin.ContratoGeneratorController;
 import com.pe.HeoComisiones.DTOs.ContratoValuesRequest;
 import com.pe.HeoComisiones.Services.common.CommonContratoService;
 import com.pe.HeoComisiones.Tokens.JwtService;

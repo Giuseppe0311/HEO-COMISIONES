@@ -1,4 +1,4 @@
-package com.pe.HeoComisiones.Controller;
+package com.pe.HeoComisiones.Controller.admin;
 
 import com.pe.HeoComisiones.DTOs.ContratoValuesRequest;
 import com.pe.HeoComisiones.Services.common.CommonContratoService;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/contrato-generator")
+@RequestMapping("/admin/contrato-generator")
 @RequiredArgsConstructor
 public class ContratoGeneratorController {
     // TODO: 2/01/2024 FALTA TERMINAR ESTE CONTROLADOR Y HACER LAS PRUEBAS UNITARIAS

@@ -1,9 +1,8 @@
-package com.pe.HeoComisiones.Services.impl.user;
+package com.pe.HeoComisiones.Services.impl.admin;
 
 import com.pe.HeoComisiones.DTOs.ContratoValuesRequest;
 import com.pe.HeoComisiones.Entity.Contratos;
 import com.pe.HeoComisiones.Entity.Usuarios;
-import com.pe.HeoComisiones.Exception.ContratoNotFoundException;
 import com.pe.HeoComisiones.Exception.ScriptError;
 import com.pe.HeoComisiones.Repository.ContratotoDbRepository;
 import com.pe.HeoComisiones.Services.common.CommonContratoService;
@@ -24,7 +23,7 @@ import java.util.*;
 // TODO : 10/01/2024 No olvidar que las rutas no deben ser relavitas
 @Service
 @RequiredArgsConstructor
-public class UserGenContratoServiceImpl implements CommonContratoService {
+public class AdminGenContratoServiceImpl implements CommonContratoService {
     private final CloudService cloudService;
     private final ContratotoDbRepository contratotoDbRepository;
     private final CommonUsuarioService commonUsuarioService;
