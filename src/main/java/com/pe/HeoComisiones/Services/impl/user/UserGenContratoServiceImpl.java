@@ -110,7 +110,7 @@ public class UserGenContratoServiceImpl implements CommonContratoService {
         );
     }
     private String exucuteScript(List<String> command) throws IOException, InterruptedException {
-        File scriptFile = new File("/documentgenerator.py");
+        File scriptFile = new File("src/main/resources/scripts/documentgenerator.py");
 
         if (!scriptFile.exists()) {
             throw new FileNotFoundException("El script 'documentgenerator.py' no se encontró en el directorio esperado.");
