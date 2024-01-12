@@ -44,6 +44,13 @@ tipodecontrato = sys.argv[30]
 tipo_cuenta_cliente = sys.argv[31]
 origen_fondos_cliente = sys.argv[32]
 
+
+def cantidad_en_letras(monto, moneda='SOLES'):
+    parte_entera = int(monto)
+    parte_decimal = int(round((monto - parte_entera) * 100))
+    return f"{num2words(parte_entera, lang='es')} con {parte_decimal:02d}/100 {moneda}"
+
+
 # GENERO
 if genero_cliente == 'MASCULINO':
     abreviatura_cliente = 'del Sr'
@@ -52,15 +59,12 @@ else:
     abreviatura_cliente = 'de la Sra'
     apelativo_cliente = 'La Señora'
 try:
-    # Convertir a letras los montos
-    capital_cliente_letras = num2words(capital_cliente, lang='es')
-    utilidad_cliente_letras = num2words(utilidad_cliente, lang='es')
-
-    # DAR FORMATO A LOS NUMEROS O  MONTOS
-
-    # Convertir a float
+      # Convertir a float
     capital_cliente_float = float(capital_cliente)
     utilidad_cliente_float = float(utilidad_cliente)
+
+    capital_cliente_letras = cantidad_en_letras(capital_cliente_float)
+    utilidad_cliente_letras = cantidad_en_letras(utilidad_cliente_float)
 
     # Formatear con separadores de miles y dos decimales
     capital_cliente_float_formateado = "{:,.2f}".format(capital_cliente_float)
@@ -137,7 +141,7 @@ try:
             print(encoded_file)
         except Exception as e:
 
-                sys.exit(f"Error al guardar el archivo: {str(e)}")
+            sys.exit(f"Error al guardar el archivo: {str(e)}")
         finally:
             file_stream.close()
 
@@ -145,4 +149,3 @@ try:
         print("Tipo de contrato no reconocido. Por favor, especifique 'corto' o 'mediano'.")
 except Exception as e:
     sys.exit(f"Error durante la ejecución del script: {str(e)}")
-
