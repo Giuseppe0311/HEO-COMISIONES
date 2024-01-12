@@ -21,5 +21,6 @@ public class Contratos {
     private String codigoContrato;
     private String urlContrato;
     private Date fechaCreacion;
-    private String estado;
+    private String tipoContrato;
+    private boolean estado;
 }

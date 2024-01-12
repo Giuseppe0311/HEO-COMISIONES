@@ -47,7 +47,7 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
         saveContratoToDatabase(Integer.valueOf(contratoValuesRequest.getIdusuario()),
                 numeroSecuencia,
                 nombreArchivo,
-                url);
+                url,contratoValuesRequest.getTipodecontrato());
         //DECLARAR EL MAPA
         Map<String,Object> response =new HashMap<>();
         //AGREGAR LOS VALORES AL MAPA
@@ -144,15 +144,16 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
     private void saveContratoToDatabase(Integer idusuario,
                                         Integer numeroSecueciaContrato,
                                         String codigoContrato,
-                                        String urlContrato){
+                                        String urlContrato,String tipoContrato){
         Usuarios user = commonUsuarioService.verifyUsuarioExistsById(idusuario);
         Contratos contratos = new Contratos();
         contratos.setUsuarios(user);
         contratos.setNumeroSecueciaContrato(numeroSecueciaContrato);
-        contratos.setEstado("activo");
+        contratos.setEstado(true);
         contratos.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
         contratos.setCodigoContrato(codigoContrato);
         contratos.setUrlContrato(urlContrato);
+        contratos.setTipoContrato(tipoContrato);
         contratotoDbRepository.save(contratos);
     }
     private Integer obtenerNumeroDeContrato(Integer idusuario){
