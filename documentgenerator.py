@@ -74,7 +74,7 @@ try:
         vigencia_contrato_final = int(vigencia_contrato)
     elif tipodecontrato == 'mediano':
         plantilla_elegida = 'contrato_mediano_plazo.docx'
-        vigencia_contrato_final = int(vigencia_contrato) - 1
+        vigencia_contrato_final = int(vigencia_contrato)
 
     # CARGAR PLANTILLA
     if plantilla_elegida:
