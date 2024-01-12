@@ -7,7 +7,7 @@ import base64
 import sys
 from num2words import num2words
 
-if len(sys.argv) < 32:
+if len(sys.argv) < 33:
     sys.exit("Error: Faltan argumentos para ejecutar el script correctamente.")
 
 # Recupera los argumentos de la línea de comandos
@@ -42,6 +42,7 @@ celular_cliente = sys.argv[28]
 cronograma = sys.argv[29]
 tipodecontrato = sys.argv[30]
 tipo_cuenta_cliente = sys.argv[31]
+origen_fondos_cliente = sys.argv[32]
 
 # GENERO
 if genero_cliente == 'MASCULINO':
@@ -121,6 +122,7 @@ try:
             'FECHAINICIOLETRAS': fecha_inicio_contrato_letras,
             'CRONOGRAMA': cronograma,
             'TIPODECUENTA': tipo_cuenta_cliente,
+            'ORIGENFONDOS': origen_fondos_cliente,
             'IMG': imagen,
         }
         template.render(context)

@@ -11,6 +11,8 @@ import lombok.*;
 //ESTOS ATRIBUTOS A UN SCRIPT DE PYTHON EL CUAL ESPERA UN STRING Y NO UN INTEGER O UN DOUBLE
 public class ContratoValuesRequest {
     private String idusuario;
+    private String mes_cabecera;
+    private  String anio_cabecera;
     private String nombre_cliente;
     private String numerodocumento_cliente;
     private String tipodocumento_cliente;
@@ -41,4 +43,5 @@ public class ContratoValuesRequest {
     private String cronograma;
     private String tipodecontrato;
     private String tipo_cuenta_cliente;
+    private String origen_fondos_cliente;
 }

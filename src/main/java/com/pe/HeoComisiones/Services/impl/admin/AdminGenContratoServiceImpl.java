@@ -32,24 +32,15 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
     @Transactional
     // ESTE METODO GENERA EL CONTRATO
     public Map<String,Object> generateContrato(ContratoValuesRequest contratoValuesRequest) throws IOException, InterruptedException {
-
-        LocalDate fechaActual = LocalDate.now();
-        // Formateador para extraer solo el mes
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy");
         //Buscamos el contador en la base de datos
         Integer numeroRecibido = obtenerNumeroDeContrato(Integer.valueOf(contratoValuesRequest.getIdusuario()));
         Integer numeroSecuencia = numeroRecibido != null ? numeroRecibido + 1 : 1;
-
-        // Obtener el mes como string
-        String mes = fechaActual.format(formatter);
-        String anio = fechaActual.format(formatter2);
-        List <String> command = buildCommand(contratoValuesRequest, mes, anio,numeroSecuencia);
+        List <String> command = buildCommand(contratoValuesRequest,numeroSecuencia);
         //ejecuta el script
         String output = exucuteScript(command);
         // Procesar y subir el archivo generado
         byte[] fileBytes = Base64.getDecoder().decode(output);
-        String nombreArchivo =contratoValuesRequest.getNombre_cliente() + "-" + contratoValuesRequest.getCapital_cliente() + "-" + mes + "-" + anio +"-"+contratoValuesRequest.getTipodecontrato() +"-" + UUID.randomUUID() +".docx";
+        String nombreArchivo =contratoValuesRequest.getNombre_cliente() + "-" + contratoValuesRequest.getCapital_cliente() + "-" + contratoValuesRequest.getMes_cabecera() + "-" + contratoValuesRequest.getAnio_cabecera() +"-"+contratoValuesRequest.getTipodecontrato() +"-" + UUID.randomUUID() +".docx";
         cloudService.uniqueFileName = nombreArchivo;
         String url = cloudService.upload(fileBytes);
         //guardar el contrato en la base de datos
@@ -65,13 +56,13 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
         return  response;
     }
 
-    private List<String> buildCommand(ContratoValuesRequest contratoValuesRequest, String mes, String anio,Integer numeroSecuencia) {
+    private List<String> buildCommand(ContratoValuesRequest contratoValuesRequest,Integer numeroSecuencia) {
             // SE AÑADEN LOS PARAMETROS PARA EL SCRIPT
         return Arrays.asList("python3", "documentgenerator.py",
                 contratoValuesRequest.getIdusuario(),
                 String.valueOf(numeroSecuencia),
-                mes,
-                anio,
+                contratoValuesRequest.getMes_cabecera(),
+                contratoValuesRequest.getAnio_cabecera(),
                 contratoValuesRequest.getNombre_cliente(),
                 contratoValuesRequest.getNumerodocumento_cliente(),
                 contratoValuesRequest.getTipodocumento_cliente(),
@@ -100,7 +91,8 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
                         ? contratoValuesRequest.getCronograma()
                         : "",
                 contratoValuesRequest.getTipodecontrato(),
-                contratoValuesRequest.getTipo_cuenta_cliente()
+                contratoValuesRequest.getTipo_cuenta_cliente(),
+                contratoValuesRequest.getOrigen_fondos_cliente()
         );
     }
     private String exucuteScript(List<String> command) throws IOException, InterruptedException {
