@@ -42,6 +42,13 @@ cronograma = sys.argv[29]
 tipodecontrato = sys.argv[30]
 tipo_cuenta_cliente = sys.argv[31]
 
+
+def cantidad_en_letras(monto, moneda='SOLES'):
+    parte_entera = int(monto)
+    parte_decimal = int(round((monto - parte_entera) * 100))
+    return f"{num2words(parte_entera, lang='es')} con {parte_decimal:02d}/100 {moneda}"
+
+
 # GENERO
 if genero_cliente == 'MASCULINO':
     abreviatura_cliente = 'del Sr'
@@ -50,11 +57,13 @@ else:
     abreviatura_cliente = 'de la Sra'
     apelativo_cliente = 'La Señora'
 try:
-    # Convertir a letras los montos
-    capital_cliente_letras = num2words(capital_cliente, lang='es')
-    utilidad_cliente_letras = num2words(utilidad_cliente, lang='es')
+    # Convertir a float
+    capital_cliente_float = float(capital_cliente)
+    utilidad_cliente_float = float(utilidad_cliente)
 
-    # DAR FORMATO A LOS NUMEROS O  MONTOS
+    # Usar la función definida para convertir a letras
+    capital_cliente_letras = cantidad_en_letras(capital_cliente_float)
+    utilidad_cliente_letras = cantidad_en_letras(utilidad_cliente_float)
 
     # Convertir a float
     capital_cliente_float = float(capital_cliente)
@@ -72,7 +81,7 @@ try:
         vigencia_contrato_final = int(vigencia_contrato)
     elif tipodecontrato == 'mediano':
         plantilla_elegida = 'contrato_mediano_plazo.docx'
-        vigencia_contrato_final = int(vigencia_contrato) - 1
+        vigencia_contrato_final = int(vigencia_contrato)
 
     # CARGAR PLANTILLA
     if plantilla_elegida:
