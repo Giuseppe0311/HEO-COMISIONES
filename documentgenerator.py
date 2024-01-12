@@ -1,6 +1,7 @@
 from docxtpl import DocxTemplate, InlineImage
 from docx.shared import Mm  # Para especificar las dimensiones de la imagen
 import uuid
+import os
 import io
 import base64
 import sys
@@ -133,9 +134,13 @@ try:
             encoded_file = base64.b64encode(file_stream.read()).decode('utf-8')
             print(encoded_file)
         except Exception as e:
-            (
-                sys.exit(f"Error al guardar el archivo: {str(e)}"))
+
+                sys.exit(f"Error al guardar el archivo: {str(e)}")
+        finally:
+            file_stream.close()
+
     else:
         print("Tipo de contrato no reconocido. Por favor, especifique 'corto' o 'mediano'.")
 except Exception as e:
     sys.exit(f"Error durante la ejecución del script: {str(e)}")
+
