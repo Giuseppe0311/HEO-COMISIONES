@@ -160,10 +160,10 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
         contratos.setFechaCreacion(new Timestamp(System.currentTimeMillis()));
         contratos.setCodigoContrato(codigoContrato);
         contratos.setUrlContrato(urlContrato);
-        contratos.setTipoContrato(tipoContrato);
-        contratos.setNombre_cliente(nombre_cliente);
+        contratos.setTipoContrato(tipoContrato.toUpperCase());
+        contratos.setNombre_cliente(nombre_cliente.toUpperCase());
         contratos.setDni_cliente(dni_cliente);
-        contratos.setTipo_documento_cliente(tipo_documento_cliente);
+        contratos.setTipo_documento_cliente(tipo_documento_cliente.toUpperCase());
         contratotoDbRepository.save(contratos);
     }
     private Integer obtenerNumeroDeContrato(Integer idusuario){
