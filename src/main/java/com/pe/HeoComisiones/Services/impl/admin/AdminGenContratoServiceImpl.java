@@ -47,7 +47,11 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
         saveContratoToDatabase(Integer.valueOf(contratoValuesRequest.getIdusuario()),
                 numeroSecuencia,
                 nombreArchivo,
-                url,contratoValuesRequest.getTipodecontrato());
+                url,
+                contratoValuesRequest.getTipodecontrato(),
+                contratoValuesRequest.getNombre_cliente(),
+                contratoValuesRequest.getNumerodocumento_cliente(),
+                contratoValuesRequest.getTipodocumento_cliente());
         //DECLARAR EL MAPA
         Map<String,Object> response =new HashMap<>();
         //AGREGAR LOS VALORES AL MAPA
@@ -144,7 +148,10 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
     private void saveContratoToDatabase(Integer idusuario,
                                         Integer numeroSecueciaContrato,
                                         String codigoContrato,
-                                        String urlContrato,String tipoContrato){
+                                        String urlContrato,String tipoContrato,
+                                        String nombre_cliente,
+                                        String dni_cliente,
+                                        String tipo_documento_cliente){
         Usuarios user = commonUsuarioService.verifyUsuarioExistsById(idusuario);
         Contratos contratos = new Contratos();
         contratos.setUsuarios(user);
@@ -154,6 +161,9 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
         contratos.setCodigoContrato(codigoContrato);
         contratos.setUrlContrato(urlContrato);
         contratos.setTipoContrato(tipoContrato);
+        contratos.setNombre_cliente(nombre_cliente);
+        contratos.setDni_cliente(dni_cliente);
+        contratos.setTipo_documento_cliente(tipo_documento_cliente);
         contratotoDbRepository.save(contratos);
     }
     private Integer obtenerNumeroDeContrato(Integer idusuario){

@@ -22,5 +22,8 @@ public class Contratos {
     private String urlContrato;
     private Date fechaCreacion;
     private String tipoContrato;
+    private  String nombre_cliente;
+    private String  dni_cliente;
+    private String tipo_documento_cliente;
     private boolean estado;
 }
