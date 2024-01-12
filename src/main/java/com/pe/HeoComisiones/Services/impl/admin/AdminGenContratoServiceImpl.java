@@ -49,7 +49,7 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
         String output = exucuteScript(command);
         // Procesar y subir el archivo generado
         byte[] fileBytes = Base64.getDecoder().decode(output);
-        String nombreArchivo =contratoValuesRequest.getNombrecompleto() + "-" + contratoValuesRequest.getCapital() + "-" + mes + "-" + anio + ".docx";
+        String nombreArchivo =contratoValuesRequest.getNombre_cliente() + "-" + contratoValuesRequest.getCapital_cliente() + "-" + mes + "-" + anio +"-"+contratoValuesRequest.getTipodecontrato() +"-" + UUID.randomUUID() +".docx";
         cloudService.uniqueFileName = nombreArchivo;
         String url = cloudService.upload(fileBytes);
         //guardar el contrato en la base de datos
@@ -69,43 +69,38 @@ public class AdminGenContratoServiceImpl implements CommonContratoService {
             // SE AÑADEN LOS PARAMETROS PARA EL SCRIPT
         return Arrays.asList("python3", "documentgenerator.py",
                 contratoValuesRequest.getIdusuario(),
-                contratoValuesRequest.getNombrecompleto(),
-                contratoValuesRequest.getGenero(),
-                contratoValuesRequest.getTipodocumento(),
-                contratoValuesRequest.getNumero_documento(),
-                contratoValuesRequest.getDireccion()
-                , contratoValuesRequest.getDepartamento(),
-                contratoValuesRequest.getProvincia(),
-                contratoValuesRequest.getDistrito(),
-                contratoValuesRequest.getOcupacion(),
-                contratoValuesRequest.getBancoheo(),
-                contratoValuesRequest.getCuentaheo(),
-                contratoValuesRequest.getCapital(),
-                contratoValuesRequest.getPorcentaje(),
-                contratoValuesRequest.getRentasletras(),
-                contratoValuesRequest.getRentomonto(),
-                contratoValuesRequest.getTotalmonto(),
-                contratoValuesRequest.getTipocuentacliente(),
-                contratoValuesRequest.getCuentacliente(),
-                contratoValuesRequest.getBanco_cliente(),
-                contratoValuesRequest.getVigencia_numero_letras(),
-                contratoValuesRequest.getVigencia_texto_letras(),
-                contratoValuesRequest.getDia_inicio(),
-                contratoValuesRequest.getDia_fin(),
-                contratoValuesRequest.getCorreo(),
-                contratoValuesRequest.getCelular(),
-                contratoValuesRequest.getFecha_inicio_letras(),
-                contratoValuesRequest.getDocumento_de(),
-                contratoValuesRequest.getGenerardocumento(),
+                String.valueOf(numeroSecuencia),
                 mes,
                 anio,
-                contratoValuesRequest.getDni_gerente(),
+                contratoValuesRequest.getNombre_cliente(),
+                contratoValuesRequest.getNumerodocumento_cliente(),
+                contratoValuesRequest.getTipodocumento_cliente(),
+                contratoValuesRequest.getDireccion_cliente(),
+                contratoValuesRequest.getDistrito_cliente(),
+                contratoValuesRequest.getProvincia_cliente(),
+                contratoValuesRequest.getDepartamento_cliente(),
                 contratoValuesRequest.getCargo_gerente(),
+                contratoValuesRequest.getNombre_gerente(),
+                contratoValuesRequest.getDni_gerente(),
+                contratoValuesRequest.getOcupacion_cliente(),
+                contratoValuesRequest.getCapital_cliente(),
+                contratoValuesRequest.getCuenta_heo(),
+                contratoValuesRequest.getBanco_heo(),
+                contratoValuesRequest.getUtilidad_cliente(),
+                contratoValuesRequest.getCuenta_cliente(),
+                contratoValuesRequest.getBanco_cliente(),
+                contratoValuesRequest.getGenero_cliente(),
+                contratoValuesRequest.getVigencia_contrato(),
+                contratoValuesRequest.getFecha_inicio_contrato(),
+                contratoValuesRequest.getFecha_fin_contrato(),
+                contratoValuesRequest.getFecha_inicio_contrato_letras(),
+                contratoValuesRequest.getCorreo_cliente(),
+                contratoValuesRequest.getCelular_cliente(),
                 contratoValuesRequest.getCronograma() != null && !contratoValuesRequest.getCronograma().isEmpty()
                         ? contratoValuesRequest.getCronograma()
                         : "",
                 contratoValuesRequest.getTipodecontrato(),
-                String.valueOf(numeroSecuencia)
+                contratoValuesRequest.getTipo_cuenta_cliente()
         );
     }
     private String exucuteScript(List<String> command) throws IOException, InterruptedException {

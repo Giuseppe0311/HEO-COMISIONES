@@ -10,69 +10,35 @@ import lombok.*;
 //!ES PROBABLE QUE QUIERAS CAMBIAR EL TIPO DE DATO DE ALGUNOS ATRIBUTOS PERO TEN EN CUENTA QUE ESTAMOS PASANDO
 //ESTOS ATRIBUTOS A UN SCRIPT DE PYTHON EL CUAL ESPERA UN STRING Y NO UN INTEGER O UN DOUBLE
 public class ContratoValuesRequest {
-    @NonNull
     private String idusuario;
-    @NonNull
-    private String generardocumento;
-    @NonNull
-    private String nombrecompleto;
-    @NonNull
-    private String capital;
-    @NonNull
-    private String vigencia_numero_letras;
-    @NonNull
-    private String genero;
-    @NonNull
-    private String porcentaje;
-    @NonNull
-    private String vigencia_texto_letras;
-    @NonNull
-    private String tipodocumento;
-    @NonNull
-    private String rentasletras;
-    @NonNull
-    private String dia_inicio;
-    @NonNull
-    private String numero_documento;
-    @NonNull
-    private String rentomonto;
-    @NonNull
-    private String dia_fin;
-    @NonNull
-    private String direccion;
-    @NonNull
-    private String totalmonto;
-    @NonNull
-    private String correo;
-    @NonNull
-    private String departamento;
-    @NonNull
-    private String tipocuentacliente;
-    @NonNull
-    private String celular;
-    @NonNull
-    private String provincia;
-    @NonNull
-    private String cuentacliente;
-    @NonNull
-    private String fecha_inicio_letras;
-    @NonNull
-    private String distrito;
-    @NonNull
-    private String banco_cliente;
-    @NonNull
-    private String documento_de;
-    @NonNull
-    private String ocupacion;
-    @NonNull
-    private String bancoheo;
-    @NonNull
-    private String cuentaheo;
-    @NonNull
-    private String dni_gerente;
-    @NonNull
+    private String nombre_cliente;
+    private String numerodocumento_cliente;
+    private String tipodocumento_cliente;
+    private String direccion_cliente;
+    private String distrito_cliente;
+    private String provincia_cliente;
+    private String departamento_cliente;
     private String cargo_gerente;
+    private String nombre_gerente;
+    private String dni_gerente;
+    private String ocupacion_cliente;
+    // EL CAPITAL_CLIENTE SERA CONVERTIDO EN LETRAS EN EL SCRIPT DE PYTHON
+    private String capital_cliente;
+    private String cuenta_heo;
+    private String banco_heo;
+    //lA UTILIDAD SERA CONVERTIDO EN LETRAS EN EL SCRIPT DE PYTHON
+    private String utilidad_cliente;
+    private String cuenta_cliente;
+    private String banco_cliente;
+    //para elegirar la abreviatura del cliente
+    private String genero_cliente;
+    private String vigencia_contrato;
+    private String fecha_inicio_contrato;
+    private String fecha_fin_contrato;
+    private String fecha_inicio_contrato_letras;
+    private String correo_cliente;
+    private String celular_cliente;
     private String cronograma;
-    @NonNull
     private String tipodecontrato;
+    private String tipo_cuenta_cliente;
 }

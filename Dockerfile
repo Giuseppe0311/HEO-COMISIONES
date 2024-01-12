@@ -12,8 +12,8 @@ ADD ./HeoComisiones-0.0.1-SNAPSHOT.jar /java-app.jar
 
 # Agrega el script Python y los archivos necesarios al contenedor
 ADD ./documentgenerator.py /documentgenerator.py
-ADD ./plantilla.docx /plantilla.docx
-ADD ./plantilla2.docx /plantilla2.docx
+ADD ./contrato_corto_plazo.docx /contrato_corto_plazo.docx
+ADD ./contrato_mediano_plazo.docx /contrato_mediano_plazo.docx
 ADD ./ENZO.jpg /ENZO.jpg
 ADD ./ERICK.jpg /ERICK.jpg
 ADD ./HUMBERTO.jpg /HUMBERTO.jpg

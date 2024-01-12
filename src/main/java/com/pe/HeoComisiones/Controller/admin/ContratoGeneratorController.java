@@ -22,9 +22,6 @@ public class ContratoGeneratorController {
     //ruta para obtener el contrato
     @PostMapping("/generate")
     public ResponseEntity<?> generateContrato(@RequestBody ContratoValuesRequest contratoValuesRequest) throws IOException, InterruptedException {
-       if (ValidationUtils.isNullOrEmpty(contratoValuesRequest)) {
-            return ResponseEntity.badRequest().build();
-       }
        try {
            Map<String, Object> bytescontrato_nombrecontrato = commonContratoService.generateContrato(contratoValuesRequest);
            ByteArrayResource recurso = new ByteArrayResource((byte[]) bytescontrato_nombrecontrato.get("fileBytes"));

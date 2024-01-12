@@ -6,81 +6,73 @@ import base64
 import sys
 from num2words import num2words
 
-if len(sys.argv) < 37:
+if len(sys.argv) < 32:
     sys.exit("Error: Faltan argumentos para ejecutar el script correctamente.")
 
 # Recupera los argumentos de la línea de comandos
 idusuario = sys.argv[1]
-nombre = sys.argv[2]
-genero = sys.argv[3]
-tipodocumento = sys.argv[4]
-dni = sys.argv[5]
-direccion = sys.argv[6]
-departamento = sys.argv[7]
-provincia = sys.argv[8]
-distrito = sys.argv[9]
-ocupacion = sys.argv[10]
-bancoheo = sys.argv[11]
-cuentaheo = sys.argv[12]
-montocapital = sys.argv[13]
-porcentaje = sys.argv[14]
-rentasletras = sys.argv[15]
-rentomonto = sys.argv[16]
-totalmonto = sys.argv[17]
-tipocuentacliente = sys.argv[18]
-cuentaclient = sys.argv[19]
-banco_cliente = sys.argv[20]
-vigencia_numero_letras = sys.argv[21]
-vigencia_texto_letras = sys.argv[22]
-dia_inicio = sys.argv[23]
-dia_fin = sys.argv[24]
-correo = sys.argv[25]
-celular = sys.argv[26]
-fecha_inicio_letras = sys.argv[27]
-documento_de = sys.argv[28]
-generar_documento = sys.argv[29],
-mes = sys.argv[30]
-anio = sys.argv[31]
-dni_gerente = sys.argv[32]
-cargo_gerente = sys.argv[33]
-cronograma = sys.argv[34]
-tipodecontrato = sys.argv[35]
-numerodecontrato = sys.argv[36]
-
-# VALIDACIONES TOTALES
+numeroSecuencia = sys.argv[2]
+mes = sys.argv[3]
+anio = sys.argv[4]
+nombre_cliente = sys.argv[5]
+numerodocumento_cliente = sys.argv[6]
+tipodocumento_cliente = sys.argv[7]
+direccion_cliente = sys.argv[8]
+distrito_cliente = sys.argv[9]
+provincia_cliente = sys.argv[10]
+departamento_cliente = sys.argv[11]
+cargo_gerente = sys.argv[12]
+nombre_gerente = sys.argv[13]
+dni_gerente = sys.argv[14]
+ocupacion_cliente = sys.argv[15]
+capital_cliente = sys.argv[16]
+cuenta_heo = sys.argv[17]
+banco_heo = sys.argv[18]
+utilidad_cliente = sys.argv[19]
+cuenta_cliente = sys.argv[20]
+banco_cliente = sys.argv[21]
+genero_cliente = sys.argv[22]
+vigencia_contrato = sys.argv[23]
+fecha_inicio_contrato = sys.argv[24]
+fecha_fin_contrato = sys.argv[25]
+fecha_inicio_contrato_letras = sys.argv[26]
+correo_cliente = sys.argv[27]
+celular_cliente = sys.argv[28]
+cronograma = sys.argv[29]
+tipodecontrato = sys.argv[30]
+tipo_cuenta_cliente = sys.argv[31]
 
 # GENERO
-apelativo = ''
-sustantivo = ''
-if genero == 'MASCULINO':
-    apelativo = 'Sr.'
-    sustantivo = 'El'
+if genero_cliente == 'MASCULINO':
+    abreviatura_cliente = 'del Sr'
+    apelativo_cliente = 'El Señor'
 else:
-    apelativo = 'Sra.'
-    sustantivo = 'La'
-
+    abreviatura_cliente = 'de la Sra'
+    apelativo_cliente = 'La Señora'
 try:
     # Convertir a letras los montos
-    montocapitalenletas = num2words(montocapital, lang='es') + ' con 00/100 soles'
-    montototalenletras = num2words(totalmonto, lang='es') + ' con 00/100 soles'
+    capital_cliente_letras = num2words(capital_cliente, lang='es')
+    utilidad_cliente_letras = num2words(utilidad_cliente, lang='es')
 
-    # convertir la vigencia numeros a numero
-    vigencia_numero_letras_a_numero = int(vigencia_numero_letras)
     # DAR FORMATO A LOS NUMEROS O  MONTOS
 
     # Convertir a float
-    montocapital_float = float(montocapital)
-    montotal_float = float(totalmonto)
+    capital_cliente_float = float(capital_cliente)
+    utilidad_cliente_float = float(utilidad_cliente)
 
     # Formatear con separadores de miles y dos decimales
-    montocapital_formateado = "{:,.2f}".format(montocapital_float)
-    montotot_formateado = "{:,.2f}".format(montotal_float)
+    capital_cliente_float_formateado = "{:,.2f}".format(capital_cliente_float)
+    utilidad_cliente_float_formateado = "{:,.2f}".format(utilidad_cliente_float)
 
+    # TODO: NO OLVIDAR QUE SE DEBE USAR OTRA PLANTIILA PARA EL CONTRATO DE CORTO PLAZO
     plantilla_elegida = ''
+    vigencia_contrato_final = 0
     if tipodecontrato == 'corto':
-        plantilla_elegida = 'plantilla.docx'
+        plantilla_elegida = 'contrato_corto_plazo.docx'
+        vigencia_contrato_final = int(vigencia_contrato)
     elif tipodecontrato == 'mediano':
-        plantilla_elegida = 'plantilla2.docx'
+        plantilla_elegida = 'contrato_mediano_plazo.docx'
+        vigencia_contrato_final = int(vigencia_contrato) - 1
 
     # CARGAR PLANTILLA
     if plantilla_elegida:
@@ -95,42 +87,40 @@ try:
             imagen = InlineImage(template, 'ENZO.jpg', width=Mm(50))
         # Contexto que se pasará a la plantilla
         context = {
-            'ID': idusuario,
+            'ID': '0' + idusuario if int(idusuario) < 10 else idusuario,
             'MES': mes,
-            'NUMCONTRA': numerodecontrato,
+            'NUMCONTRA': '0' + numeroSecuencia if int(numeroSecuencia) < 10 else numeroSecuencia,
             'ANIO': anio,
+            'APELATIVO': apelativo_cliente,
+            'NOMBRECLIENTE': nombre_cliente,
+            'TIPODOCUMENTO': tipodocumento_cliente,
+            'NUMERODOCUMENTO': numerodocumento_cliente,
+            'DIRECCION': direccion_cliente,
+            'DISTRITO': distrito_cliente,
+            'PROVINCIA': provincia_cliente,
+            'DEPARTAMENTO': departamento_cliente,
             'CARGOGERENTE': cargo_gerente,
-            'NOMBREGERENTE': documento_de,
+            'NOMBREGERENTE': nombre_gerente,
             'DNIGERENTE': dni_gerente,
-            'APELATIVO': apelativo,
-            'INVERSOR': nombre,
-            'TIPODOC': tipocuentacliente,
-            'DNI': dni,
-            'DIRECCION': direccion,
-            'DISTRITO': distrito,
-            'PROVINCIA': provincia,
-            'DEPARTAMENTO': departamento,
-            'SUSTANTIVO': sustantivo,
-            'OCUPACION': ocupacion,
-            'CAPITAL': montocapital_formateado,
-            'MONTOLETRA': montocapitalenletas,
-            'CCTE': cuentaheo,
-            'BANCO': bancoheo,
-            'MONTOTAL': montotot_formateado,
-            'MONTOTLET': montototalenletras,
-            'TIPOCUENTA': tipocuentacliente,
-            'CTACLIENTE': cuentaclient,
+            'OCUPACION': ocupacion_cliente,
+            'CAPITAL': capital_cliente_float_formateado,
+            'CAPITALLETRA': capital_cliente_letras,
+            'CUENTAHEO': cuenta_heo,
+            'BANCOHEO': banco_heo,
+            'UTILIDAD': utilidad_cliente_float_formateado,
+            'UTILIDADLETRAS': utilidad_cliente_letras,
+            'CUENTACLIENTE': cuenta_cliente,
             'BANCOCLIENTE': banco_cliente,
-            'VIGENCIANUMERO': vigencia_numero_letras,
-            'DIAINICIO': dia_inicio,
-            'DIAFIN': dia_fin,
-            'VIGENCIALETRA': vigencia_texto_letras,
-            'CORREO': correo,
-            'TELEFONO': celular,
-            'FECHALETRA': fecha_inicio_letras,
-            'IMG': imagen,
+            'ABREVIATURA': abreviatura_cliente,
+            'VIGENCIA': vigencia_contrato_final,
+            'FECHAINICIO': fecha_inicio_contrato,
+            'FECHAFIN': fecha_fin_contrato,
+            'CORREO': correo_cliente,
+            'CELULAR': celular_cliente,
+            'FECHAINICIOLETRAS': fecha_inicio_contrato_letras,
             'CRONOGRAMA': cronograma,
-            'PLANMES': vigencia_numero_letras_a_numero - 1,
+            'TIPODECUENTA': tipo_cuenta_cliente,
+            'IMG': imagen,
         }
         template.render(context)
         try:
@@ -142,8 +132,9 @@ try:
             file_stream.seek(0)
             encoded_file = base64.b64encode(file_stream.read()).decode('utf-8')
             print(encoded_file)
-        except Exception as e: (
-            sys.exit(f"Error al guardar el archivo: {str(e)}"))
+        except Exception as e:
+            (
+                sys.exit(f"Error al guardar el archivo: {str(e)}"))
     else:
         print("Tipo de contrato no reconocido. Por favor, especifique 'corto' o 'mediano'.")
 except Exception as e:
