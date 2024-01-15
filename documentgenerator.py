@@ -84,13 +84,13 @@ try:
     if plantilla_elegida:
         template = DocxTemplate(plantilla_elegida)
         if dni_gerente == '01116630':
-            imagen = InlineImage(template, 'ERICK.jpg', width=Mm(50))
+            imagen = InlineImage(template, 'ERICK.png', width=Mm(50))
         elif dni_gerente == '40070789':
-            imagen = InlineImage(template, 'ORLANDO.jpg', width=Mm(50))
+            imagen = InlineImage(template, 'ORLANDO.png', width=Mm(50))
         elif dni_gerente == '41846665':
-            imagen = InlineImage(template, 'HUMBERTO.jpg', width=Mm(50))
+            imagen = InlineImage(template, 'HUMBERTO.png', width=Mm(50))
         elif dni_gerente == '46416820':
-            imagen = InlineImage(template, 'ENZO.jpg', width=Mm(50))
+            imagen = InlineImage(template, 'ENZO.png', width=Mm(50))
         # Contexto que se pasará a la plantilla
         context = {
             'ID': '0' + idusuario if int(idusuario) < 10 else idusuario,
