@@ -14,10 +14,10 @@ ADD ./HeoComisiones-0.0.1-SNAPSHOT.jar /java-app.jar
 ADD ./documentgenerator.py /documentgenerator.py
 ADD ./contrato_corto_plazo.docx /contrato_corto_plazo.docx
 ADD ./contrato_mediano_plazo.docx /contrato_mediano_plazo.docx
-ADD ./ENZO.jpg /ENZO.jpg
-ADD ./ERICK.jpg /ERICK.jpg
-ADD ./HUMBERTO.jpg /HUMBERTO.jpg
-ADD ./ORLANDO.jpg /ORLANDO.jpg
+ADD ./ENZO.jpg /ENZO.png
+ADD ./ERICK.jpg /ERICK.png
+ADD ./HUMBERTO.jpg /HUMBERTO.png
+ADD ./ORLANDO.jpg /ORLANDO.png
 
 # Configura el punto de entrada para ejecutar tu aplicación Java
 ENTRYPOINT ["java", "-jar", "/java-app.jar"]
