@@ -5,7 +5,7 @@ import com.pe.HeoComisiones.Entity.Contratos;
 import com.pe.HeoComisiones.Entity.Usuarios;
 import com.pe.HeoComisiones.Exception.ScriptError;
 import com.pe.HeoComisiones.Repository.ContratotoDbRepository;
-import com.pe.HeoComisiones.Services.common.CommonContratoService;
+import com.pe.HeoComisiones.Services.admin.AdminContratoGenerateService;
 import com.pe.HeoComisiones.Services.common.CommonUsuarioService;
 import com.pe.HeoComisiones.Utils.Cloudinary.CloudService;
 import jakarta.transaction.Transactional;
@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -23,7 +21,7 @@ import java.util.*;
 // TODO : 10/01/2024 No olvidar que las rutas no deben ser relavitas
 @Service
 @RequiredArgsConstructor
-public class AdminGenContratoServiceImpl implements CommonContratoService {
+public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerateService {
     private final CloudService cloudService;
     private final ContratotoDbRepository contratotoDbRepository;
     private final CommonUsuarioService commonUsuarioService;

@@ -3,7 +3,7 @@ package com.pe.HeoComisiones;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pe.HeoComisiones.Controller.admin.ContratoGeneratorController;
 import com.pe.HeoComisiones.DTOs.ContratoValuesRequest;
-import com.pe.HeoComisiones.Services.common.CommonContratoService;
+import com.pe.HeoComisiones.Services.admin.AdminContratoGenerateService;
 import com.pe.HeoComisiones.Tokens.JwtService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class ContratoGeneratorControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private CommonContratoService commonContratoService;
+    private AdminContratoGenerateService commonContratoService;
 
     @Test
     void whenGenerateContratoWithValidData_thenReturnsOk() throws Exception {

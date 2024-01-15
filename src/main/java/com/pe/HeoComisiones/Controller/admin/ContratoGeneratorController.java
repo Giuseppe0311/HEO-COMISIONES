@@ -1,12 +1,9 @@
 package com.pe.HeoComisiones.Controller.admin;
 
 import com.pe.HeoComisiones.DTOs.ContratoValuesRequest;
-import com.pe.HeoComisiones.Services.common.CommonContratoService;
-import com.pe.HeoComisiones.Validations.ValidationUtils;
-import jakarta.transaction.Transactional;
+import com.pe.HeoComisiones.Services.admin.AdminContratoGenerateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +15,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ContratoGeneratorController {
     // TODO: 2/01/2024 FALTA TERMINAR ESTE CONTROLADOR Y HACER LAS PRUEBAS UNITARIAS
-    private final CommonContratoService commonContratoService;
+    private final AdminContratoGenerateService commonContratoService;
     //ruta para obtener el contrato
     @PostMapping("/generate")
     public ResponseEntity<?> generateContrato(@RequestBody ContratoValuesRequest contratoValuesRequest) throws IOException, InterruptedException {
