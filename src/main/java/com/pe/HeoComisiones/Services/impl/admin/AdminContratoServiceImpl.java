@@ -5,6 +5,7 @@ import com.pe.HeoComisiones.Mappers.admin.AdminContratosDTOMapper;
 import com.pe.HeoComisiones.Repository.ContratotoDbRepository;
 import com.pe.HeoComisiones.Services.admin.AdminContratoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public class AdminContratoServiceImpl implements AdminContratoService {
 
     @Override
     public List<AdminContratosDTO> getContratos() {
-        return contratotoDbRepository.findAll()
+        return contratotoDbRepository.findAll(Sort.by(Sort.Direction.DESC, "idcontrato"))
                 .stream()
                 .map(adminContratosDTOMapper)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
