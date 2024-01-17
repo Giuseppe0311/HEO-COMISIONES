@@ -24,7 +24,8 @@ public class DetalleComisionDTOMapper implements Function<DetalleComisiones, Det
                               inversor.getClientes().getTelefono(),
                               inversor.getClientes().getDistrito(),
                               inversor.getClientes().getProvincia(),
-                              inversor.getClientes().getDepartamento()
+                              inversor.getClientes().getDepartamento(),
+                              inversor.getClientes().getCorreoelectronico()
                       ),
                       inversor.getMontoinvertido(),
                       inversor.getContrato(),

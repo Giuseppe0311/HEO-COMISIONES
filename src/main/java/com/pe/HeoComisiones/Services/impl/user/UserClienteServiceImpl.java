@@ -59,6 +59,7 @@ public class UserClienteServiceImpl implements UserClienteService {
         clientes.setDistrito(clienteRequest.getDistrito());
         clientes.setProvincia(clienteRequest.getProvincia());
         clientes.setDepartamento(clienteRequest.getDepartamento());
+        clientes.setCorreoelectronico(clienteRequest.getCorreoelectronico());
         clienteRepository.save(clientes);
 
     }
@@ -80,6 +81,7 @@ public class UserClienteServiceImpl implements UserClienteService {
         clientes.setDistrito(clienteRequest.getDistrito());
         clientes.setProvincia(clienteRequest.getProvincia());
         clientes.setDepartamento(clienteRequest.getDepartamento());
+        clientes.setCorreoelectronico(clienteRequest.getCorreoelectronico());
         clienteRepository.save(clientes);
     }
 }

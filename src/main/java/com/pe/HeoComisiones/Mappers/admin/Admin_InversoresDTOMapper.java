@@ -20,7 +20,8 @@ public class Admin_InversoresDTOMapper implements Function<Inversor, Admin_Inver
                 inversor.getClientes().getTelefono(),
                 inversor.getClientes().getDistrito(),
                 inversor.getClientes().getProvincia(),
-                inversor.getClientes().getDepartamento()
+                inversor.getClientes().getDepartamento(),
+                inversor.getClientes().getCorreoelectronico()
         );
         UsuarioDTO usuarios = new UsuarioDTO(
                 inversor.getUsuarios().getId(),

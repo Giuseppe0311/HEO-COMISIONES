@@ -18,6 +18,6 @@ public class ClienteRequest {
     private String distrito;
     private String provincia;
     private String departamento;
-
+    private String correoelectronico;
     private Integer usuarios;
 }

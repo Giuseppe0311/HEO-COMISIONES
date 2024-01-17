@@ -20,7 +20,8 @@ public class InversoresDTOMapper implements Function<Inversor, InversorDTO> {
                 inversor.getClientes().getTelefono(),
                 inversor.getClientes().getDistrito(),
                 inversor.getClientes().getProvincia(),
-                inversor.getClientes().getDepartamento()
+                inversor.getClientes().getDepartamento(),
+                inversor.getClientes().getCorreoelectronico()
         );
 
         return new InversorDTO(

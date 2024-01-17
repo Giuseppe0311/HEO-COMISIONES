@@ -24,6 +24,7 @@ public class Clientes extends Auditable {
     private String distrito;
     private String provincia;
     private String departamento;
+    private String correoelectronico;
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuarios usuarios;

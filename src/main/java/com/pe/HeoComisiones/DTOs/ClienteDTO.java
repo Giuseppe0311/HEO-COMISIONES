@@ -8,6 +8,7 @@ public record ClienteDTO(
          String telefono,
          String distrito,
          String provincia,
-         String departamento
+         String departamento,
+         String correo
 ) {
 }
