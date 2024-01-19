@@ -96,7 +96,9 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
                 contratoValuesRequest.getTipodecontrato(),
                 contratoValuesRequest.getTipo_cuenta_cliente(),
                 contratoValuesRequest.getOrigen_fondos_cliente(),
-                contratoValuesRequest.getTipo_moneda()
+                contratoValuesRequest.getTipo_moneda() != null && !contratoValuesRequest.getTipo_moneda().isEmpty()
+                        ? contratoValuesRequest.getTipo_moneda()
+                        : "SOLES"
         );
     }
     private String exucuteScript(List<String> command) throws IOException, InterruptedException {
