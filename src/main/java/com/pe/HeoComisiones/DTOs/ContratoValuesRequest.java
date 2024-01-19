@@ -44,4 +44,6 @@ public class ContratoValuesRequest {
     private String tipodecontrato;
     private String tipo_cuenta_cliente;
     private String origen_fondos_cliente;
+    //tipo de moneda DOLARES O SOLES
+    private String tipo_moneda;
 }

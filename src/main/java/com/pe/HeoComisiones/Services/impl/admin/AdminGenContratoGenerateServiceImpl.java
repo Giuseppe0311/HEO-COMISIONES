@@ -49,7 +49,8 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
                 contratoValuesRequest.getTipodecontrato(),
                 contratoValuesRequest.getNombre_cliente(),
                 contratoValuesRequest.getNumerodocumento_cliente(),
-                contratoValuesRequest.getTipodocumento_cliente());
+                contratoValuesRequest.getTipodocumento_cliente(),
+                contratoValuesRequest.getTipo_moneda());
         //DECLARAR EL MAPA
         Map<String,Object> response =new HashMap<>();
         //AGREGAR LOS VALORES AL MAPA
@@ -94,7 +95,8 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
                         : "",
                 contratoValuesRequest.getTipodecontrato(),
                 contratoValuesRequest.getTipo_cuenta_cliente(),
-                contratoValuesRequest.getOrigen_fondos_cliente()
+                contratoValuesRequest.getOrigen_fondos_cliente(),
+                contratoValuesRequest.getTipo_moneda()
         );
     }
     private String exucuteScript(List<String> command) throws IOException, InterruptedException {
@@ -149,7 +151,8 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
                                         String urlContrato,String tipoContrato,
                                         String nombre_cliente,
                                         String dni_cliente,
-                                        String tipo_documento_cliente){
+                                        String tipo_documento_cliente,
+                                        String tipo_moneda){
         Usuarios user = commonUsuarioService.verifyUsuarioExistsById(idusuario);
         Contratos contratos = new Contratos();
         contratos.setUsuarios(user);
@@ -162,6 +165,7 @@ public class AdminGenContratoGenerateServiceImpl implements AdminContratoGenerat
         contratos.setNombre_cliente(nombre_cliente.toUpperCase());
         contratos.setDni_cliente(dni_cliente);
         contratos.setTipo_documento_cliente(tipo_documento_cliente.toUpperCase());
+        contratos.setTipo_moneda(tipo_moneda.toUpperCase());
         contratotoDbRepository.save(contratos);
     }
     private Integer obtenerNumeroDeContrato(Integer idusuario){

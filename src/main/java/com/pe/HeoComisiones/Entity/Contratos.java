@@ -25,5 +25,6 @@ public class Contratos {
     private  String nombre_cliente;
     private String  dni_cliente;
     private String tipo_documento_cliente;
+    private String tipo_moneda;
     private boolean estado;
 }

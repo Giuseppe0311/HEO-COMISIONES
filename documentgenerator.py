@@ -7,7 +7,7 @@ import base64
 import sys
 from num2words import num2words
 
-if len(sys.argv) < 33:
+if len(sys.argv) < 34:
     sys.exit("Error: Faltan argumentos para ejecutar el script correctamente.")
 
 # Recupera los argumentos de la línea de comandos
@@ -43,9 +43,10 @@ cronograma = sys.argv[29]
 tipodecontrato = sys.argv[30]
 tipo_cuenta_cliente = sys.argv[31]
 origen_fondos_cliente = sys.argv[32]
+tipo_moneda = sys.argv[33]
 
 
-def cantidad_en_letras(monto, moneda='SOLES'):
+def cantidad_en_letras(monto, moneda=tipo_moneda):
     parte_entera = int(monto)
     parte_decimal = int(round((monto - parte_entera) * 100))
     return f"{num2words(parte_entera, lang='es')} con {parte_decimal:02d}/100 {moneda}"
@@ -67,8 +68,12 @@ try:
     utilidad_cliente_letras = cantidad_en_letras(utilidad_cliente_float)
 
     # Formatear con separadores de miles y dos decimales
-    capital_cliente_float_formateado = "{:,.2f}".format(capital_cliente_float)
-    utilidad_cliente_float_formateado = "{:,.2f}".format(utilidad_cliente_float)
+    if tipo_moneda == 'SOLES':
+        capital_cliente_float_formateado = "S/." + "{:,.2f}".format(capital_cliente_float)
+        utilidad_cliente_float_formateado = "S/." + "{:,.2f}".format(utilidad_cliente_float)
+    else:
+        capital_cliente_float_formateado = "$" + "{:,.2f}".format(capital_cliente_float)
+        utilidad_cliente_float_formateado = "$" + "{:,.2f}".format(utilidad_cliente_float)
 
     # TODO: NO OLVIDAR QUE SE DEBE USAR OTRA PLANTIILA PARA EL CONTRATO DE CORTO PLAZO
     plantilla_elegida = ''
