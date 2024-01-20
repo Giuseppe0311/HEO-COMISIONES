@@ -49,7 +49,7 @@ tipo_moneda = sys.argv[33]
 def cantidad_en_letras(monto, moneda=tipo_moneda):
     parte_entera = int(monto)
     parte_decimal = int(round((monto - parte_entera) * 100))
-    return f"{num2words(parte_entera, lang='es')} con {parte_decimal:02d}/100 {moneda}"
+    return f"{num2words(parte_entera, lang='es')} y {parte_decimal:02d}/100 {moneda}"
 
 
 # GENERO
