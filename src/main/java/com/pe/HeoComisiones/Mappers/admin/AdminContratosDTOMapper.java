@@ -19,7 +19,8 @@ public class AdminContratosDTOMapper implements Function<Contratos, AdminContrat
                 contratos.getTipoContrato(),
                 contratos.getNombre_cliente(),
                 contratos.getDni_cliente(),
-                contratos.getTipo_documento_cliente()
+                contratos.getTipo_documento_cliente(),
+                contratos.getTipo_moneda()
         );
     }
 }

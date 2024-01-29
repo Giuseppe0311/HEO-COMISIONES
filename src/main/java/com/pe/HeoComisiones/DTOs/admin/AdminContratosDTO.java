@@ -10,6 +10,8 @@ public record AdminContratosDTO(
         String tipoContrato,
         String nombre_cliente,
         String dni_cliente,
-        String tipo_documento_cliente
+        String tipo_documento_cliente,
+        String tipo_moneda
+
 ) {
 }
