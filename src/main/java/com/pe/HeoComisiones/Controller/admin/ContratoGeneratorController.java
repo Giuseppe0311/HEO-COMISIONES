@@ -5,6 +5,7 @@ import com.pe.HeoComisiones.Services.admin.AdminContratoGenerateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/contrato-generator")
+@PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
 public class ContratoGeneratorController {
     // TODO: 2/01/2024 FALTA TERMINAR ESTE CONTROLADOR Y HACER LAS PRUEBAS UNITARIAS

@@ -6,12 +6,14 @@ import com.pe.HeoComisiones.Request.ComisionRequest;
 import com.pe.HeoComisiones.Services.admin.AdminComisionesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("/admin/comisiones")
 public class ComisionController {
     private final AdminComisionesService comisionService;

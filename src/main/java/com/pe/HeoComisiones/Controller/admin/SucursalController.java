@@ -4,6 +4,7 @@ import com.pe.HeoComisiones.Entity.Sucursales;
 import com.pe.HeoComisiones.Services.admin.AdminSucursalesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/sucursal")
+@PreAuthorize("hasRole('ADMIN')")
 public class SucursalController {
    private  final AdminSucursalesService sucursalService;
     @GetMapping

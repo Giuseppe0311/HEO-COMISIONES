@@ -14,7 +14,7 @@ import java.util.*;
 @Component
 @RequiredArgsConstructor
 @Transactional
-public class UserDetalleComisionesServiceImplCronJob implements UserDetalleComisionesService {
+public class    UserDetalleComisionesServiceImplCronJob implements UserDetalleComisionesService {
     private final InversorRepository inversorRepository;
     private final ResultTrabajadoresRepository resultTrabajadoresRepository;
     private final DetalleComisionesRepository detalleComisionesRepository;

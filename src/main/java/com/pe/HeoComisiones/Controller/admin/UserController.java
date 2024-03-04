@@ -4,11 +4,13 @@ import com.pe.HeoComisiones.Request.UsuarioRequest;
 import com.pe.HeoComisiones.Services.admin.AdminUsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin/usuarios")
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 public class UserController {
     private final AdminUsuarioService usuarioService;
 

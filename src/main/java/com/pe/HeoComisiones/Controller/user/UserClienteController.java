@@ -4,11 +4,13 @@ import com.pe.HeoComisiones.Request.ClienteRequest;
 import com.pe.HeoComisiones.Services.user.UserClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usuario/clientes")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 
 public class UserClienteController {
     //TODO: 07/01/2024  FALTA IMPLEMENTAR EL ENDPOINT PARA ELIMINAR UN CLIENTE

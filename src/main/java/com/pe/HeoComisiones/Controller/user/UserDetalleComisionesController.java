@@ -5,11 +5,13 @@ import com.pe.HeoComisiones.Services.common.CommonDetalleComisionService;
 import com.pe.HeoComisiones.Services.user.UserDetalleComisionesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usuario/detallecomisiones")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 public class UserDetalleComisionesController {
     private final CommonDetalleComisionService commonDetalleComisionService;
 
