@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/usuario/detallecomisiones")
-@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+@PreAuthorize("hasAnyRole('USER', 'ADMIN','COMERCIAL','SUPERVISOR','ADMINISTRATIVO')")
 public class UserDetalleComisionesController {
     private final CommonDetalleComisionService commonDetalleComisionService;
 

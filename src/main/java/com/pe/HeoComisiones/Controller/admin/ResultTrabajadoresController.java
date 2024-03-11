@@ -18,11 +18,13 @@ public class ResultTrabajadoresController {
 
     private final AdminResultTrabajadoresService resultTrabajadoresService;
 
+    @PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
     @GetMapping
     public ResponseEntity<List<ResulTrabajadoresDTO>> getresult() {
         return ResponseEntity.ok(resultTrabajadoresService.getResultTrabajadores());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getresultbyid(@PathVariable Integer id) {
         return ResponseEntity.ok(resultTrabajadoresService.getResultTrabajadoresByid(id));

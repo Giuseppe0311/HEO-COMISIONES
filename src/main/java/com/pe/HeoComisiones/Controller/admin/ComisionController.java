@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
 @RequestMapping("/admin/comisiones")
 public class ComisionController {
     private final AdminComisionesService comisionService;

@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin/detallecomisiones")
 public class DetalleComisionesController {
    private final AdminDetalleComisionesService detalleComisionesService;
-
+    @PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
     @GetMapping
     public ResponseEntity<?> getallcomisiones(){
             return ResponseEntity.ok(detalleComisionesService.getallDetalles());
     }
+    @PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getcomisionesbyid(@PathVariable Integer id){
         return ResponseEntity.ok(detalleComisionesService.getdetallesByid(id));

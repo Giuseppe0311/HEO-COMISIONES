@@ -17,16 +17,17 @@ import java.util.List;
 @PreAuthorize("hasRole('ADMIN')")
 public class InversionController {
     private final AdminInversorService adminInversorService;
-
+    @PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
     @GetMapping
     public ResponseEntity<List<Admin_InversoresDTO>> getInversor() {
         return ResponseEntity.ok(adminInversorService.getInversores());
     }
+    @PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
     @GetMapping("/avances")
     public ResponseEntity<List<AdminConsultas_InversoresDTO>> getInversorAvances() {
         return ResponseEntity.ok(adminInversorService.getInversoresAvances());
     }
-
+    @PreAuthorize("hasAnyRole('ADMIN','SUPERVISOR')")
     @GetMapping("/{id}")
     public ResponseEntity<Admin_InversoresDTO> getInversorbyId(@PathVariable Integer id) {
         return ResponseEntity.ok(adminInversorService.getInversorbyId(id));
