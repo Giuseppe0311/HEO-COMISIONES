@@ -4,6 +4,7 @@ import com.pe.HeoComisiones.DTOs.ComisionesDTO;
 import com.pe.HeoComisiones.DTOs.UsuarioDTO;
 import com.pe.HeoComisiones.DTOs.admin.ComisionConUsuarioDTO;
 import com.pe.HeoComisiones.Entity.Comisiones;
+import com.pe.HeoComisiones.Entity.Perfiles;
 import com.pe.HeoComisiones.Entity.Usuarios;
 import com.pe.HeoComisiones.Exception.ComisionNotFoundException;
 import com.pe.HeoComisiones.Repository.*;
@@ -40,7 +41,9 @@ public class AdminComisionesServiceImpl implements AdminComisionesService {
                     usuario.getId(),
                     usuario.getName(),
                     usuario.getEmail(),
-                    usuario.getDni())
+                    usuario.getDni(), usuario.getProfiles().stream().map(perfiles -> perfiles.getName()).findFirst().orElse("")
+                    )
+
             );
 
             ComisionesDTO comisionesDTO = new ComisionesDTO(
@@ -85,7 +88,8 @@ public class AdminComisionesServiceImpl implements AdminComisionesService {
                 usuarioOptional.getId(),
                 usuarioOptional.getName(),
                 usuarioOptional.getEmail(),
-                usuarioOptional.getDni()
+                usuarioOptional.getDni(),
+                usuarioOptional.getProfiles().stream().map(Perfiles::getName).findFirst().orElse("")
         );
 
         resultado.add(new ComisionConUsuarioDTO(

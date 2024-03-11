@@ -4,6 +4,7 @@ import com.pe.HeoComisiones.DTOs.UsuarioDTO;
 import com.pe.HeoComisiones.DTOs.admin.AdminConsultas_InversoresDTO;
 import com.pe.HeoComisiones.DTOs.admin.Admin_InversoresDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
+import com.pe.HeoComisiones.Entity.Perfiles;
 import com.pe.HeoComisiones.Entity.Usuarios;
 import com.pe.HeoComisiones.Exception.InversorNotFoundException;
 import com.pe.HeoComisiones.Mappers.InversoresDTOMapper;
@@ -69,7 +70,7 @@ public class AdminInversorServiceImpl implements AdminInversorService, CommonInv
                 .map(entry -> {
                     Integer idUsuario = entry.getKey();
                     Usuarios usuario = entry.getValue().get(0).getUsuarios(); // Asumiendo que todos los inversores en el grupo tienen el mismo usuario
-                    UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getId(), usuario.getName(), usuario.getEmail(), usuario.getDni());
+                    UsuarioDTO usuarioDTO = new UsuarioDTO(usuario.getId(), usuario.getName(), usuario.getEmail(), usuario.getDni(), usuario.getProfiles().stream().map(Perfiles::getName).findFirst().orElse(""));
                     List<InversorDTO> inversorDTOs = entry.getValue().stream()
                             .map(inversoresDTOMapper)
                             .collect(Collectors.toList());

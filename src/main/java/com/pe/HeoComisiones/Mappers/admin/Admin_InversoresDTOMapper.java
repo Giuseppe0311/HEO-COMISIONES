@@ -4,6 +4,7 @@ import com.pe.HeoComisiones.DTOs.ClienteDTO;
 import com.pe.HeoComisiones.DTOs.UsuarioDTO;
 import com.pe.HeoComisiones.DTOs.admin.Admin_InversoresDTO;
 import com.pe.HeoComisiones.Entity.Inversor;
+import com.pe.HeoComisiones.Entity.Perfiles;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
@@ -27,7 +28,8 @@ public class Admin_InversoresDTOMapper implements Function<Inversor, Admin_Inver
                 inversor.getUsuarios().getId(),
                 inversor.getUsuarios().getName(),
                 inversor.getUsuarios().getEmail(),
-                inversor.getUsuarios().getDni()
+                inversor.getUsuarios().getDni(),
+                inversor.getUsuarios().getProfiles().stream().map(Perfiles::getName).findFirst().orElse("")
         );
 
         return new Admin_InversoresDTO(

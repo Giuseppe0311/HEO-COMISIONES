@@ -4,5 +4,7 @@ public record UsuarioDTO(
     Integer id,
      String name,
     String email,
-    String dni){
+    String dni,
+    String perfil
+){
 }
