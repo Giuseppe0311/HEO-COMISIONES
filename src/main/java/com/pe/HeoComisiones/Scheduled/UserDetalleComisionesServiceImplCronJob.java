@@ -23,7 +23,7 @@ public class    UserDetalleComisionesServiceImplCronJob implements UserDetalleCo
 
     //ENVIAR LOS 28 DE CADA MES A LAS 11:30 PM
     @Override
-    @Scheduled(cron = "0 30 18 28 * ?")
+    @Scheduled(cron = "0 30 18 31 * ?")
     public void saveDetalleComisiones() {
         // SE BUSCA LOS INVERSORES CON EL STATUS TRUE Y SE VERIFICA SI ESTA VACIA
         List<Inversor> inversoresConStatusTrue = inversorRepository.findByStatusTrue(
